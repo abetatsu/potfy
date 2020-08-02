@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Potfy.me
                 </div>
 
                 <div class="links">
