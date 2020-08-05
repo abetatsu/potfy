@@ -14,10 +14,19 @@ class CreateCommentsTable extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+
+            $table->unsignedBigInteger('user_id'); //外部キー（他のテーブルのIDを参照している）
+            $table->unsignedBigInteger('portfolio_id'); //外部キー（他のテーブルのIDを参照している）
+
+            $table->text('body');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('portfolio_id')->references('id')->on('portfolios');
         });
     }
+
 
     /**
      * Reverse the migrations.

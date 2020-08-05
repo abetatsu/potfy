@@ -14,10 +14,16 @@ class CreatePortfolioTechnologiesTable extends Migration
     public function up()
     {
         Schema::create('portfolio_technologies', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('portfolio_id'); //外部キー（他のテーブルのIDを参照している）
+            $table->unsignedBigInteger('technology_id'); //外部キー（他のテーブルのIDを参照している）
             $table->timestamps();
+            
+            $table->foreign('portfolio_id')->references('id')->on('portfolios');
+            $table->foreign('technology_id')->references('id')->on('technologies');
         });
     }
+
 
     /**
      * Reverse the migrations.

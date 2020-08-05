@@ -14,8 +14,15 @@ class CreatePortfoliosTable extends Migration
     public function up()
     {
         Schema::create('portfolios', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id'); //外部キー（他のテーブルのIDを参照している）
+            $table->string('title');
+            $table->text('description');
+            $table->text('image');
+            $table->string('link');
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
