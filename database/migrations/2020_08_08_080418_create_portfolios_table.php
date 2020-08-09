@@ -18,8 +18,8 @@ class CreatePortfoliosTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->text('description');
-            $table->string('image');
-            $table->string('link')->nullable();
+            $table->text('image')->nullable();
+            $table->string('link');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

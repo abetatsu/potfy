@@ -16,11 +16,11 @@ class CreatePortfolioTechnologyTable extends Migration
         Schema::create('portfolio_technology', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('portfolio_id');
-            $table->unsignedBigInteger('Technology_id');
+            $table->unsignedBigInteger('technology_id');
             $table->timestamps();
 
             $table->foreign('portfolio_id')->references('id')->on('portfolios');
-            $table->foreign('Technology_id')->references('id')->on('Technologies');
+            $table->foreign('technology_id')->references('id')->on('technologies');
         });
     }
 
