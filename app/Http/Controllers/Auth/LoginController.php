@@ -66,7 +66,7 @@ class LoginController extends Controller
                 'token'     => $user->token,
                 'name'      => $user->name,
                 'email'     => $user->email,
-                'avatar'    => $user->avatar_original,
+                'image'    => $user->image,
             ]);
             Auth::login($socialUser, true);
         } catch (Exception $e) {
