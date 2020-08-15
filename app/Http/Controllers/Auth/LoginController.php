@@ -66,7 +66,7 @@ class LoginController extends Controller
                 'token'     => $user->token,
                 'name'      => $user->name,
                 'email'     => $user->email,
-                'image'    => $user->image,
+                'image'     => str_replace('http://','https://',$user->avatar),
             ]);
             Auth::login($socialUser, true);
         } catch (Exception $e) {
