@@ -28,6 +28,9 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         'verify'   => false
     ]);
 
+    Route::get('login/twitter', 'Auth\LoginController@redirectToProvider')->name('login.twitter');
+    Route::get('login/twitter/callback', 'Auth\LoginController@handleProviderCallback');
+
     // ログイン認証後
     Route::middleware('auth:user')->group(function () {
 
@@ -55,3 +58,4 @@ Route::namespace('Company')->prefix('company')->name('company.')->group(function
     });
 
 });
+Route::get('/home', 'HomeController@index')->name('home');
