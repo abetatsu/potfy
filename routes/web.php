@@ -17,8 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
 Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
     // ログイン認証関連
@@ -58,4 +56,3 @@ Route::namespace('Company')->prefix('company')->name('company.')->group(function
     });
 
 });
-Route::get('/home', 'HomeController@index')->name('home');
