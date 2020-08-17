@@ -31,7 +31,7 @@ class CommentRequest extends FormRequest
     public function messages()
     {
         return [
-            'body.required'  => '内容は必須です。',
+            'body.required'  => trans('validation.required'),
         ];
     }
 }

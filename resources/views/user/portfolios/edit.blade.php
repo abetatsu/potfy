@@ -18,15 +18,15 @@
             {{method_field('PATCH')}}
                 <div class="form-group">
                     <label>タイトル</label>
-                    <input type="text" class="form-control" value="{{ $portfolio->title }}" name="title">
+                    <input type="text" class="form-control" value="{{old('title', $portfolio->title)}}" name="title">
                 </div>
                 <div class="form-group">
                     <label>内容</label>
-                    <textarea class="form-control" rows="5" name="description">{{ $portfolio->description }}</textarea>
+                    <textarea class="form-control" rows="5" name="description">{{old('description', $portfolio->description)}}</textarea>
                 </div>
                 <div class="form-group">
                     <label>リンク</label>
-                    <input type="text" class="form-control" value="{{ $portfolio->link }}" name="link">
+                    <input type="text" class="form-control" value="{{old('link', $portfolio->link)}}" name="link">
                 </div>
                 
                 <button type="submit" class="btn btn-primary">更新する</button>

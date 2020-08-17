@@ -17,15 +17,15 @@
             {{csrf_field()}}
                 <div class="form-group">
                     <label>タイトル</label>
-                    <input type="text" class="form-control" placeholder="タイトルを入力して下さい" name="title">
+                    <input type="text" class="form-control"  value="{{old('title')}}" placeholder="タイトルを入力して下さい" name="title" >
                 </div>
                 <div class="form-group">
                     <label>内容</label>
-                    <textarea class="form-control" placeholder="内容" rows="5" name="description"></textarea>
+                    <textarea class="form-control" placeholder="内容" rows="5" name="description">{{old('description')}}</textarea>
                 </div>
                 <div class="form-group">
                 <label>リンク</label>
-                    <input type="text" class="form-control" placeholder="リンク先を入力して下さい" name="link">
+                    <input type="text" class="form-control" placeholder="リンク先を入力して下さい" value="{{old('link')}}" name="link">
                 </div>
                 <button type="submit" class="btn btn-primary">作成する</button>
             </form>

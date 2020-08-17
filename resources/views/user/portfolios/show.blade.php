@@ -13,7 +13,6 @@
                 <p>投稿日時：{{ $portfolio->created_at }}</p>
                 <p class="card-text">投稿者：{{ $portfolio->user->name }}</p>
                 <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn btn-primary">編集する</a>
-                
             </div>
         </div>
     </div>
