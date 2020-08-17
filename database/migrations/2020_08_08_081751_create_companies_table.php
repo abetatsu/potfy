@@ -21,7 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->string('password');
             $table->string('address')->nullable();
             $table->text('image')->nullable();
-            $table->text('detail');
+            $table->text('detail')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -35,7 +35,7 @@ class PortfolioRequest extends FormRequest
     {
         return [
         'title.required' => trans('validation.required'),
-        'title.max:20'      => trans('validation.required'),
+        'title.max'      => trans('validation.max'),
         'description.required'  => trans('validation.required'),
         'link.required'=> trans('validation.required'),
     ];
