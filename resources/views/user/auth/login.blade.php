@@ -1,14 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.user.app')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('ログイン') }}</div>
+
+                <div class="card-header">ユーザー{{ __('ログイン') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('user.login') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -44,12 +45,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('ログイン') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('パスワードをお忘れですか？') }}
-                                    </a>
-                                @endif
                             </div>
                         </div>
 
@@ -69,7 +64,7 @@
                     </form>
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <a href="{{ route('login.twitter') }}"><i class="fab fa-twitter">Twitterでログイン</i></a>
+                            <a href="{{ route('user.login.twitter') }}"><i class="fab fa-twitter">Twitterでログイン</i></a>
                         </div>
                     </div>
                 </div>
