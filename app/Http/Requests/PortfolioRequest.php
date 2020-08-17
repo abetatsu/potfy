@@ -34,10 +34,10 @@ class PortfolioRequest extends FormRequest
     public function messages()
     {
         return [
-        'title.required' => 'タイトルは必須です。',
-        'title.max'      => 'タイトルは20文字以内で記入してください。',
-        'description.required'  => '内容は必須です。',
-        'link.required'=>'リンク先を入力してください。',
+        'title.required' => trans('validation.required'),
+        'title.max:20'      => trans('validation.required'),
+        'description.required'  => trans('validation.required'),
+        'link.required'=> trans('validation.required'),
     ];
     }
 }

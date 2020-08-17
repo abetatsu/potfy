@@ -11,8 +11,8 @@
                 @foreach ($portfolios as $portfolio)
                 <div class="card-body">
                     <h5 class="card-title">タイトル：{{ $portfolio->title }}</h5>
-                    <p class="card-text">***内容：{{ $portfolio->description }}</p>
-                    <p class="card-text">***リンク：{{ $portfolio->link }}</p>
+                    <p class="card-text">内容：{{ $portfolio->description }}</p>
+                    <p class="card-text">リンク：{{ $portfolio->link }}</p>
                     <p class="card-text">投稿者：{{ $portfolio->user->name }}</p>
                     <a href="{{route('portfolios.show',$portfolio->id)}}" class="btn btn-primary">詳細へ</a>
                 </div>

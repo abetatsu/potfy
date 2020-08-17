@@ -18,8 +18,6 @@ class CreatePortfoliosTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->text('description');
-            $table->text('image_path')->nullable();
-            $table->text('public_id')->nullable();
             $table->string('link')->nullable();
             $table->timestamps();
 
