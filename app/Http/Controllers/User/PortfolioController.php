@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\PortfolioRequest;
 use App\Http\Controllers\Controller;
+use JD\Cloudder\Facades\Cloudder;
 use App\Portfolio;
 use App\User;
 use Auth;
@@ -47,7 +48,23 @@ class PortfolioController extends Controller
         $portfolio->description = $request->description;
         $portfolio->link = $request->link;
         $portfolio->user_id = Auth::id();
+
+        
+        if ($image = $request->file('image')) {
+            $image_path = $image->getRealPath();
+            Cloudder::upload($image_path, null);
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId, [
+                'width'     => 200,
+                'height'    => 200
+            ]);
+            $portfolio->image_path = $logoUrl;
+            $portfolio->public_id  = $publicId;
+        }
+        
+
         $portfolio->save();
+     
 
         return redirect() ->route('portfolios.index');
     }
@@ -95,6 +112,19 @@ class PortfolioController extends Controller
         $portfolio->title = $request->title;
         $portfolio->description = $request->description;
         $portfolio->link = $request->link;
+
+        if ($image = $request->file('image')) {
+            $image_path = $image->getRealPath();
+            Cloudder::upload($image_path, null);
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId, [
+                'width'     => 200,
+                'height'    => 200
+            ]);
+            $portfolio->image_path = $logoUrl;
+            $portfolio->public_id  = $publicId;
+        }
+        
         
         $portfolio->save();
 
