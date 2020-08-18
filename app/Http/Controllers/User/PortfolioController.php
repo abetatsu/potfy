@@ -17,11 +17,6 @@ class PortfolioController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $portfolios = Portfolio::all();
@@ -114,5 +109,6 @@ class PortfolioController extends Controller
      */
     public function destroy($id)
     {
+        //
     }
 }
