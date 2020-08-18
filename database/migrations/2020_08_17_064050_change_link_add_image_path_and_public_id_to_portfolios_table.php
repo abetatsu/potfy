@@ -28,7 +28,7 @@ class ChangeLinkAddImagePathAndPublicIdToPortfoliosTable extends Migration
     public function down()
     {
         Schema::table('portfolios', function (Blueprint $table) {
-            $table->string('link')->change();
+            $table->string('link')->nullable(false)->change();
             $table->dropColumn('image_path');
             $table->dropColumn('public_id');
         });
