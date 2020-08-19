@@ -139,6 +139,18 @@ class PortfolioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $portfolio = Portfolio::find($id);
+
+        if (Auth::id() !== $portfolio->user_id) {
+            return abort(404);
+        }
+
+        if (isset($portfolio->public_id)) {
+            Cloudder::destroyImage($portfolio->public_id);
+        }
+
+        $portfolio -> delete();
+
+        return redirect()->route('portfolios.index');
     }
 }
