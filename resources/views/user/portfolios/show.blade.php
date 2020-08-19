@@ -8,18 +8,18 @@
                 <h5>タイトル：{{ $portfolio->title }}</h5>
             </div>
             <div class="card-body">
-            <div class="row my-5 ">
-            <div class="col-6 ml-3">
-                <p class="card-text">内容：{{ $portfolio->description }}</p>
-                <p class="card-text">リンク：{{ $portfolio->link }}</p>
-                <p>投稿日時：{{ $portfolio->created_at }}</p>
-                <p class="card-text">投稿者：{{ $portfolio->user->name }}</p>
-                <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn btn-primary mt-3">編集する</a>
-            </div>
-            <div class="col-4">
-                <img src="{{ $portfolio->image_path }}" alt="画像">
-            </div>
-            </div>
+                <div class="row my-5">
+                    <div class="col-6 ml-3">
+                        <p class="card-text">内容：{{ $portfolio->description }}</p>
+                        <p class="card-text">リンク：{{ $portfolio->link }}</p>
+                        <p>投稿日時：{{ $portfolio->created_at }}</p>
+                        <p class="card-text">投稿者：{{ $portfolio->user->name }}</p>
+                        <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn btn-primary mt-3">編集する</a>
+                    </div>
+                    <div class="col-4">
+                        <img src="{{ $portfolio->image_path }}" alt="画像">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
