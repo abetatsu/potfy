@@ -13,7 +13,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('user.portfolios.store') }}" method="POST">
+            <form action="{{ route('user.portfolios.store') }}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
                 <div class="form-group">
                     <label>タイトル</label>
@@ -26,6 +26,10 @@
                 <div class="form-group">
                 <label>リンク</label>
                     <input type="text" class="form-control" placeholder="リンク先を入力して下さい" value="{{old('link')}}" name="link">
+                </div>
+                <div class="form-group">
+                    <label for="image">画像</label>
+                    <input type="file" class="form-control-file" id="image" name="image">
                 </div>
                 <button type="submit" class="btn btn-primary">作成する</button>
             </form>

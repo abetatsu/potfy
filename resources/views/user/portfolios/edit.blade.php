@@ -13,7 +13,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('user.portfolios.update', $portfolio->id) }}" method="POST">
+            <form action="{{ route('user.portfolios.update', $portfolio->id) }}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
             {{method_field('PATCH')}}
                 <div class="form-group">
@@ -28,7 +28,10 @@
                     <label>リンク</label>
                     <input type="text" class="form-control" value="{{old('link', $portfolio->link)}}" name="link">
                 </div>
-                
+                <div class="form-group">
+                    <label for="image">画像</label>
+                    <input type="file" class="form-control-file" id="image" name="image">
+                </div>
                 <button type="submit" class="btn btn-primary">更新する</button>
             </form>
         </div>

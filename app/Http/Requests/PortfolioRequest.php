@@ -28,6 +28,7 @@ class PortfolioRequest extends FormRequest
             'title' => 'required|max:20',
             'description'=>'required',
             'link'=>'required',
+            'image' => 'mimes:jpeg,jpg,png,gif|max:10240',
         ];
     }
 
@@ -38,6 +39,8 @@ class PortfolioRequest extends FormRequest
         'title.max'      => trans('validation.max'),
         'description.required'  => trans('validation.required'),
         'link.required'=> trans('validation.required'),
+        'image.mimes'    => trans('validation.mimes'),
+        'image.max'      => trans('validation.max'),
     ];
     }
 }

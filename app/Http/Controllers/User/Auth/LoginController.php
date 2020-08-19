@@ -37,6 +37,7 @@ class LoginController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -92,7 +93,7 @@ class LoginController extends Controller
                 'token'     => $user->token,
                 'name'      => $user->name,
                 'email'     => $user->email,
-                'image'     => str_replace('http://','https://',$user->avatar),
+                'image'     => str_replace('http://', 'https://', $user->avatar),
             ]);
             Auth::login($socialUser, true);
         } catch (Exception $e) {
@@ -100,5 +101,5 @@ class LoginController extends Controller
         }
 
         return redirect()->route('portfolios.index');
-    }        
+    }
 }
