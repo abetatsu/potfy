@@ -73,6 +73,12 @@
         </nav>
 
         <main class="py-4">
+        @if (session('message'))
+            <div class="alert alert-success col-6 offset-3">{{ session('message') }}</div>
+        @endif
+
+       
+ 
             @yield('content')
         </main>
     </div>
