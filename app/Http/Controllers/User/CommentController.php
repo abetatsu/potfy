@@ -48,7 +48,7 @@ class CommentController extends Controller
 
         $comment->save();
 
-        return view('user.portfolios.show', compact('portfolio'));
+        return redirect()->route('user.portfolios.show', $portfolio->id)->with('success', 'コメント完了しました。');
     }
 
     /**
@@ -59,9 +59,7 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        $portfolio = Portfolio::find($id);
-        $portfolio->load('user', 'comments');
-        return view('portfolios.show', compact('portfolio'));
+        //
     }
 
     /**
