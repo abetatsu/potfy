@@ -48,7 +48,6 @@ class PortfolioController extends Controller
         $portfolio->description = $request->description;
         $portfolio->link = $request->link;
         $portfolio->user_id = Auth::id();
-
         
         if ($image = $request->file('image')) {
             $image_path = $image->getRealPath();
@@ -64,7 +63,6 @@ class PortfolioController extends Controller
         
 
         $portfolio->save();
-     
 
         return redirect() ->route('portfolios.index')->with('message', '記事を追加しました。');
     }
@@ -127,8 +125,9 @@ class PortfolioController extends Controller
         
         
         $portfolio->save();
-        \Session::flash('message', '記事を更新しました。');
-        return view('user.portfolios.show', compact('portfolio'));
+        // \Session::flash('message', '記事を更新しました。');
+        // return view('user.portfolios.show', compact('portfolio'));
+        return redirect()->route('user.portfolios.show', $portfolio->id)->with('success', 'ポートフォリオを更新しました。');
     }
 
     /**
@@ -149,8 +148,8 @@ class PortfolioController extends Controller
             Cloudder::destroyImage($portfolio->public_id);
         }
 
-        $portfolio -> delete();
+        $portfolio->delete();
 
-        return redirect()->route('portfolios.index')->with('message', '記事を削除しました。');
+        return redirect()->route('portfolios.index')->with('success', 'ポートフォリオの削除に成功しました。');
     }
 }
