@@ -48,7 +48,6 @@ class PortfolioController extends Controller
         $portfolio->description = $request->description;
         $portfolio->link = $request->link;
         $portfolio->user_id = Auth::id();
-
         
         if ($image = $request->file('image')) {
             $image_path = $image->getRealPath();
@@ -64,7 +63,6 @@ class PortfolioController extends Controller
         
 
         $portfolio->save();
-     
 
         return redirect() ->route('portfolios.index');
     }
@@ -149,7 +147,7 @@ class PortfolioController extends Controller
             Cloudder::destroyImage($portfolio->public_id);
         }
 
-        $portfolio -> delete();
+        $portfolio->delete();
 
         return redirect()->route('portfolios.index');
     }
