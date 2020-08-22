@@ -60,7 +60,10 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+                                    <a class="dropdown-item" href="{{ route('user.users.show', Auth::id()) }}">
+                                        マイページ <span class="caret"></span>
+                                    </a>
+                                    
                                     <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

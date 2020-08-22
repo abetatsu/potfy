@@ -35,12 +35,12 @@ class PortfolioRequest extends FormRequest
     public function messages()
     {
         return [
-        'title.required' => trans('validation.required'),
-        'title.max'      => trans('validation.max'),
-        'description.required'  => trans('validation.required'),
-        'link.required'=> trans('validation.required'),
-        'image.mimes'    => trans('validation.mimes'),
-        'image.max'      => trans('validation.max'),
-    ];
+            'title.required' => trans('validation.required'),
+            'title.max'      => trans('validation.max'),
+            'description.required'  => trans('validation.required'),
+            'link.required'=> trans('validation.required'),
+            'image.mimes'    => trans('validation.mimes'),
+            'image.max'      => trans('validation.max'),
+        ];
     }
 }
