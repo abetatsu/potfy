@@ -64,7 +64,7 @@ class PortfolioController extends Controller
 
         $portfolio->save();
 
-        return redirect() ->route('portfolios.index');
+        return redirect() ->route('portfolios.index')->with('success', 'ポートフォリオを追加しました。');
     }
 
     /**
@@ -126,7 +126,7 @@ class PortfolioController extends Controller
         
         $portfolio->save();
 
-        return view('user.portfolios.show', compact('portfolio'));
+        return redirect()->route('user.portfolios.show', $portfolio->id)->with('success', 'ポートフォリオを更新しました。');
     }
 
     /**
@@ -149,6 +149,6 @@ class PortfolioController extends Controller
 
         $portfolio->delete();
 
-        return redirect()->route('portfolios.index');
+        return redirect()->route('portfolios.index')->with('success', 'ポートフォリオの削除に成功しました。');
     }
 }
