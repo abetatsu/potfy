@@ -64,7 +64,7 @@ class PortfolioController extends Controller
 
         $portfolio->save();
 
-        return redirect() ->route('portfolios.index')->with('message', '記事を追加しました。');
+        return redirect() ->route('portfolios.index')->with('success', 'ポートフォリオを追加しました。');
     }
 
     /**
@@ -125,8 +125,7 @@ class PortfolioController extends Controller
         
         
         $portfolio->save();
-        // \Session::flash('message', '記事を更新しました。');
-        // return view('user.portfolios.show', compact('portfolio'));
+
         return redirect()->route('user.portfolios.show', $portfolio->id)->with('success', 'ポートフォリオを更新しました。');
     }
 
