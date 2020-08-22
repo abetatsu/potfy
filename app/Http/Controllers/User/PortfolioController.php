@@ -64,7 +64,7 @@ class PortfolioController extends Controller
 
         $portfolio->save();
 
-        return redirect() ->route('portfolios.index');
+        return redirect() ->route('portfolios.index')->with('message', '記事を追加しました。');
     }
 
     /**
@@ -125,7 +125,7 @@ class PortfolioController extends Controller
         
         
         $portfolio->save();
-
+        \Session::flash('message', '記事を更新しました。');
         return view('user.portfolios.show', compact('portfolio'));
     }
 
@@ -149,6 +149,6 @@ class PortfolioController extends Controller
 
         $portfolio->delete();
 
-        return redirect()->route('portfolios.index');
+        return redirect()->route('portfolios.index')->with('message', '記事を削除しました。');
     }
 }

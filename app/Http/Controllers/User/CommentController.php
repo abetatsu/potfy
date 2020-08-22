@@ -48,6 +48,7 @@ class CommentController extends Controller
 
         $comment->save();
 
+        \Session::flash('message', 'コメントしました。');
         return view('user.portfolios.show', compact('portfolio'));
     }
 
