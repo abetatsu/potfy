@@ -149,6 +149,6 @@ class PortfolioController extends Controller
 
         $portfolio->delete();
 
-        return redirect()->route('portfolios.index')->with('message', '記事を削除しました。');
+        return redirect()->route('portfolios.index')->with('message', '記事を削除しました。')->with('success', 'ポートフォリオの削除に成功しました。');
     }
 }
