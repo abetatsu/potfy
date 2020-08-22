@@ -29,7 +29,8 @@
                     <input type="text" class="form-control" value="{{old('link', $portfolio->link)}}" name="link">
                 </div>
                 <div class="form-group">
-                    <label for="image">画像</label>
+                    <label for="image">変更前の画像</label><br>
+                    <img src="{{ $portfolio->image_path }}" alt="画像" class="my-2">
                     <input type="file" class="form-control-file" id="image" name="image">
                 </div>
                 <button type="submit" class="btn btn-primary">更新する</button>
