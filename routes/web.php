@@ -37,6 +37,8 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         Route::resource('/portfolios/{portfolio}/comments', 'CommentController');
         // ポートフォリオ
         Route::resource('portfolios', 'PortfolioController', ['except' => 'index']);
+        // エンジニア
+        Route::resource('users', 'UserController');
     });
 });
 
