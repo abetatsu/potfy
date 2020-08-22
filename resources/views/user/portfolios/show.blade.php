@@ -15,6 +15,11 @@
                         <p>投稿日時：{{ $portfolio->created_at }}</p>
                         <p class="card-text">投稿者：{{ $portfolio->user->name }}</p>
                         <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn btn-primary mt-3">編集する</a>
+                        <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}'"method='post'>
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("削除しますか？？");'>
+                        </form>
                     </div>
                     <div class="col-4">
                         <img src="{{ $portfolio->image_path }}" alt="画像">

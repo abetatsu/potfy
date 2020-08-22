@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Portfolio extends Model
 {
     protected $fillable = ['title', 'description','link'];
+
+    use SoftDeletes;
 
     public function comments()
     {
