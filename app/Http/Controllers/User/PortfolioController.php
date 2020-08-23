@@ -20,9 +20,10 @@ class PortfolioController extends Controller
 
     public function index()
     {
-        $portfolios = Portfolio::all();
+        $portfolios = Portfolio::orderBy('created_at', 'desc')->get();
+        $portfoliosComments = Portfolio::withCount('comments')->orderBy('comments_count', 'desc')->paginate(3);
         $portfolios->load('user');
-        return view('user.portfolios.index', compact('portfolios'));
+        return view('user.portfolios.index', compact('portfolios', 'portfoliosComments'));
     }
 
     /**
