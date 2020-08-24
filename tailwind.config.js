@@ -1,8 +1,14 @@
 module.exports = {
+  future: {
+    removeDeprecatedGapUtilities: true,
+  },
   purge: [],
   theme: {
-    colors: {
-      yellow: '#F0B34E',
+    extend: {
+      colors: {
+        potfyYellow: '#F0B34E',
+        potfyYellowTitle: '#F2994A'
+      }
     }
   },
   variants: {},
