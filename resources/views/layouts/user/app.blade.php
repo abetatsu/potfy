@@ -38,6 +38,8 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <a href="{{ route('user.portfolios.create')}}" class="btn bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-2 px-4 border border-blue-700 rounded">新規投稿</a>
+
                         <!-- Authentication Links -->
                         @unless (Auth::guard('user')->check())
                             <li class="nav-item">
