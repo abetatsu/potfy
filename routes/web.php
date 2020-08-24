@@ -17,8 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('portfolios', 'User\PortfolioController', ['only' => 'index']);
 Route::namespace('User')->prefix('user')->name('user.')->group(function () {
-
     // ログイン認証関連
     Auth::routes([
         'register' => true,
@@ -31,10 +31,14 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
     // ログイン認証後
     Route::middleware('auth:user')->group(function () {
-
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
-
+        // コメント
+        Route::resource('/portfolios/{portfolio}/comments', 'CommentController');
+        // ポートフォリオ
+        Route::resource('portfolios', 'PortfolioController', ['except' => 'index']);
+        // エンジニア
+        Route::resource('users', 'UserController');
     });
 });
 
@@ -52,9 +56,9 @@ Route::namespace('Company')->prefix('company')->name('company.')->group(function
 
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
+
         // companyページ
         Route::resource('companies', 'CompanyController');
 
     });
-
 });
