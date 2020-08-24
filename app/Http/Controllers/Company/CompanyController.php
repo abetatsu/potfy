@@ -72,7 +72,6 @@ class CompanyController extends Controller
     {
         $company->name                   = $request->name;
         $company->email                  = $request->email;
-        $company->password               = $request->password;
         $company->address                = $request->address;
         $company->detail                 = $request->detail;
         $company->save();
