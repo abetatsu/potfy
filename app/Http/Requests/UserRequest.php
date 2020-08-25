@@ -33,8 +33,8 @@ class UserRequest extends FormRequest
     {
         return [
             'name.required' => trans('validation.required'),
-            'image.mimes'    => 'ファイルタイプをjpeg,jpg,png,gifに設定してください。',
-            'image.max'      => 'ファイルサイズを10MB以下に設定してください。',
+            'image.mimes'    => trans('validation.mimes'),
+            'image.max'      => trans('validation.max'),
         ];
     }
 }

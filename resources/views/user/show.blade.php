@@ -10,7 +10,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-6 ml-3">
-                        <img src="{{ $user->image_path }}" alt="画像は未設定です。" class="mb-3" height="120" width="120">
+                        <img src="{{ $user->image }}" alt="画像は未設定です。" class="mb-3" height="120" width="120">
                         <p class="card-text">メールアドレス：{{ $user->email }}</p>
                         <p class="card-text">性別：{{ $user->gender }}</p>
                         <p class="card-text">キャリア：{{ $user->career }}</p>
