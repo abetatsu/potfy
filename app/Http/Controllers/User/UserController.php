@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use JD\Cloudder\Facades\Cloudder;
 
 class UserController extends Controller
 {
@@ -75,6 +76,19 @@ class UserController extends Controller
         $user->career                 = $request->career;
         $user->birthday               = $request->birthday;
         $user->user_self_introduction = $request->user_self_introduction;
+
+        if ($image = $request->file('image')) {
+            $image_path = $image->getRealPath();
+            Cloudder::upload($image_path, null);
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId, [
+                'width'     => 200,
+                'height'    => 200
+            ]);
+            $user->image = $logoUrl;
+            $user->public_id  = $publicId;
+        }
+
         $user->save();
 
         return redirect()->route('user.users.show', $user);
