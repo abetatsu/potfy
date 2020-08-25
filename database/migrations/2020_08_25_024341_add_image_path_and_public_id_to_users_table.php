@@ -26,7 +26,6 @@ class AddImagePathAndPublicIdToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('image_path');
             $table->dropColumn('public_id');
         });
     }
