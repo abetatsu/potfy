@@ -22,10 +22,6 @@
                     <input type="text" class="form-control" value="{{ old('email', $company->email) }}" name="email" placeholder="メールアドレスを記入してください">
                 </div>
                 <div class="form-group">
-                    <label>パスワード</label>
-                    <input type="text" class="form-control" value="{{ old('password', $company->password) }}" name="password" placeholder="新しいパスワードを記入してください">
-                </div>
-                <div class="form-group">
                     <label>住所</label>
                     <input type="text" class="form-control" value="{{ old('address', $company->address) }}" name="address" placeholder="住所を記入してください">
                 </div>
