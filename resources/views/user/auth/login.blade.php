@@ -16,13 +16,13 @@
         </div>
     </div>
     <div class="row text-center justify-center align-items-center mb-4">
-        <div class="col-md-4">
+        <div class="col-md-4 d-none d-sm-block">
             <hr size="5">
         </div>
         <div class="col-md-2">
             <p>または</p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 d-none d-sm-block">
             <hr size="5">
         </div>
     </div>
@@ -57,8 +57,7 @@
                     </button>
                 </div>
             </div>
-
-            <div class="form-group row justify-center text-center">
+            <div class="form-group row justify-center text-center mb-5">
                 <div class="col-md-6">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -69,7 +68,11 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="row justify-center text-center">
+                <div class="col-12">
+                    <p>アカウントを持っていない方は<a href="{{ route('user.register') }}">新規登録</a>して下さい</p>
+                </div>
+            </div>
         </form>
     </div>
 </div>
