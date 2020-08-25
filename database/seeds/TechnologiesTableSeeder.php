@@ -12,12 +12,12 @@ class TechnologiesTableSeeder extends Seeder
     public function run()
     {
         DB::table('technologies')->insert([
-            'name' => 'HTML CSS',
-            'name' => 'JavaScript',
-            'name' => 'jQuery',
-            'name' => 'Ruby',
-            'name' => 'PHP',
-            'name' => 'Python',
+            ['name' => 'HTML,CSS'],
+            ['name' => 'JavaScript'],
+            ['name' => 'jQuery'],
+            ['name' => 'PHP'],
+            ['name' => 'Ruby'],
+            ['name' => 'Python'],
         ]);
     }
 }
