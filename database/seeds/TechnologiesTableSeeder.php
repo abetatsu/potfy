@@ -14,7 +14,6 @@ class TechnologiesTableSeeder extends Seeder
         DB::table('technologies')->insert([
             ['name' => 'HTML,CSS'],
             ['name' => 'JavaScript'],
-            ['name' => 'jQuery'],
             ['name' => 'PHP'],
             ['name' => 'Ruby'],
             ['name' => 'Python'],
