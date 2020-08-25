@@ -85,7 +85,7 @@ class UserController extends Controller
                 'width'     => 200,
                 'height'    => 200
             ]);
-            $user->image_path = $logoUrl;
+            $user->image = $logoUrl;
             $user->public_id  = $publicId;
         }
 

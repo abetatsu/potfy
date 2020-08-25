@@ -14,7 +14,7 @@ class AddImagePathAndPublicIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('image_path')->nullable();
+            $table->text('image')->nullable();
             $table->text('public_id')->nullable();
         });
     }
