@@ -2,6 +2,7 @@
 
 ## Descriptions
 GAOGAOゲート 卒業生向け企画 第一回「一緒にプロダクトを開発しよう」
+
 ポートフォリオ掲載アプリ：「Potfy.me」
 
 ## How To Set Up This App
