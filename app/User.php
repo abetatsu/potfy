@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'token', 'gender', 'image', 'career', 'birthday', 'user_self_introduction',
     ];
 
     /**
@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function portfolios()
+    {
+        return $this->hasMany('App\Portfolio');
+    }
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }
