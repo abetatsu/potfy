@@ -91,7 +91,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('user.users.show', $user);
+        return redirect()->route('user.users.show', $user->id)->with('success', '情報を更新しました。');
 
     }
 

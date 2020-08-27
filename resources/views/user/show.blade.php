@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @include('layouts.flash-messages')
             <div class="card-header">
                 <h5>お名前：{{ $user->name }}</h5>
             </div>
