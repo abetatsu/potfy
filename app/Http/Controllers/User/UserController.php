@@ -5,7 +5,9 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Portfolio;
 use JD\Cloudder\Facades\Cloudder;
+use Auth;
 
 class UserController extends Controller
 {
@@ -48,7 +50,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('user.show', compact('user'));
+        $portfolios = Portfolio::where('user_id', Auth::id())->get();
+        return view('user.show', compact('user', 'portfolios'));
     }
 
     /**
