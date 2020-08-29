@@ -20,17 +20,10 @@ class PortfolioController extends Controller
 
     public function index()
     {
-        if (session()->has('count')) {
-            $count = session('count');
-        } else {
-            $count = 0;
-        }
-        $count++;
-        session(['count' => "$count"]);
-
         $portfolios = Portfolio::all();
+        $portfoliosVisits = Portfolio::orderBy('visited_count', 'desc')->paginate(3);
         $portfolios->load('user');
-        return view('user.portfolios.index', compact('portfolios', 'count'));
+        return view('user.portfolios.index', compact('portfolios', 'portfoliosVisits'));
     }
 
     /**
