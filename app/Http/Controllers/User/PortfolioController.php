@@ -21,8 +21,9 @@ class PortfolioController extends Controller
     public function index()
     {
         $portfolios = Portfolio::all();
+        $portfoliosVisits = Portfolio::orderBy('visited_count', 'desc')->paginate(3);
         $portfolios->load('user');
-        return view('user.portfolios.index', compact('portfolios'));
+        return view('user.portfolios.index', compact('portfolios', 'portfoliosVisits'));
     }
 
     /**
@@ -76,6 +77,8 @@ class PortfolioController extends Controller
     public function show($id)
     {
         $portfolio = Portfolio::find($id);
+        $portfolio -> visited_count++;
+        $portfolio->save();
         return view('user.portfolios.show', compact('portfolio'));
     }
 
