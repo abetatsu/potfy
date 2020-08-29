@@ -20,9 +20,17 @@ class PortfolioController extends Controller
 
     public function index()
     {
+        if (session()->has('count')) {
+            $count = session('count');
+        } else {
+            $count = 0;
+        }
+        $count++;
+        session(['count' => "$count"]);
+
         $portfolios = Portfolio::all();
         $portfolios->load('user');
-        return view('user.portfolios.index', compact('portfolios'));
+        return view('user.portfolios.index', compact('portfolios', 'count'));
     }
 
     /**
@@ -76,6 +84,8 @@ class PortfolioController extends Controller
     public function show($id)
     {
         $portfolio = Portfolio::find($id);
+        $portfolio -> visited_count++;
+        $portfolio->save();
         return view('user.portfolios.show', compact('portfolio'));
     }
 

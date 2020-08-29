@@ -15,6 +15,7 @@
                         <p class="card-text">リンク：{{ $portfolio->link }}</p>
                         <p>投稿日時：{{ $portfolio->created_at }}</p>
                         <p class="card-text">投稿者：{{ $portfolio->user->name }}</p>
+                        アクセスカウンター <span class="h1 text-danger">{{$portfolio->visited_count}}</span>
                         <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn btn-primary mt-3">編集する</a>
                         <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}'"method='post'>
                         {{ csrf_field() }}
