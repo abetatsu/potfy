@@ -7,6 +7,7 @@ use App\Http\Requests\PortfolioRequest;
 use App\Http\Controllers\Controller;
 use JD\Cloudder\Facades\Cloudder;
 use App\Portfolio;
+use App\Technology;
 use App\User;
 use Auth;
 
@@ -21,7 +22,7 @@ class PortfolioController extends Controller
     public function index()
     {
         $portfolios = Portfolio::all();
-        $portfolios->load('user');
+        $portfolios->load('user', 'technologies');
         return view('user.portfolios.index', compact('portfolios'));
     }
 
@@ -32,7 +33,8 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        return view('user.portfolios.create');
+        $technologies = Technology::all();
+        return view('user.portfolios.create', compact('technologies'));
     }
 
     /**
@@ -60,10 +62,13 @@ class PortfolioController extends Controller
             $portfolio->image_path = $logoUrl;
             $portfolio->public_id  = $publicId;
         }
-        
-
         $portfolio->save();
 
+        foreach ($request->technologies as $technologyId) {
+            $portfolio->technologies()->attach($technologyId);
+        }
+
+    
         return redirect() ->route('portfolios.index')->with('success', 'ポートフォリオを追加しました。');
     }
 
@@ -76,6 +81,7 @@ class PortfolioController extends Controller
     public function show($id)
     {
         $portfolio = Portfolio::find($id);
+        $portfolio->load('user', 'technologies');
         return view('user.portfolios.show', compact('portfolio'));
     }
 
@@ -88,10 +94,11 @@ class PortfolioController extends Controller
     public function edit($id)
     {
         $portfolio = Portfolio::find($id);
+        $technologies = Technology::all();
         if (Auth::id() !== $portfolio->user_id) {
             return abort(404);
         }
-        return view('user.portfolios.edit', compact('portfolio'));
+        return view('user.portfolios.edit', compact('portfolio', 'technologies'));
     }
 
     /**
@@ -126,6 +133,11 @@ class PortfolioController extends Controller
         
         $portfolio->save();
 
+        foreach ($request->technologies as $technologyId) {
+            $portfolio->technologies()->attach($technologyId);
+        }
+
+
         return redirect()->route('user.portfolios.show', $portfolio->id)->with('success', 'ポートフォリオを更新しました。');
     }
 
@@ -138,6 +150,7 @@ class PortfolioController extends Controller
     public function destroy($id)
     {
         $portfolio = Portfolio::find($id);
+        $technologies = Technology::find($id);
 
         if (Auth::id() !== $portfolio->user_id) {
             return abort(404);
@@ -148,7 +161,7 @@ class PortfolioController extends Controller
         }
 
         $portfolio->delete();
-
+        $portfolio->technologies()->detach($technologies);
         return redirect()->route('portfolios.index')->with('success', 'ポートフォリオの削除に成功しました。');
     }
 }

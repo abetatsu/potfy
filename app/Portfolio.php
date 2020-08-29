@@ -20,4 +20,8 @@ class Portfolio extends Model
     {
         return $this->belongsTo('App\User');
     }
+    public function technologies()
+    {
+        return $this->belongsToMany('App\Technology')->withTimestamps();
+    }
 }
