@@ -45,7 +45,6 @@ class PortfolioController extends Controller
     {
         $portfolio = new Portfolio;
         $portfolio->title = $request->title;
-
         $portfolio->description = $request->description;
         $portfolio->link = $request->link;
         $portfolio->user_id = Auth::id();
@@ -62,7 +61,6 @@ class PortfolioController extends Controller
             $portfolio->public_id  = $publicId;
         }
         
-
         $portfolio->save();
 
         return redirect() ->route('portfolios.index')->with('success', 'ポートフォリオを追加しました。');
