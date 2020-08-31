@@ -45,6 +45,7 @@ class PortfolioController extends Controller
     {
         $portfolio = new Portfolio;
         $portfolio->title = $request->title;
+
         $portfolio->description = $request->description;
         $portfolio->link = $request->link;
         $portfolio->user_id = Auth::id();
@@ -76,7 +77,8 @@ class PortfolioController extends Controller
     public function show($id)
     {
         $portfolio = Portfolio::find($id);
-        return view('user.portfolios.show', compact('portfolio'));
+        $description = $portfolio->replaceUrl($portfolio->description);
+        return view('user.portfolios.show', compact('portfolio', 'description'));
     }
 
     /**
