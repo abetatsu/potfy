@@ -21,7 +21,7 @@ class PortfolioController extends Controller
 
     public function index()
     {
-        $portfolios = Portfolio::all();
+        $portfolios = Portfolio::orderBy('created_at', 'desc')->get();
         $portfolios->load('user', 'technologies');
         return view('user.portfolios.index', compact('portfolios'));
     }
@@ -78,7 +78,9 @@ class PortfolioController extends Controller
             \DB::rollback();
             return redirect()->route('portfolios.index')->with('error', 'ポートフォリオの新規作成ができませんでした。');
         }
-    
+        
+        $portfolio->save();
+
         return redirect() ->route('portfolios.index')->with('success', 'ポートフォリオを追加しました。');
     }
 
@@ -92,7 +94,8 @@ class PortfolioController extends Controller
     {
         $portfolio = Portfolio::find($id);
         $portfolio->load('user', 'technologies');
-        return view('user.portfolios.show', compact('portfolio'));
+        $description = $portfolio->replaceUrl($portfolio->description);
+        return view('user.portfolios.show', compact('portfolio', 'description'));
     }
 
     /**
