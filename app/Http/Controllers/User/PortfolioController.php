@@ -20,7 +20,7 @@ class PortfolioController extends Controller
 
     public function index()
     {
-        $portfolios = Portfolio::all();
+        $portfolios = Portfolio::orderBy('created_at', 'desc')->get();
         $portfolios->load('user');
         return view('user.portfolios.index', compact('portfolios'));
     }
