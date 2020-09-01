@@ -67,7 +67,6 @@ class PortfolioController extends Controller
         foreach ($request->technologies as $technologyId) {
             $portfolio->technologies()->attach($technologyId);
         }
-
     
         return redirect() ->route('portfolios.index')->with('success', 'ポートフォリオを追加しました。');
     }
@@ -130,14 +129,12 @@ class PortfolioController extends Controller
             $portfolio->public_id  = $publicId;
         }
         
-        
         $portfolio->save();
 
         foreach ($request->technologies as $technologyId) {
             $portfolio->technologies()->attach($technologyId);
         }
-
-
+        
         return redirect()->route('user.portfolios.show', $portfolio->id)->with('success', 'ポートフォリオを更新しました。');
     }
 
