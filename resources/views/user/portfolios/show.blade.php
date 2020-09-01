@@ -15,6 +15,13 @@
                         <p class="card-text">リンク：<a href="{{ $portfolio->link }}">{{ $portfolio->link }}</a></p>
                         <p>投稿日時：{{ $portfolio->created_at }}</p>
                         <p class="card-text">投稿者：{{ $portfolio->user->name }}</p>
+
+                        <p class="card-text">開発言語：
+                        @foreach ($portfolio->technologies as $technology)
+                        {{ $technology->name}}
+                        @endforeach
+                        </p>
+
                         <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn btn-primary mt-3">編集する</a>
                         <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}'"method='post'>
                         {{ csrf_field() }}

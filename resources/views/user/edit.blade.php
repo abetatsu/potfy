@@ -18,15 +18,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <p class="mb-1">性別</p>
-                    <input type="radio" id="man" name="gender" value="man" {{ $user->gender === "man" || old('gender') === "man" ? 'checked' : '' }}>
-                    <label for="man">男性</label>
-                    <input type="radio" id="woman" name="gender" value="woman" {{ $user->gender === "woman" || old('gender') === "woman" ? 'checked' : '' }}>
-                    <label for="woman">女性</label>
-                    <input type="radio" id="other" name="gender" value="other" {{ $user->gender === "other" || old('gender') === "other" ? 'checked' : '' }}>
-                    <label for="gender">その他</label>
-                </div>
-                <div class="form-group">
                     <label>キャリア</label>
                     <input type="text" class="form-control" value="{{ old('career', $user->career) }}" name="career" placeholder="キャリアを記入してください">
                 </div>
