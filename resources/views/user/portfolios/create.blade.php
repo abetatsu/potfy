@@ -4,15 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            @include('layouts.flash-messages')
             <form action="{{ route('user.portfolios.store') }}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
                 <div class="form-group">
@@ -30,6 +22,14 @@
                 <div class="form-group">
                     <label for="image">画像</label>
                     <input type="file" class="form-control-file" id="image" name="image">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">言語複数選択</label>
+                    <select multiple class="form-control" id="exampleFormControlSelect2" name="technologies[]">  
+                    @foreach ($technologies as $technology)
+                    <option value="{{$technology->id}}">{{ $technology->name}}</option>
+                    @endforeach
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">作成する</button>
             </form>
