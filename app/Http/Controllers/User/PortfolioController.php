@@ -93,6 +93,8 @@ class PortfolioController extends Controller
     public function show($id)
     {
         $portfolio = Portfolio::find($id);
+        $portfolio->visited_count++;
+        $portfolio->save();
         $portfolio->load('user', 'technologies');
         $description = $portfolio->replaceUrl($portfolio->description);
         return view('user.portfolios.show', compact('portfolio', 'description'));
