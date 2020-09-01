@@ -13,11 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'User\PortfolioController@top')->name('portfolio.top');
 
-Route::resource('portfolios', 'User\PortfolioController', ['only' => 'index']);
 Route::namespace('User')->prefix('user')->name('user.')->group(function () {
     // ログイン認証関連
     Auth::routes([
@@ -36,7 +33,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         // コメント
         Route::resource('/portfolios/{portfolio}/comments', 'CommentController');
         // ポートフォリオ
-        Route::resource('portfolios', 'PortfolioController', ['except' => 'index']);
+        Route::resource('portfolios', 'PortfolioController');
         // エンジニア
         Route::resource('users', 'UserController');
     });
