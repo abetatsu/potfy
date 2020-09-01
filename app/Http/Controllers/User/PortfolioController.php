@@ -21,9 +21,8 @@ class PortfolioController extends Controller
     public function index()
     {
         $portfolios = Portfolio::orderBy('created_at', 'desc')->get();
-        $portfoliosComments = Portfolio::withCount('comments')->orderBy('comments_count', 'desc')->paginate(3);
         $portfolios->load('user');
-        return view('user.portfolios.index', compact('portfolios', 'portfoliosComments'));
+        return view('user.portfolios.index', compact('portfolios'));
     }
 
     /**
@@ -62,7 +61,6 @@ class PortfolioController extends Controller
             $portfolio->public_id  = $publicId;
         }
         
-
         $portfolio->save();
 
         return redirect() ->route('portfolios.index')->with('success', 'ポートフォリオを追加しました。');
@@ -77,7 +75,8 @@ class PortfolioController extends Controller
     public function show($id)
     {
         $portfolio = Portfolio::find($id);
-        return view('user.portfolios.show', compact('portfolio'));
+        $description = $portfolio->replaceUrl($portfolio->description);
+        return view('user.portfolios.show', compact('portfolio', 'description'));
     }
 
     /**
