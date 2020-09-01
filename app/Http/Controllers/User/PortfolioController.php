@@ -21,9 +21,10 @@ class PortfolioController extends Controller
 
     public function index()
     {
-        $portfolios = Portfolio::orderBy('created_at', 'desc')->get();
+        $topPortfolios = Portfolio::orderBy('visited_count', 'desc')->take(4)->get();
+        $portfolios = Portfolio::orderBy('created_at', 'desc')->take(4)->get();
         $portfolios->load('user', 'technologies');
-        return view('user.portfolios.index', compact('portfolios'));
+        return view('user.portfolios.index', compact('portfolios', 'topPortfolios'));
     }
 
     /**
