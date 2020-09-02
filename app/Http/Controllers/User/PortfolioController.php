@@ -21,10 +21,8 @@ class PortfolioController extends Controller
 
     public function index()
     {
-        $topPortfolios = Portfolio::orderBy('visited_count', 'desc')->take(4)->get();
-        $portfolios = Portfolio::orderBy('created_at', 'desc')->take(4)->get();
-        $portfolios->load('user', 'technologies');
-        return view('user.portfolios.index', compact('portfolios', 'topPortfolios'));
+        $portfolios = Portfolio::orderBy('created_at', 'desc')->paginate(16);
+        return view('user.portfolios.index', compact('portfolios'));
     }
 
     /**
@@ -77,12 +75,12 @@ class PortfolioController extends Controller
         } catch (\Exception $e) {
             \Log::error($e);
             \DB::rollback();
-            return redirect()->route('portfolios.index')->with('error', 'ポートフォリオの新規作成ができませんでした。');
+            return redirect()->route('user.portfolios.index')->with('error', 'ポートフォリオの新規作成ができませんでした。');
         }
         
         $portfolio->save();
 
-        return redirect() ->route('portfolios.index')->with('success', 'ポートフォリオを追加しました。');
+        return redirect() ->route('user.portfolios.index')->with('success', 'ポートフォリオを追加しました。');
     }
 
     /**
@@ -193,8 +191,16 @@ class PortfolioController extends Controller
             \Log::error($e);
             \DB::rollback();
 
-            return redirect()->route('portfolios.index')->with('error', 'ポートフォリオの削除に失敗しました。');
+            return redirect()->route('user.portfolios.index')->with('error', 'ポートフォリオの削除に失敗しました。');
         }
-        return redirect()->route('portfolios.index')->with('success', 'ポートフォリオの削除に成功しました。');
+        return redirect()->route('user.portfolios.index')->with('success', 'ポートフォリオの削除に成功しました。');
+    }
+
+    public function top ()
+    {
+        $topPortfolios = Portfolio::orderBy('visited_count', 'desc')->take(4)->get();
+        $portfolios = Portfolio::orderBy('created_at', 'desc')->take(4)->get();
+        $portfolios->load('user', 'technologies');
+        return view('top', compact('portfolios', 'topPortfolios'));
     }
 }
