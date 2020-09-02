@@ -94,9 +94,7 @@ class PortfolioController extends Controller
     public function show($id)
     {
         $portfolio = Portfolio::find($id);
-        if ($portfolio->user_id == Auth::id()) {
-            $portfolio->visited_count0;
-        } else {
+        if ($portfolio->user_id !== Auth::id()) {
             $portfolio->visited_count++;
             $portfolio->save();
         }
