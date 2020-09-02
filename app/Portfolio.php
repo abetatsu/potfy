@@ -15,6 +15,14 @@ class Portfolio extends Model
     {
         return $this->hasMany('App\Comment');
     }
+    public function histories()
+    {
+        return $this->hasMany('App\History');
+    }
+    public function stories()
+    {
+        return $this->hasMany('App\HStory');
+    }
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -32,11 +40,11 @@ class Portfolio extends Model
 
         foreach ($portfolios as $value) {
             $replace = preg_replace_callback($pattern, function ($matches) {
-            //portfolioが１行ごとに正規表現にmatchするか確認する
+                //portfolioが１行ごとに正規表現にmatchするか確認する
                 if (isset($matches[1])) {
                     return $matches[0]; //$matches[0] がマッチした全体を表す
                 }
-            //既にリンク化してあれば置換は必要ないので、配列に代入
+                //既にリンク化してあれば置換は必要ないので、配列に代入
                 return '<a href="' . $matches[0] . '" target="_blank" rel="noopener">' . $matches[0] . '</a>';
             }, $value);
             $replacedportfolios[] = $replace;
