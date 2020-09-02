@@ -21,12 +21,18 @@
                             {{ $technology->name}}
                             @endforeach
                         </p>
-                        <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn btn-primary mt-3">編集する</a>
-                        <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}'"method='post'>
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("削除しますか？？");'>
-                        </form>
+                        <div class="row mt-3">
+                            <div class="col-5">
+                                <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">編集する</a>
+                            </div>
+                            <div class="col-5">
+                                <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}'"method='post'>
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <input type='submit' value='削除する' class="btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full" onclick='return confirm("削除しますか？？");'>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-4">
                         <img src="{{ $portfolio->image_path }}" alt="画像">
@@ -45,7 +51,7 @@
                     <label>コメント</label>
                     <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">コメントする</button>
+                <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">コメントする</button>
             </form>
         </div>
     </div>

@@ -33,7 +33,9 @@
                     @endforeach
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">更新する</button>
+                <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">
+                    更新する
+                </button>
             </form>
         </div>
     </div>
