@@ -1,7 +1,7 @@
 @extends('layouts.user.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <form action="{{ route('user.users.update', $user) }}" method="POST" enctype="multipart/form-data">
@@ -18,15 +18,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <p class="mb-1">性別</p>
-                    <input type="radio" id="man" name="gender" value="man" {{ $user->gender === "man" || old('gender') === "man" ? 'checked' : '' }}>
-                    <label for="man">男性</label>
-                    <input type="radio" id="woman" name="gender" value="woman" {{ $user->gender === "woman" || old('gender') === "woman" ? 'checked' : '' }}>
-                    <label for="woman">女性</label>
-                    <input type="radio" id="other" name="gender" value="other" {{ $user->gender === "other" || old('gender') === "other" ? 'checked' : '' }}>
-                    <label for="gender">その他</label>
-                </div>
-                <div class="form-group">
                     <label>キャリア</label>
                     <input type="text" class="form-control" value="{{ old('career', $user->career) }}" name="career" placeholder="キャリアを記入してください">
                 </div>
@@ -38,7 +29,9 @@
                     <label>自己紹介</label>
                     <textarea class="w-100" name="user_self_introduction" rows="10" placeholder="自己紹介を記入してください">{{ old('user_self_introduction', $user->user_self_introduction) }}</textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">更新する</button>
+                <button type="submit" class="bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">
+                    更新する
+                </button>
             </form>
         </div>
     </div>

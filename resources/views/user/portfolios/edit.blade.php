@@ -1,18 +1,10 @@
 @extends('layouts.user.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            @include('layouts.flash-messages')
             <form action="{{ route('user.portfolios.update', $portfolio->id) }}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
             {{method_field('PATCH')}}
@@ -33,7 +25,17 @@
                     <img src="{{ $portfolio->image_path }}" alt="画像" class="my-2">
                     <input type="file" class="form-control-file" id="image" name="image">
                 </div>
-                <button type="submit" class="btn btn-primary">更新する</button>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">言語複数選択</label>
+                    <select multiple class="form-control" id="exampleFormControlSelect2" name="technologies[]">  
+                    @foreach ($technologies as $technology)
+                    <option value="{{$technology->id}}">{{ $technology->name}}</option>
+                    @endforeach
+                    </select>
+                </div>
+                <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">
+                    更新する
+                </button>
             </form>
         </div>
     </div>

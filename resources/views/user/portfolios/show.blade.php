@@ -1,7 +1,7 @@
 @extends('layouts.user.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             @include('layouts.flash-messages')
@@ -11,16 +11,28 @@
             <div class="card-body">
                 <div class="row my-5">
                     <div class="col-6 ml-3">
-                        <p class="card-text">内容：{{ $portfolio->description }}</p>
-                        <p class="card-text">リンク：{{ $portfolio->link }}</p>
+                        <p class="card-text">内容：{!! $description !!}</p>
+                        <p class="card-text">リンク：<a href="{{ $portfolio->link }}">{{ $portfolio->link }}</a></p>
                         <p>投稿日時：{{ $portfolio->created_at }}</p>
                         <p class="card-text">投稿者：{{ $portfolio->user->name }}</p>
-                        <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn btn-primary mt-3">編集する</a>
-                        <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}'"method='post'>
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                        <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("削除しますか？？");'>
-                        </form>
+                        <p>閲覧数：{{$portfolio->visited_count}}</p>
+                        <p class="card-text">開発言語：
+                            @foreach ($portfolio->technologies as $technology)
+                            {{ $technology->name}}
+                            @endforeach
+                        </p>
+                        <div class="row mt-3">
+                            <div class="col-5">
+                                <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">編集する</a>
+                            </div>
+                            <div class="col-5">
+                                <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}'"method='post'>
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <input type='submit' value='削除する' class="btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full" onclick='return confirm("削除しますか？？");'>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-4">
                         <img src="{{ $portfolio->image_path }}" alt="画像">
@@ -39,7 +51,7 @@
                     <label>コメント</label>
                     <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">コメントする</button>
+                <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">コメントする</button>
             </form>
         </div>
     </div>

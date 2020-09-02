@@ -100,6 +100,6 @@ class LoginController extends Controller
             return redirect()->route('user.login');
         }
 
-        return redirect()->route('portfolios.index');
+        return redirect()->route('user.portfolios.index');
     }
 }
