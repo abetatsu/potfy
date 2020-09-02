@@ -94,8 +94,10 @@ class PortfolioController extends Controller
     public function show($id)
     {
         $portfolio = Portfolio::find($id);
-        $portfolio->visited_count++;
-        $portfolio->save();
+        if ($portfolio->user_id !== Auth::id()) {
+            $portfolio->visited_count++;
+            $portfolio->save();
+        }
         $portfolio->load('user', 'technologies');
         $description = $portfolio->replaceUrl($portfolio->description);
         return view('user.portfolios.show', compact('portfolio', 'description'));
@@ -127,7 +129,7 @@ class PortfolioController extends Controller
     public function update(PortfolioRequest $request, $id)
     {
         \DB::beginTransaction();
-            try {
+        try {
             $portfolio = Portfolio::find($id);
             if (Auth::id() !== $portfolio->user_id) {
                 return abort(404);
@@ -150,7 +152,7 @@ class PortfolioController extends Controller
             
             $portfolio->save();
 
-            if($request->technologies) {
+            if ($request->technologies) {
                 foreach ($request->technologies as $technologyId) {
                     $portfolio->technologies()->attach($technologyId);
                 }
