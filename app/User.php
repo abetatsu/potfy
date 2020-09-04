@@ -50,6 +50,6 @@ class User extends Authenticatable
     }
     public function stories()
     {
-        return $this->hasMany('App\HStory');
+        return $this->hasMany('App\Story');
     }
 }

@@ -21,7 +21,7 @@ class Portfolio extends Model
     }
     public function stories()
     {
-        return $this->hasMany('App\HStory');
+        return $this->hasMany('App\Story');
     }
     public function user()
     {
