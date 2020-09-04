@@ -44,4 +44,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Comment');
     }
+    public function histories()
+    {
+        return $this->hasMany('App\History');
+    }
+    public function stories()
+    {
+        return $this->hasMany('App\Story');
+    }
 }
