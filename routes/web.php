@@ -34,6 +34,8 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         Route::resource('/portfolios/{portfolio}/comments', 'CommentController');
         // ストーリー
         Route::resource('/portfolios/{portfolio}/stories', 'StoryController');
+        // 開発履歴
+        Route::resource('/portfolios/{portfolio}/histories', 'HistoryController');
         // ポートフォリオ
         Route::resource('portfolios', 'PortfolioController');
         // エンジニア
