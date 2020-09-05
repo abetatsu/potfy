@@ -31,7 +31,7 @@ class HistoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'history.required'  => '内容は必須です。',
+            'history.required'  => trans('validation.required'),
         ];
     }
 }
