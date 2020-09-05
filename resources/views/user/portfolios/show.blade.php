@@ -75,16 +75,16 @@
             {{csrf_field()}}
                 <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
                 <div class="form-group">
-                    <select name="story_type">
+                    <select name="story_type" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                         <option value="0">選択してください</option>
-                        @foreach (App\Enums\StoryType::asSelectArray() as $storyTypeUs => $storyTypeJp)
-                            <option value="{{ $storyTypeUs }}">{{ $storyTypeJp }}</option>
+                        @foreach (App\Enums\StoryType::asSelectArray() as $storyTypeEn => $storyTypeJp)
+                            <option value="{{ $storyTypeEn }}">{{ $storyTypeJp }}</option>
                         @endforeach
                     </select>
                     <label>コメント</label>
                     <textarea class="form-control" placeholder="内容" rows="5" name="story"></textarea>
                 </div>
-                <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">ストーリー</button>
+                <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">ストーリーを投稿する</button>
             </form>
         </div>
     </div>
@@ -94,15 +94,12 @@
             <div class="card mt-3">
                 <h5 class="card-header">投稿者：{{ $story->user->name }}</h5>
                 <div class="card-body">
-                    <h5 class="card-title">投稿日時：{{ $comment->created_at }}</h5>
-                    <p>ストーリー：{{$story->story_type}}</p>
+                    <h5 class="card-title">投稿日時：{{ $story->created_at }}</h5>
+                    <p>ストーリー：{{App\Enums\StoryType::getDescription($story->story_type)}}</p>
                     <p class="card-text">内容：{{ $story->story }}</p>
                 </div>
             </div>
             @endforeach
         </div>
     </div>
-</div>
-</div>
-</div>
 @endsection

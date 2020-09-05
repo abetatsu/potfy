@@ -32,8 +32,8 @@ class StoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'story.required'  => '内容は必須です。',
-            'story_type.not_in'  => 'ストーリーを選択してください',
+            'story.required'  => trans('validation.required'),
+            'story_type.not_in'  => trans('validation.not_in'),
         ];
     }
 }
