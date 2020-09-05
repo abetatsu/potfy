@@ -68,6 +68,43 @@
             @endforeach
         </div>
     </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+        <form action="{{ route('user.stories.store', $portfolio->id) }}" method="POST">
+            {{csrf_field()}}
+                <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
+                <div class="form-group">
+                <p>選択<br>
+                    <select  name="story_type" >
+                    　<option value="0">ストーリーを選択してください</option>
+                        <option value="reason">REASON </option>
+                        <option value="effort">EFFORT</option>
+                        <option value="enhancement">ENHANCEMENT</option>
+                    </select>
+                </p>
+                    <label>コメント</label>
+                    <textarea class="form-control" placeholder="内容" rows="5" name="story"></textarea>
+                </div>
+                <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">ストーリー</button>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            @foreach ($portfolio->stories as $story)
+            <div class="card mt-3">
+                <h5 class="card-header">投稿者：{{ $story->user->name }}</h5>
+                <div class="card-body">
+                    <h5 class="card-title">投稿日時：{{ $comment->created_at }}</h5>
+                    <p>ストーリー：{{$story->story_type}}</p>
+                    <p class="card-text">内容：{{ $story->story }}</p>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
 </div>
 </div>
 @endsection
