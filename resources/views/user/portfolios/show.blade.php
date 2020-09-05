@@ -75,14 +75,12 @@
             {{csrf_field()}}
                 <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
                 <div class="form-group">
-                <p>選択<br>
-                    <select  name="story_type" >
-                    　<option value="0">ストーリーを選択してください</option>
-                        <option value="reason">REASON </option>
-                        <option value="effort">EFFORT</option>
-                        <option value="enhancement">ENHANCEMENT</option>
+                    <select name="story_type">
+                        <option value="0">選択してください</option>
+                        @foreach (App\Enums\StoryType::asSelectArray() as $storyTypeUs => $storyTypeJp)
+                            <option value="{{ $storyTypeUs }}">{{ $storyTypeJp }}</option>
+                        @endforeach
                     </select>
-                </p>
                     <label>コメント</label>
                     <textarea class="form-control" placeholder="内容" rows="5" name="story"></textarea>
                 </div>
