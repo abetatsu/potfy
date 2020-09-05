@@ -57,6 +57,7 @@
             </form>
         </div>
     </div>
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             @foreach ($portfolio->comments as $comment)
@@ -70,6 +71,31 @@
             @endforeach
         </div>
     </div>
-</div>
-</div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form action="{{ route('user.histories.store',$portfolio->id) }}" method="POST">
+            {{csrf_field()}}
+                <input type="hidden" name="portfolio_id" value="{{$portfolio->id}}">
+                <div class="form-group">
+                    <label>コメント</label>
+                    <textarea class="form-control" placeholder="内容" rows="5" name="history"></textarea>
+                </div>
+                <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">開発履歴</button>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            @foreach ($portfolio->histories as $history)
+            <div class="card mt-3">
+                <h5 class="card-header">投稿者：{{ $history->user->name }}</h5>
+                <div class="card-body">
+                    <h5 class="card-title">投稿日時：{{ $history->created_at }}</h5>
+                    <p class="card-text">内容：{{ $history->history }}</p>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
 @endsection
