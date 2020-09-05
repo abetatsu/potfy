@@ -152,6 +152,7 @@ return [
         'title'=>'タイトル',
         'description'=>'内容',
         'link'=>'リンク',
+        'story_type'=>'ストーリー',
     ],
 
 ];
