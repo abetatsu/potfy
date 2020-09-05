@@ -32,6 +32,10 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         Route::resource('home', 'HomeController', ['only' => 'index']);
         // コメント
         Route::resource('/portfolios/{portfolio}/comments', 'CommentController');
+        // ストーリー
+        Route::resource('/portfolios/{portfolio}/stories', 'StoryController');
+        // 開発履歴
+        Route::resource('/portfolios/{portfolio}/histories', 'HistoryController');
         // ポートフォリオ
         Route::resource('portfolios', 'PortfolioController');
         // エンジニア
@@ -56,6 +60,5 @@ Route::namespace('Company')->prefix('company')->name('company.')->group(function
 
         // companyページ
         Route::resource('companies', 'CompanyController');
-
     });
 });

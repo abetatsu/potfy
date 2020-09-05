@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PortfolioRequest;
 use App\Http\Controllers\Controller;
 use JD\Cloudder\Facades\Cloudder;
+use App\Enums\StoryType;
 use App\Portfolio;
 use App\Technology;
 use App\User;
