@@ -21,6 +21,7 @@
                             {{ $technology->name}}
                             @endforeach
                         </p>
+                        @if ($portfolio->user_id === Auth::id())
                         <div class="row mt-3">
                             <div class="col-5">
                                 <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">編集する</a>
@@ -33,6 +34,7 @@
                                 </form>
                             </div>
                         </div>
+                        @endif
                     </div>
                     <div class="col-4">
                         <img src="{{ $portfolio->image_path }}" alt="画像">
