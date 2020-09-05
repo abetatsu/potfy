@@ -6,10 +6,10 @@
           </div>
           <div class="col-md-8">
             <ul class="row">
-              <li class="col-md-3 small"><a href="">利用規約</a></li>
-              <li class="col-md-3 small"><a href="">プライバシーポリシー</a></li>
+              <li class="col-md-3 small"><a href="{{ route('user.portfolios.create')}}">利用規約</a></li>
+              <li class="col-md-3 small"><a href="{{ route('user.portfolios.create')}}">プライバシーポリシー</a></li>
               <li class="col-md-3 small"><a href="mailto:masanao@gaogao.asia?subject=Potfy お問い合わせ">お問い合わせ</a></li>
-              <li class="col-md-3 small"><a href="">運営</a></li>
+              <li class="col-md-3 small"><a href="{{ route('user.portfolios.create')}}">運営</a></li>
             </ul>
           </div>
         </div>
