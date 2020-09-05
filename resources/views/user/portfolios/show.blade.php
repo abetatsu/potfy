@@ -21,6 +21,7 @@
                             {{ $technology->name}}
                             @endforeach
                         </p>
+                        @if (Auth::guest())
                         <div class="row mt-3">
                             <div class="col-5">
                                 <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">編集する</a>
@@ -31,6 +32,7 @@
                                     {{ method_field('DELETE') }}
                                     <input type='submit' value='削除する' class="btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full" onclick='return confirm("削除しますか？？");'>
                                 </form>
+                            @endif
                             </div>
                         </div>
                     </div>
