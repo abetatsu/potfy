@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'User\PortfolioController@top')->name('portfolio.top');
 
+Route::get('/terms/organizer', 'TermsController@organizer')->name('terms.organizer');
+Route::get('/terms/privacy', 'TermsController@privacy')->name('terms.privacy');
+Route::get('/terms/services', 'TermsController@services')->name('terms.services');
+
 Route::namespace('User')->prefix('user')->name('user.')->group(function () {
     // ログイン認証関連
     Auth::routes([
