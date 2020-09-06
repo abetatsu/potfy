@@ -1,4 +1,4 @@
-@extends('layouts.user.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="container mt-5">
@@ -35,6 +35,11 @@
                             </div>
                         </div>
                         @endif
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <url-copy-component></url-copy-component>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-4">
                         <img src="{{ $portfolio->image_path }}" alt="画像">

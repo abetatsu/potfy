@@ -1,4 +1,4 @@
-@extends('layouts.user.app')
+@extends('layouts.app')
 
 @section('content')
 <div style="background-image: url({{ asset('assets/image/potfybg.jpeg') }}); " class="bg-cover bg-center">

@@ -51,7 +51,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         $portfolios = Portfolio::orderBy('created_at', 'desc')->where('user_id', Auth::id())->paginate(16);
-        return view('user.show', compact('user', 'portfolios'));
+        return view('user.profiles.show', compact('user', 'portfolios'));
     }
 
     /**
@@ -62,7 +62,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('user.edit', compact('user'));
+        return view('user.profiles.edit', compact('user'));
     }
 
     /**
