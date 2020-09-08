@@ -16,7 +16,7 @@ class CreateHistoriesTable extends Migration
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('portfolio_id');
+            $table->string('portfolio_id');
             $table->text('history');
             $table->timestamps();
             $table->softDeletes();
