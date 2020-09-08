@@ -27,7 +27,7 @@
                                 <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">編集する</a>
                             </div>
                             <div class="col-5">
-                                <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}'"method='post'>
+                                <form action="{{ route('user.portfolios.destroy', $portfolio->id) }} " method='post'>
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <input type='submit' value='削除する' class="btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full" onclick='return confirm("削除しますか？？");'>
