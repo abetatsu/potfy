@@ -1,0 +1,17 @@
+# Comment to a new issue.
+issueOpened: >
+  issues 作成ありがとうございます。以下確認お願いいたします。
+  ・やること は記入してありますか。
+  ・完了の定義 は記入してありますか。
+  ・Assignees は選択してありますか。
+  ・Labels は選択してありますか。
+  ・Projects は選択してありますか。
+  ・Assignees が選択されている場合、code タブの Active branches に、該当 issues ナンバーの branch が生成されいているはずなので、そちらを local で利用して下さい。
+
+pullRequestOpened: >
+  pull requests 作成ありがとうございます。以下確認お願いいたします。
+  ・やったこと は記入してありますか。
+  ・issue番号 は記入してありますか。
+  ・Reviewers は選択してありますか。
+  ・Assignees は選択してありますか。
+  ・Linked issues は選択してありますか。
