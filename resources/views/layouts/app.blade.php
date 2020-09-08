@@ -3,7 +3,7 @@
 @include('layouts.header')
 <body>
     <div id="app">
-        @if(request()->is('*user*') || request()->is('/'))
+        @if(request()->is('*user*') || request()->is('*terms*') || request()->is('/'))
             @include('layouts.user.nav')
         @elseif(request()->is('company*'))
             @include('layouts.company.nav')
