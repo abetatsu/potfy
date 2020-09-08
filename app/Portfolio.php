@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Webpatser\Uuid\Uuid;
 
 class Portfolio extends Model
 {
+    public $incrementing = false;
+
     protected $fillable = ['title', 'description','link'];
 
     use SoftDeletes;
@@ -52,5 +55,14 @@ class Portfolio extends Model
         }
         return implode(PHP_EOL, $replacedportfolios);
         //配列にしたportfolioを文字列にする
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+     
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = Uuid::generate()->string;
+        });
     }
 }
