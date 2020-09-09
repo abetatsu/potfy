@@ -32,15 +32,6 @@
             @csrf
             <div class="form-group row mb-5">
                 <div class="col-md-6">
-                    <label for="name" class="col-form-label">{{ __('お名前') }}</label>
-                    <input id="name" type="text" placeholder="お名前を入力してください" class="form-control @error('name') is-invalid @enderror bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-full py-2 px-4 block w-full appearance-none leading-normal" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="col-md-6">
                     <label for="email" class="col-form-label">{{ __('メールアドレス') }}</label>
                     <input id="email" placeholder="メールアドレスを入力してください" type="email" class="form-control @error('email') is-invalid @enderror bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-full py-2 px-4 block w-full appearance-none leading-normal" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     @error('email')
@@ -57,10 +48,6 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>
-                <div class="col-md-6">
-                    <label for="password-confirm" class="col-form-label">{{ __('パスワード再入力') }}</label>
-                    <input id="password-confirm" placeholder="パスワードを再度入力してください" type="password" class="form-control bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-full py-2 px-4 block w-full appearance-none leading-normal" name="password_confirmation" required autocomplete="new-password">
                 </div>
             </div>
             <div class="form-group row justify-center text-center mb-5">
