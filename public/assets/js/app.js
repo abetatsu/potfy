@@ -1962,9 +1962,27 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     urlCopy: function urlCopy() {
-      var copyTarget = document.getElementById("copyTarget");
-      copyTarget.select();
-      document.execCommand("Copy");
+      var hideInput = document.getElementById("copyTarget");
+      var newInput = document.createElement("input");
+      newInput.type = "text";
+      newInput.style.position = "absolute";
+      newInput.style.marginLeft = "200vw";
+      hideInput.parentNode.insertBefore(newInput, hideInput.nextSibling);
+      newInput.value = hideInput.value;
+      newInput.focus();
+      newInput.setSelectionRange(0, newInput.value.length); // 選択範囲をコピー
+
+      document.execCommand('copy');
+      window.getSelection().collapse(document.body, 0); // 選択を解除
+
+      var active_element = document.activeElement;
+
+      if (active_element) {
+        active_element.blur();
+      } // 作ったinput要素を消す
+
+
+      newInput.parentNode.removeChild(newInput);
       alert("コピーが完了しました。");
     }
   }
@@ -37606,8 +37624,7 @@ var render = function() {
       directives: [
         { name: "model", rawName: "v-model", value: _vm.url, expression: "url" }
       ],
-      staticClass: "col-10",
-      attrs: { id: "copyTarget", type: "text", readonly: "" },
+      attrs: { id: "copyTarget", type: "hidden" },
       domProps: { value: _vm.url },
       on: {
         input: function($event) {
@@ -50048,8 +50065,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/suzukimasanao/dev/potfy/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/suzukimasanao/dev/potfy/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/tsubasatanabe/tt/gate/potfy/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/tsubasatanabe/tt/gate/potfy/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
