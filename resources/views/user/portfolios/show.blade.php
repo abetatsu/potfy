@@ -24,13 +24,16 @@
                         @if ($portfolio->user_id === Auth::id())
                         <div class="row mt-3">
                             <div class="col-5">
-                                <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">編集する</a>
+                                <a href="{{route('user.portfolios.edit',$portfolio->id)}}"
+                                    class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">編集する</a>
                             </div>
                             <div class="col-5">
-                                <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}'"method='post'>
+                                <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}'" method='post'>
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <input type='submit' value='削除する' class="btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full" onclick='return confirm("削除しますか？？");'>
+                                    <input type='submit' value='削除する'
+                                        class="btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full"
+                                        onclick='return confirm("削除しますか？？");'>
                                 </form>
                             </div>
                         </div>
@@ -47,95 +50,111 @@
                 </div>
             </div>
         </div>
+        <ul class="nav nav-tabs text-center">
+            <li class="active mx-5"><a href="#comments" data-toggle="tab">コメント</a></li>
+            <li class="mx-5"><a href="#history" data-toggle="tab">開発履歴</a></li>
+            <li class="mx-5"><a href="#story" data-toggle="tab">ストーリー</a></li>
+        </ul>
     </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <form action="{{ route('user.comments.store', $portfolio->id) }}" method="POST">
-            {{csrf_field()}}
-                <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
-                <div class="form-group">
-                    <label>コメント</label>
-                    <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
-                </div>
-                <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">コメントする</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            @foreach ($portfolio->comments as $comment)
-            <div class="card mt-3">
-                <h5 class="card-header">投稿者：{{ $comment->user->name }}</h5>
-                <div class="card-body">
-                    <h5 class="card-title">投稿日時：{{ $comment->created_at }}</h5>
-                    <p class="card-text">内容：{{ $comment->body }}</p>
+    <div class="tab-content">
+        <div class="tab-pane active" id="comments">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form action="{{ route('user.comments.store', $portfolio->id) }}" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
+                        <div class="form-group">
+                            <label>コメント</label>
+                            <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">コメントする</button>
+                    </form>
                 </div>
             </div>
-            @endforeach
-        </div>
-    </div>
-
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <form action="{{ route('user.histories.store',$portfolio->id) }}" method="POST">
-            {{csrf_field()}}
-                <input type="hidden" name="portfolio_id" value="{{$portfolio->id}}">
-                <div class="form-group">
-                    <label>開発履歴</label>
-                    <textarea class="form-control" placeholder="内容" rows="5" name="history"></textarea>
-                </div>
-                <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">開発履歴</button>
-            </form>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            @foreach ($portfolio->histories as $history)
-            <div class="card mt-3">
-                <h5 class="card-header">投稿者：{{ $history->user->name }}</h5>
-                <div class="card-body">
-                    <h5 class="card-title">投稿日時：{{ $history->created_at }}</h5>
-                    <p class="card-text">内容：{{ $history->history }}</p>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    @foreach ($portfolio->comments as $comment)
+                    <div class="card mt-3">
+                        <h5 class="card-header">投稿者：{{ $comment->user->name }}</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">投稿日時：{{ $comment->created_at }}</h5>
+                            <p class="card-text">内容：{{ $comment->body }}</p>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
-            @endforeach
         </div>
-    </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <form action="{{ route('user.stories.store', $portfolio->id) }}" method="POST">
-                {{csrf_field()}}
-                <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
-                <div class="form-group">
-                    <select name="story_type" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                        <option value="0">選択してください</option>
-                        @foreach (App\Enums\StoryType::asSelectArray() as $storyTypeEn => $storyTypeJp)
-                            <option value="{{ $storyTypeEn }}">{{ $storyTypeJp }}</option>
-                        @endforeach
-                    </select>
-                    <label>ストーリー</label>
-                    <textarea class="form-control" placeholder="内容" rows="5" name="story"></textarea>
-                </div>
-                <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">ストーリーを投稿する</button>
-            </form>
-        </div>
-    </div>
-    
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-        @foreach ($portfolio->stories as $story)
-            <div class="card mt-3">
-                <h5 class="card-header">投稿者：{{ $story->user->name }}</h5>
-                <div class="card-body">
-                    <h5 class="card-title">投稿日時：{{ $story->created_at }}</h5>
-                    <p>ストーリー：{{App\Enums\StoryType::getDescription($story->story_type)}}</p>
-                    <p class="card-text">内容：{{ $story->story }}</p>
+        <div class="tab-pane fade" id="history">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form action="{{ route('user.histories.store',$portfolio->id) }}" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" name="portfolio_id" value="{{$portfolio->id}}">
+                        <div class="form-group">
+                            <label>開発履歴</label>
+                            <textarea class="form-control" placeholder="内容" rows="5" name="history"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">開発履歴</button>
+                    </form>
                 </div>
             </div>
-        @endforeach
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    @foreach ($portfolio->histories as $history)
+                    <div class="card mt-3">
+                        <h5 class="card-header">投稿者：{{ $history->user->name }}</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">投稿日時：{{ $history->created_at }}</h5>
+                            <p class="card-text">内容：{{ $history->history }}</p>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="story">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form action="{{ route('user.stories.store', $portfolio->id) }}" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
+                        <div class="form-group">
+                            <select name="story_type"
+                                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                <option value="0">選択してください</option>
+                                @foreach (App\Enums\StoryType::asSelectArray() as $storyTypeEn => $storyTypeJp)
+                                <option value="{{ $storyTypeEn }}">{{ $storyTypeJp }}</option>
+                                @endforeach
+                            </select>
+                            <label>ストーリー</label>
+                            <textarea class="form-control" placeholder="内容" rows="5" name="story"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">ストーリーを投稿する</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    @foreach ($portfolio->stories as $story)
+                    <div class="card mt-3">
+                        <h5 class="card-header">投稿者：{{ $story->user->name }}</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">投稿日時：{{ $story->created_at }}</h5>
+                            <p>ストーリー：{{App\Enums\StoryType::getDescription($story->story_type)}}</p>
+                            <p class="card-text">内容：{{ $story->story }}</p>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
+</div>
 @endsection
