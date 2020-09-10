@@ -11,7 +11,7 @@
             <p class="card-text">性別：{{ $user->gender }}</p>
             <p class="card-text">キャリア：{{ $user->career }}</p>
             <p class="card-text">誕生日：{{ $user->birthday }}</p>
-            <p class="card-text">自己紹介：{{ $user->user_self_introduction }}</p>
+            <p class="card-text">自己紹介：{!! $user_self_introduction !!}</p>
             <a href="{{route('user.users.edit', $user)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full mt-4">編集する</a>
         </div>
     </div>
