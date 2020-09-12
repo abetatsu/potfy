@@ -73,7 +73,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToProvider()
+    public function redirectToTwitter()
     {
         return Socialite::driver('twitter')->redirect();
     }
@@ -83,7 +83,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleTwitterCallback()
     {
         try {
             $user = Socialite::driver('twitter')->user();
@@ -94,6 +94,31 @@ class LoginController extends Controller
                 'name'      => $user->name,
                 'email'     => $user->email,
                 'image'     => str_replace('http://', 'https://', $user->avatar),
+            ]);
+            Auth::login($socialUser, true);
+        } catch (Exception $e) {
+            return redirect()->route('user.login');
+        }
+
+        return redirect()->route('user.portfolios.index');
+    }
+
+    public function redirectToGithub()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function handleGithubCallback()
+    {
+        try {
+            $user = Socialite::driver('github')->user();
+            $socialUser = User::firstOrCreate([
+                'email'     => $user->email,
+            ], [
+                'token'     => $user->token,
+                'name'      => $user->name,
+                'email'     => $user->email,
+                'image'     => $user->avatar,
             ]);
             Auth::login($socialUser, true);
         } catch (Exception $e) {
