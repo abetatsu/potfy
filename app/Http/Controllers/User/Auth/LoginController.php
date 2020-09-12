@@ -132,6 +132,15 @@ class LoginController extends Controller
                 'image'     => $user->avatar,
             ]);
             Auth::login($socialUser, true);
+
+            $socialAccount = SocialAccount::firstOrCreate([
+                'url'         => $user->user['html_url'],
+                'user_id'     => $socialUser->id,
+            ],[
+                'user_id'     => $socialUser->id,
+                'url'         => $user->user['html_url'],
+                'social_type' => SocialType::GITHUB,
+            ]);
         } catch (Exception $e) {
             return redirect()->route('user.login');
         }
