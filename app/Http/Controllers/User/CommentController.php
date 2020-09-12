@@ -45,6 +45,7 @@ class CommentController extends Controller
         $comment->body = $request->body;
         $comment->user_id = Auth::id();
         $comment->portfolio_id = $request->portfolio_id;
+        $body = $comment->replaceUrl($comment->body);
 
         $comment->save();
 

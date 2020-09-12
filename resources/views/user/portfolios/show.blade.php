@@ -70,7 +70,7 @@
                 <h5 class="card-header">投稿者：{{ $comment->user->name }}</h5>
                 <div class="card-body">
                     <h5 class="card-title">投稿日時：{{ $comment->created_at }}</h5>
-                    <p class="card-text">内容：{{ $comment->body }}</p>
+                    <p class="card-text">内容：<a href="{{ $comment->body }}">{{ $comment->body }}</a></p>
                 </div>
             </div>
             @endforeach
