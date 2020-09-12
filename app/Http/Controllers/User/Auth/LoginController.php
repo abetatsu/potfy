@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Enums\SocialType;
+use App\SocialAccount;
 
 class LoginController extends Controller
 {
@@ -96,6 +98,15 @@ class LoginController extends Controller
                 'image'     => str_replace('http://', 'https://', $user->avatar),
             ]);
             Auth::login($socialUser, true);
+
+            $socialAccount = SocialAccount::firstOrCreate([
+                'url'         => 'https://twitter.com/' . $user->nickname,
+                'user_id'     => $socialUser->id,
+            ],[
+                'user_id'     => $socialUser->id,
+                'url'         => 'https://twitter.com/' . $user->nickname,
+                'social_type' => SocialType::TWITTER,
+            ]);
         } catch (Exception $e) {
             return redirect()->route('user.login');
         }
