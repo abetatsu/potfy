@@ -18,7 +18,7 @@ class CreateCareerDirectionsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('career');
             $table->date('beginning_date')->nullable();
-            $table->date('comment')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
