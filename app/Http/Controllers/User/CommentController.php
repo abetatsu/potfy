@@ -48,7 +48,6 @@ class CommentController extends Controller
 
         $comment->save();
         
-
         return redirect()->route('user.portfolios.show', $portfolio->id)->with('success', 'コメント完了しました。')->with('comment', $comment->id);
     }
 
