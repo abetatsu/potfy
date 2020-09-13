@@ -97,7 +97,7 @@
                 <h5 class="card-header">投稿者：{{ $history->user->name }}</h5>
                 <div class="card-body">
                     <h5 class="card-title">投稿日時：{{ $history->created_at }}</h5>
-                    <p class="card-text">内容：{{ $history->history }}</p>
+                    <p class="card-text">内容：<a href="{{ $history->history }}">{{ $history->history }}</a></p>
                 </div>
             </div>
             @endforeach
@@ -132,7 +132,7 @@
                 <div class="card-body">
                     <h5 class="card-title">投稿日時：{{ $story->created_at }}</h5>
                     <p>ストーリー：{{App\Enums\StoryType::getDescription($story->story_type)}}</p>
-                    <p class="card-text">内容：{{ $story->story }}</p>
+                    <p class="card-text">内容：<a href="{{ $story->story }}">{{ $story->story }}</a></p>
                 </div>
             </div>
         @endforeach

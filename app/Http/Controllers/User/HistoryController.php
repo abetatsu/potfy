@@ -44,6 +44,7 @@ class HistoryController extends Controller
         $history->history = $request->history;
         $history->user_id = Auth::id();
         $history->portfolio_id = $request->portfolio_id;
+        $history = $history->replaceUrl($history->history);
 
         $history -> save();
 

@@ -45,6 +45,7 @@ class StoryController extends Controller
         $story -> story_type = $request -> story_type;
         $story -> user_id = Auth::id();
         $story -> portfolio_id = $request -> portfolio_id;
+        $story = $story->replaceUrl($story->story);
 
         $story -> save();
 
