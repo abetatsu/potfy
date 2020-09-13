@@ -5,28 +5,43 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @include('layouts.flash-messages')
-            <div class="card-header">
-                <h5>タイトル：{{ $portfolio->title }}</h5>
-            </div>
-            <div class="card-body">
-                <div class="row my-5">
-                    <div class="col-6 ml-3">
-                        <p class="card-text">内容：{!! $description !!}</p>
-                        <p class="card-text">リンク：<a href="{{ $portfolio->link }}" class="text-blue-500" target="_blank">{{ $portfolio->link }}</a></p>
-                        <p>投稿日時：{{ $portfolio->created_at }}</p>
-                        <p class="card-text">投稿者：{{ $portfolio->user->name }}</p>
-                        <p>閲覧数：{{$portfolio->visited_count}}</p>
-                        <p class="card-text">開発言語：
-                            @foreach ($portfolio->technologies as $technology)
-                            {{ $technology->name}}
-                            @endforeach
-                        </p>
-                    </div>
-                    <div class="col-4">
-                        <img src="{{ $portfolio->image_path }}" alt="画像">
-                    </div>
+            <div class="card-header bg-white row">
+                <div class="col-md-8 h-10 leading-10">
+                    <h1 class="h3 h-10 leading-10 mb-0">{{ $portfolio->title }}</h1>
                 </div>
+                <div class="col-md-4 text-right">
+                    <p>投稿日時：{{ $portfolio->created_at->diffForHumans(Carbon\Carbon::now()) }}</p>
+                    <p>閲覧数：{{$portfolio->visited_count}}</p>
+                </div>
+            </div>
+            <div class="card-body pt-0 pt-5">
                 <div class="row">
+                    <img class="object-cover w-1/2 mx-auto" src="{{ isset($portfolio->image_path) ? $portfolio->image_path : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="画像の登録はありません">
+                </div>
+                <div class="row mt-5">
+                    <p class="card-text">{!! $description !!}</p>
+                </div>
+                <div class="row my-2">
+                    <p class="card-text">開発言語：
+                        @foreach ($portfolio->technologies as $technology)
+                            @if($loop->last)
+                                {{ $technology->name }}
+                            @else
+                                {{ $technology->name }}, 
+                            @endif
+                        @endforeach
+                    </p>
+                </div>
+                <div class="row my-2">
+                    <p class="card-text">プロダクトURL：<a href="{{ $portfolio->link }}" class="text-blue-500" target="_blank">{{ $portfolio->link }}</a></p>
+                </div>
+                <div class="row my-2">
+                    <a href="{{ route('user.users.show', $portfolio->user_id) }}" class="d-flex justify-content-center align-items-center">
+                        <img src="{{ $portfolio->user->image }}" alt="" class="rounded-circle h-10 p-2">
+                        <h3 class="card-text">{{ $portfolio->user->name }}</h3>
+                    </a>
+                </div>
+                <div class="row my-5">
                     @if ($portfolio->user_id === Auth::id())
                     <div class="col-3">
                         <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12">編集する</a>
