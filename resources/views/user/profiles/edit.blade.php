@@ -29,6 +29,18 @@
                     <label>自己紹介</label>
                     <textarea class="w-100" name="user_self_introduction" rows="10" placeholder="自己紹介を記入してください">{{ old('user_self_introduction', $user->user_self_introduction) }}</textarea>
                 </div>
+                <div class="form-group">
+                    <label>{{ App\Enums\SocialType::getDescription(App\Enums\SocialType::GITHUB) }}</label>
+                    <input type="url" class="form-control" value="{{ array_key_exists(App\Enums\SocialType::GITHUB, $socialAccounts) ? $socialAccounts[App\Enums\SocialType::GITHUB] : '' }}" name="social_accounts[{{ App\Enums\SocialType::GITHUB }}]">
+                </div>
+                <div class="form-group">
+                    <label>{{ App\Enums\SocialType::getDescription(App\Enums\SocialType::TWITTER) }}</label>
+                    <input type="url" class="form-control" value="{{ array_key_exists(App\Enums\SocialType::TWITTER, $socialAccounts) ? $socialAccounts[App\Enums\SocialType::TWITTER] : '' }}" name="social_accounts[{{ App\Enums\SocialType::TWITTER }}]">
+                </div>
+                <div class="form-group">
+                    <label>{{ App\Enums\SocialType::getDescription(App\Enums\SocialType::WANTEDLY) }}</label>
+                    <input type="url" class="form-control" value="{{ array_key_exists(App\Enums\SocialType::WANTEDLY, $socialAccounts) ? $socialAccounts[App\Enums\SocialType::WANTEDLY] : '' }}" name="social_accounts[{{ App\Enums\SocialType::WANTEDLY }}]">
+                </div>
                 <button type="submit" class="bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">
                     更新する
                 </button>
