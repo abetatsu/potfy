@@ -41,10 +41,9 @@ class HistoryController extends Controller
     {
         $portfolio = Portfolio::find($request->portfolio_id);
         $history = new History;
-        $history->history = $request->history;
+        $history->history = $history->replaceUrl($request->history);
         $history->user_id = Auth::id();
         $history->portfolio_id = $request->portfolio_id;
-        $history = $history->replaceUrl($history->history);
 
         $history -> save();
 
