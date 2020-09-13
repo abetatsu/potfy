@@ -42,10 +42,9 @@ class CommentController extends Controller
     {
         $portfolio = Portfolio::find($request->portfolio_id);
         $comment = new Comment;
-        $comment->body = $request->body;
+        $comment->body = $comment->replaceUrl($request->body);
         $comment->user_id = Auth::id();
         $comment->portfolio_id = $request->portfolio_id;
-        $body = $comment->replaceUrl($comment->body);
 
         $comment->save();
 

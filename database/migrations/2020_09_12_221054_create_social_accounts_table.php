@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\SocialType;
 
-class CreatePortfoliosTable extends Migration
+class CreateSocialAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +14,11 @@ class CreatePortfoliosTable extends Migration
      */
     public function up()
     {
-        Schema::create('portfolios', function (Blueprint $table) {
-            $table->string('id', 36)->primary();
+        Schema::create('social_accounts', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('title');
-            $table->text('description');
-            $table->text('image')->nullable();
-            $table->string('link')->nullable();
+            $table->text('url');
+            $table->enum('social_type', SocialType::getValues());
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
@@ -33,6 +32,6 @@ class CreatePortfoliosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('portfolios');
+        Schema::dropIfExists('social_accounts');
     }
 }
