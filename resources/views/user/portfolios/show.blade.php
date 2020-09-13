@@ -12,7 +12,7 @@
                 <div class="row my-5">
                     <div class="col-6 ml-3">
                         <p class="card-text">内容：{!! $description !!}</p>
-                        <p class="card-text">リンク：<a href="{{ $portfolio->link }}">{{ $portfolio->link }}</a></p>
+                        <p class="card-text">リンク：<a href="{{ $portfolio->link }}" class="text-blue-500" target="_blank">{{ $portfolio->link }}</a></p>
                         <p>投稿日時：{{ $portfolio->created_at }}</p>
                         <p class="card-text">投稿者：{{ $portfolio->user->name }}</p>
                         <p>閲覧数：{{$portfolio->visited_count}}</p>
