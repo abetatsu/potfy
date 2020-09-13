@@ -14,7 +14,7 @@
                     <p>閲覧数：{{$portfolio->visited_count}}</p>
                 </div>
             </div>
-            <div class="card-body pt-0 pt-5">
+            <div class="card-body pt-5">
                 <div class="row">
                     <img class="object-cover w-1/2 mx-auto" src="{{ isset($portfolio->image_path) ? $portfolio->image_path : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="画像の登録はありません">
                 </div>

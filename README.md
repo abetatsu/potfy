@@ -50,6 +50,7 @@ npm run watch
 - [yusan12](https://github.com/yusan12)
 - [UoyaRyota](https://github.com/UoyaRyota)
 - [speeed131](https://github.com/speeed131)
+- [KoeInoue](https://github.com/KoeInoue) 
 - [masagao](https://github.com/masagao)
 - [t-aburasoba](https://github.com/t-aburasoba)
 
