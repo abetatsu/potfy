@@ -18,12 +18,32 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>キャリア</label>
+                    <label>性別</label>
+                    <select name="gender" class="block appearance-none w-full border py-2 px-2 pr-8 rounded leading-tight">
+                        <option {{ old('gender') === 'male' || $user->gender === 'male' ? 'selected' : '' }} value="male">男性</option>
+                        <option {{ old('gender') === 'female' || $user->gender === 'female' ? 'selected' : '' }} value="female">女性</option>
+                        <option {{ old('gender') === 'other' || $user->gender === 'other' ? 'selected' : '' }} value="other">その他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>前職</label>
                     <input type="text" class="form-control" value="{{ old('career', $user->career) }}" name="career" placeholder="キャリアを記入してください">
                 </div>
                 <div class="form-group">
                     <label>誕生日</label>
                     <input type="date" class="form-control" value="{{ old('birthday', $user->birthday) }}" name="birthday">
+                </div>
+                <div class="form-group">
+                    <label>学歴</label>
+                    <input type="text" class="form-control" value="{{ old('academic_background', $user->academic_background) }}" name="academic_background">
+                </div>
+                <div class="form-group">
+                    <label>出身</label>
+                    <input type="text" class="form-control" value="{{ old('home_village', $user->home_village) }}" name="home_village">
+                </div>
+                <div class="form-group">
+                    <label>現住所</label>
+                    <input type="text" class="form-control" value="{{ old('current_residence', $user->current_residence) }}" name="current_residence">
                 </div>
                 <div class="form-group">
                     <label>自己紹介</label>

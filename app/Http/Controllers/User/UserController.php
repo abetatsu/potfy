@@ -87,6 +87,9 @@ class UserController extends Controller
             $user->career                 = $request->career;
             $user->birthday               = $request->birthday;
             $user->user_self_introduction = $request->user_self_introduction;
+            $user->academic_background    = $request->academic_background;
+            $user->home_village           = $request->home_village;
+            $user->current_residence      = $request->current_residence;
 
             if ($image = $request->file('image')) {
                 $image_path = $image->getRealPath();
