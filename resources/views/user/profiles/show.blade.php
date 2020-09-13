@@ -7,11 +7,7 @@
         <div class="col-md-5 text-center">
             <img src="{{ $user->image }}" alt="画像は未設定です。" class="mb-3 mx-auto rounded-circle" height="120" width="120">
             <p class="text-xl font-bold mb-3">{{ $user->name }}</p>
-            <p class="card-text">メールアドレス：{{ $user->email }}</p>
-            <p class="card-text">性別：{{ $user->gender }}</p>
-            <p class="card-text">前職：{{ $user->career }}</p>
-            <p class="card-text">誕生日：{{ $user->birthday }}</p>
-            <p class="card-text">自己紹介：{{ $user->user_self_introduction }}</p>
+            <p class="card-text">{!! $introduction !!}</p>
             @foreach ($user->socialAccounts as $account)
                 <p>
                     <a href="{{ $account->url }}" class="text-blue-500" target="_blank">{{ App\Enums\SocialType::getDescription($account->social_type) }}</a>
@@ -31,9 +27,9 @@
                         <a href="{{route('user.portfolios.show',$portfolio->id)}}" class="no-underline hover:no-underline">
                             <img class="card-img-top object-cover h-48 w-full" src="{{ isset($portfolio->image_path) ? $portfolio->image_path : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="画像の登録はありません">
                             <div class="card-body pb-0">
-                                    <h5 class="card-title ">タイトル：{{ $portfolio->title }}</h5>
-                                    <p class="card-text">内容：{{ $portfolio->description }}</p>
-                                    <p class="card-text">リンク：{{ $portfolio->link }}</p>
+                                <h5 class="card-title ">タイトル：{{ $portfolio->title }}</h5>
+                                <p class="card-text">内容：{{ $portfolio->description }}</p>
+                                <p class="card-text">リンク：{{ $portfolio->link }}</p>
                             </div>
                         </a>
                         <a href="{{ route('user.users.show', $portfolio->user_id) }}" class="d-flex justify-content-center align-items-center">
