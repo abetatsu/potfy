@@ -38,7 +38,7 @@ class Portfolio extends Model
     public static function replaceUrl($portfolio)
     {
         $pattern = '/((?:https?|ftp):\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+)/';
-        $replace = '<a href="$1">$1</a>';
+        $replace = '<a href="$1" class="text-blue-500" target="_blank">$1</a>';
         $text    = preg_replace( $pattern, $replace, $portfolio);
         return $text;    
     }
