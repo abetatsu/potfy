@@ -29,7 +29,7 @@
                     <label for="exampleFormControlSelect2">言語複数選択</label>
                     <select multiple class="form-control" id="exampleFormControlSelect2" name="technologies[]">  
                     @foreach ($technologies as $technology)
-                    <option value="{{$technology->id}}">{{ $technology->name}}</option>
+                        <option value="{{$technology->id}}">{{ $technology->name}}</option>
                     @endforeach
                     </select>
                 </div>

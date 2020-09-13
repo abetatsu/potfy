@@ -97,7 +97,8 @@ class PortfolioController extends Controller
         }
         $portfolio->load('user', 'technologies');
         $description = $portfolio->replaceUrl($portfolio->description);
-        return view('user.portfolios.show', compact('portfolio', 'description'));
+        $link = $portfolio->replaceUrl($portfolio->link);
+        return view('user.portfolios.show', compact('portfolio', 'description', 'link'));
     }
 
     /**

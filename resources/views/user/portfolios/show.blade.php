@@ -33,7 +33,7 @@
                     </p>
                 </div>
                 <div class="row my-2">
-                    <p class="card-text">プロダクトURL：<a href="{{ $portfolio->link }}" class="text-blue-500" target="_blank">{{ $portfolio->link }}</a></p>
+                    <p class="card-text">プロダクトURL：{!! $link !!}</p>
                 </div>
                 <div class="row my-2">
                     <a href="{{ route('user.users.show', $portfolio->user_id) }}" class="d-flex justify-content-center align-items-center">
@@ -64,9 +64,9 @@
             </div>
         </div>
         <ul class="nav nav-tabs text-center">
-            <li class="{{ session('comment') ? 'active' : ''}} mx-5"><a href="#comments" data-toggle="tab">コメント</a></li>
-            <li class="{{ session('history') ? 'active' : ''}} mx-5"><a href="#history" data-toggle="tab">開発履歴</a></li>
-            <li class="{{ session('story') ? 'active' : ''}}mx-5"><a href="#story" data-toggle="tab">ストーリー</a></li>
+            <li class="mx-5 nav-item"><a href="#story" class="nav-link {{ session('history') || session('comment') ? '' : 'active'}}" data-toggle="tab">ストーリー</a></li>
+            <li class="mx-5 nav-item"><a href="#history" class="nav-link {{ session('history') ? 'active' : ''}}" data-toggle="tab">開発履歴</a></li>
+            <li class="mx-5 nav-item"><a href="#comments" class="nav-link {{ session('comment') ? 'active' : ''}}" data-toggle="tab">コメント</a></li>
         </ul>
     </div>
 
@@ -136,14 +136,14 @@
                         {{csrf_field()}}
                         <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
                         <div class="form-group">
+                            <label>ストーリー</label>
                             <select name="story_type"
-                                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            class="block appearance-none w-full border py-2 px-2 pr-8 mb-2 rounded leading-tight">
                                 <option value="0">選択してください</option>
                                 @foreach (App\Enums\StoryType::asSelectArray() as $storyTypeEn => $storyTypeJp)
-                                <option value="{{ $storyTypeEn }}">{{ $storyTypeJp }}</option>
+                                    <option value="{{ $storyTypeEn }}">{{ $storyTypeJp }}</option>
                                 @endforeach
                             </select>
-                            <label>ストーリー</label>
                             <textarea class="form-control" placeholder="内容" rows="5" name="story"></textarea>
                         </div>
                         <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-3">ストーリーを投稿する</button>
