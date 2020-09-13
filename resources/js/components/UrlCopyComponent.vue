@@ -1,8 +1,8 @@
 <template>
     <div>
         <input id="copyTarget" type="hidden" v-model="url">
-        <button type="button" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full" @click="urlCopy()" data-toggle="tooltip" data-placement="top">
-            URLをコピー
+        <button type="button" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" @click="urlCopy()" data-toggle="tooltip" data-placement="top">
+            URLをコピーする
         </button>
     </div>
 </template>
