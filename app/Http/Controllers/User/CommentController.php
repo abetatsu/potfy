@@ -47,8 +47,8 @@ class CommentController extends Controller
         $comment->portfolio_id = $request->portfolio_id;
 
         $comment->save();
-
-        return redirect()->route('user.portfolios.show', $portfolio->id)->with('success', 'コメント完了しました。');
+        
+        return redirect()->route('user.portfolios.show', $portfolio->id)->with('success', 'コメント完了しました。')->with('comment', $comment->id);
     }
 
     /**

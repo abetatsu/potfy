@@ -195,7 +195,7 @@ class PortfolioController extends Controller
         return redirect()->route('user.portfolios.index')->with('success', 'ポートフォリオの削除に成功しました。');
     }
 
-    public function top ()
+    public function top()
     {
         $topPortfolios = Portfolio::orderBy('visited_count', 'desc')->take(4)->get();
         $portfolios = Portfolio::orderBy('created_at', 'desc')->take(4)->get();
