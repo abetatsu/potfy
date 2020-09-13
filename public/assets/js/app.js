@@ -37640,7 +37640,7 @@ var render = function() {
       "button",
       {
         staticClass:
-          "btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full",
+          "btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12",
         attrs: {
           type: "button",
           "data-toggle": "tooltip",
@@ -37652,7 +37652,7 @@ var render = function() {
           }
         }
       },
-      [_vm._v("\n        URLをコピー\n    ")]
+      [_vm._v("\n        URLをコピーする\n    ")]
     )
   ])
 }
@@ -50065,8 +50065,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/tsubasatanabe/tt/gate/potfy/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/tsubasatanabe/tt/gate/potfy/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/suzukimasanao/dev/potfy/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/suzukimasanao/dev/potfy/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
