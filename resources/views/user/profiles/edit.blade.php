@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <label>自己紹介</label>
-                    <textarea class="w-100" name="user_self_introduction" rows="10" placeholder="自己紹介を記入してください">{{ old('user_self_introduction', $user->user_self_introduction) }}</textarea>
+                    <textarea class="w-100 form-control" name="user_self_introduction" rows="10" placeholder="自己紹介を記入してください">{{ old('user_self_introduction', $user->user_self_introduction) }}</textarea>
                 </div>
                 <div class="form-group">
                     <label>{{ App\Enums\SocialType::getDescription(App\Enums\SocialType::GITHUB) }}</label>

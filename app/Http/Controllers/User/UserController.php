@@ -52,7 +52,8 @@ class UserController extends Controller
     public function show(User $user)
     {
         $portfolios = Portfolio::orderBy('created_at', 'desc')->where('user_id', Auth::id())->paginate(16);
-        return view('user.profiles.show', compact('user', 'portfolios'));
+        $introduction = $user->replaceUrl($user->user_self_introduction	);
+        return view('user.profiles.show', compact('user', 'portfolios', 'introduction'));
     }
 
     /**
