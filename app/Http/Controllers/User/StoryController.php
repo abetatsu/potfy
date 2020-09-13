@@ -41,7 +41,7 @@ class StoryController extends Controller
     {
         $portfolio = Portfolio::find($request->portfolio_id);
         $story = new Story;
-        $story -> story   = $request -> story;
+        $story -> story   = $story ->replaceUrl($request->story);
         $story -> story_type = $request -> story_type;
         $story -> user_id = Auth::id();
         $story -> portfolio_id = $request -> portfolio_id;
