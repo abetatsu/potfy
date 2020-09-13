@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @include('layouts.flash-messages')
-            <div class="card-header bg-white row">
+            <div class="card-header bg-white row shadow-sm">
                 <div class="col-md-8 h-10 leading-10">
                     <h1 class="h3 h-10 leading-10 mb-0">{{ $portfolio->title }}</h1>
                 </div>
