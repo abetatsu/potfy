@@ -21,13 +21,13 @@ class PortfolioRequest extends FormRequest
      *
      * @return array
      */
-    
+
     public function rules()
     {
         return [
             'title' => 'required|max:20',
             'description'=>'required',
-            'link'=>'required',
+            'link'=>'nullable',
             'image' => 'mimes:jpeg,jpg,png,gif|max:10240',
         ];
     }

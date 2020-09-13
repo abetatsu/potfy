@@ -19,7 +19,7 @@ class CreatePortfoliosTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('image')->nullable();
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
