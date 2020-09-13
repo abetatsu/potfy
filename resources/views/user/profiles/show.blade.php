@@ -14,7 +14,7 @@
             <p class="card-text">自己紹介：{{ $user->user_self_introduction }}</p>
             @foreach ($user->socialAccounts as $account)
                 <p>
-                    <a href="{{ $account->url }}">{{ $account->social_type }}</a>
+                    <a href="{{ $account->url }}" class="text-blue-500" target="_blank">{{ App\Enums\SocialType::getDescription($account->social_type) }}</a>
                 </p>
             @endforeach
             <a href="{{route('user.users.edit', $user)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full mt-4">編集する</a>
