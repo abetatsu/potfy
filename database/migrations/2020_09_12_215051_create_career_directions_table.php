@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Enums\StoryType;
 
-class CreateStoriesTable extends Migration
+class CreateCareerDirectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,18 +13,15 @@ class CreateStoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stories', function (Blueprint $table) {
+        Schema::create('career_directions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('portfolio_id');
-            $table->text('story');
-            $table->enum('story_type', StoryType::getValues())
-                ->default(StoryType::REASON);
+            $table->string('career');
+            $table->date('beginning_date')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('portfolio_id')->references('id')->on('portfolios');
         });
     }
 
@@ -36,6 +32,6 @@ class CreateStoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stories');
+        Schema::dropIfExists('career_directions');
     }
 }

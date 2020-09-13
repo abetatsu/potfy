@@ -15,7 +15,7 @@ class CreatePortfolioTechnologyTable extends Migration
     {
         Schema::create('portfolio_technology', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('portfolio_id');
+            $table->string('portfolio_id');
             $table->unsignedBigInteger('technology_id');
             $table->timestamps();
 

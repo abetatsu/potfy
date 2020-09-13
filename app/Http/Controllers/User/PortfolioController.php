@@ -79,8 +79,6 @@ class PortfolioController extends Controller
             return redirect()->route('user.portfolios.index')->with('error', 'ポートフォリオの新規作成ができませんでした。');
         }
         
-        $portfolio->save();
-
         return redirect() ->route('user.portfolios.index')->with('success', 'ポートフォリオを追加しました。');
     }
 

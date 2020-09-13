@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Enums\SocialType;
+use App\SocialAccount;
 
 class LoginController extends Controller
 {
@@ -73,7 +75,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToProvider()
+    public function redirectToTwitter()
     {
         return Socialite::driver('twitter')->redirect();
     }
@@ -83,7 +85,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleTwitterCallback()
     {
         try {
             $user = Socialite::driver('twitter')->user();
@@ -96,6 +98,49 @@ class LoginController extends Controller
                 'image'     => str_replace('http://', 'https://', $user->avatar),
             ]);
             Auth::login($socialUser, true);
+
+            $socialAccount = SocialAccount::firstOrCreate([
+                'url'         => 'https://twitter.com/' . $user->nickname,
+                'user_id'     => $socialUser->id,
+            ],[
+                'user_id'     => $socialUser->id,
+                'url'         => 'https://twitter.com/' . $user->nickname,
+                'social_type' => SocialType::TWITTER,
+            ]);
+        } catch (Exception $e) {
+            return redirect()->route('user.login');
+        }
+
+        return redirect()->route('user.portfolios.index');
+    }
+
+    public function redirectToGithub()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function handleGithubCallback()
+    {
+        try {
+            $user = Socialite::driver('github')->user();
+            $socialUser = User::firstOrCreate([
+                'email'     => $user->email,
+            ], [
+                'token'     => $user->token,
+                'name'      => $user->name,
+                'email'     => $user->email,
+                'image'     => $user->avatar,
+            ]);
+            Auth::login($socialUser, true);
+
+            $socialAccount = SocialAccount::firstOrCreate([
+                'url'         => $user->user['html_url'],
+                'user_id'     => $socialUser->id,
+            ],[
+                'user_id'     => $socialUser->id,
+                'url'         => $user->user['html_url'],
+                'social_type' => SocialType::GITHUB,
+            ]);
         } catch (Exception $e) {
             return redirect()->route('user.login');
         }

@@ -27,8 +27,11 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         'verify'   => false
     ]);
 
-    Route::get('login/twitter', 'Auth\LoginController@redirectToProvider')->name('login.twitter');
-    Route::get('login/twitter/callback', 'Auth\LoginController@handleProviderCallback');
+    Route::get('login/twitter', 'Auth\LoginController@redirectToTwitter')->name('login.twitter');
+    Route::get('login/twitter/callback', 'Auth\LoginController@handleTwitterCallback');
+
+    Route::get('login/github', 'Auth\LoginController@redirectToGithub')->name('login.github');
+    Route::get('login/callback/github', 'Auth\LoginController@handleGithubCallback');
 
     // ログイン認証後
     Route::middleware('auth:user')->group(function () {
