@@ -52,7 +52,8 @@ class UserController extends Controller
     public function show(User $user)
     {
         $portfolios = Portfolio::orderBy('created_at', 'desc')->where('user_id', Auth::id())->paginate(16);
-        return view('user.profiles.show', compact('user', 'portfolios'));
+        $introduction = $user->replaceUrl($user->user_self_introduction	);
+        return view('user.profiles.show', compact('user', 'portfolios', 'introduction'));
     }
 
     /**
@@ -87,6 +88,9 @@ class UserController extends Controller
             $user->career                 = $request->career;
             $user->birthday               = $request->birthday;
             $user->user_self_introduction = $request->user_self_introduction;
+            $user->academic_background    = $request->academic_background;
+            $user->home_village           = $request->home_village;
+            $user->current_residence      = $request->current_residence;
 
             if ($image = $request->file('image')) {
                 $image_path = $image->getRealPath();
