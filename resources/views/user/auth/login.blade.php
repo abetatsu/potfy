@@ -12,10 +12,10 @@
     </div>
     <div class="row">
         <div class="col-12 text-center mb-5">
-            <a href="{{ route('user.login.twitter') }}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">Twitterアカウントを利用してログイン</a>
+            <a href="{{ route('user.login.twitter') }}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full"><i class="fab fa-twitter"></i>　Twitterアカウントを利用してログイン</a>
         </div>
         <div class="col-12 text-center mb-5">
-            <a href="{{ route('user.login.github') }}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">GitHubアカウントを利用してログイン</a>
+            <a href="{{ route('user.login.github') }}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full"><i class="fab fa-github"></i>　GitHubアカウントを利用してログイン</a>
         </div>
     </div>
     <div class="row text-center justify-center align-items-center mb-4">
