@@ -46,8 +46,11 @@ class HistoryController extends Controller
         $history->portfolio_id = $request->portfolio_id;
 
         $history -> save();
+        
+        $portfolio->load('user', 'technologies');
+        $description = $portfolio->replaceUrl($portfolio->description);
 
-        return redirect()->route('user.portfolios.show', $portfolio->id);
+        return redirect()->route('user.portfolios.show', $portfolio->id)->with('history');
     }
 
     /**

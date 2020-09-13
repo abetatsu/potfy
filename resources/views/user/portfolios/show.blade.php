@@ -52,13 +52,13 @@
         </div>
         <ul class="nav nav-tabs text-center">
             <li class="active mx-5"><a href="#comments" data-toggle="tab">コメント</a></li>
-            <li class="mx-5"><a href="#history" data-toggle="tab">開発履歴</a></li>
+            <li class="{{ $portfolio->history ? 'active' }} mx-5"><a href="#history" data-toggle="tab">開発履歴</a></li>
             <li class="mx-5"><a href="#story" data-toggle="tab">ストーリー</a></li>
         </ul>
     </div>
 
     <div class="tab-content">
-        <div class="tab-pane active" id="comments">
+        <div class="tab-pane " id="comments">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <form action="{{ route('user.comments.store', $portfolio->id) }}" method="POST">
@@ -88,7 +88,9 @@
             </div>
         </div>
 
-        <div class="tab-pane fade" id="history">
+       
+     
+        <div class="active tab-pane fade active" id="history">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <form action="{{ route('user.histories.store',$portfolio->id) }}" method="POST">
@@ -117,6 +119,8 @@
                 </div>
             </div>
         </div>
+    
+      
 
         <div class="tab-pane fade" id="story">
             <div class="row justify-content-center">
