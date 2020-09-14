@@ -52,13 +52,6 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
 Route::namespace('Company')->prefix('company')->name('company.')->group(function () {
 
-    // ログイン認証関連
-    Auth::routes([
-        'register' => true,
-        'reset'    => false,
-        'verify'   => false
-    ]);
-
     // ログイン認証後
     Route::middleware('auth:company')->group(function () {
 
