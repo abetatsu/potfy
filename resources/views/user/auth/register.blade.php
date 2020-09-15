@@ -67,7 +67,7 @@
             </div>
             <div class="row justify-center text-center">
                 <div class="col-12">
-                    <p>Potfy.meへの登録は、<a href="#">利用規約</a>・<a href="#">プライバシーポリシー</a>に同意したものとみなします。</p>
+                    <p>Potfy.meへの登録は、<a href="#" class="text-blue-500">利用規約</a>・<a href="#" class="text-blue-500">プライバシーポリシー</a>に同意したものとみなします。</p>
                 </div>
             </div>
         </form>
