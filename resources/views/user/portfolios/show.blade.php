@@ -61,7 +61,8 @@
                         <url-copy-component></url-copy-component>
                     </div>
                     <div class="col-3">
-                    <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" href="https://twitter.com/share?url={{ route('user.portfolios.show', $portfolio->id) }}&via=gaogaogate&hashtags=potfy,gaogaogate&text=開発者募集中です！" rel="nofollow" target="_blank">開発者を募る</a></div>
+                        <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" href="https://twitter.com/share?url={{ route('user.portfolios.show', $portfolio->id) }}%0a&via=gaogaogate&hashtags=potfy,gaogaogate&text={{ $portfolio->title }}%0a" rel="nofollow" target="_blank">Twitterでシェア</a>
+                    </div>
                 </div>
             </div>
         </div>
