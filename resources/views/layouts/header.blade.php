@@ -14,6 +14,10 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
+    @if(request()->is('portfolios/*'))
+        @include('layouts.ogp-meta')
+    @endif
+
     <!-- Scripts -->
     <script src="{{ asset('assets/js/app.js') }}" defer></script>
 
