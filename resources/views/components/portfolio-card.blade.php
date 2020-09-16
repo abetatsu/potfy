@@ -1,6 +1,6 @@
 <div class="col-xl-4 col-md-6 mb-3">
     <div class="card shadow transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105" style="height: 385px;">
-        <a href="{{route('user.portfolios.show',$portfolio->id)}}" class="no-underline hover:no-underline">
+        <a href="{{route('portfolios.show',$portfolio->id)}}" class="no-underline hover:no-underline">
             <img class="card-img-top object-cover h-48 w-full" src="{{ isset($portfolio->image_path) ? $portfolio->image_path : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="画像の登録はありません">
             <div class="card-body pb-0">
                 <h5 class="card-title font-extrabold text-left">{{ RoundSentence($portfolio->title, 19, 18) }}</h5>

@@ -159,9 +159,9 @@ class PortfolioController extends Controller
         } catch (\Exception $e) {
             \Log::error($e);
             \DB::rollback();
-            return redirect()->route('user.portfolios.show', $portfolio->id)->with('error', 'ポートフォリオの更新に失敗しました。');
+            return redirect()->route('portfolios.show', $portfolio->id)->with('error', 'ポートフォリオの更新に失敗しました。');
         }
-        return redirect()->route('user.portfolios.show', $portfolio->id)->with('success', 'ポートフォリオを更新しました。');
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'ポートフォリオを更新しました。');
     }
 
     /**
@@ -202,5 +202,67 @@ class PortfolioController extends Controller
         $portfolios = Portfolio::orderBy('created_at', 'desc')->take(3)->get();
         $portfolios->load('user', 'technologies');
         return view('top', compact('portfolios', 'topPortfolios'));
+    }
+
+    public function ogp(Portfolio $portfolio)
+    {
+        // OGPのサイズ
+        $w = 600;
+        $h = 315;
+        // １行の文字数
+        $partLength = 10;
+
+        $fontSize = 30;
+        $fontPath = public_path('/assets/fonts/Roboto-Regular.ttf');
+
+        // 画像を作成
+        $image = \imagecreatetruecolor($w, $h);
+        // 背景画像を描画
+        if ( $portfolio->image_path ) {
+            $bg = \imagecreatefrompng($portfolio->image_path);
+        } else {
+            $bg = \imagecreatefromjpeg(public_path('assets/image/potfybg.jpeg'));
+            // 色を作成
+            $white = imagecolorallocate($image, 255, 255, 255);
+            $grey = imagecolorallocate($image, 128, 128, 128);
+    
+            // 各行に分割
+            $parts = [];
+            $length = mb_strlen($portfolio->title);
+            for ($start = 0; $start < $length; $start += $partLength) {
+                $parts[] = mb_substr($portfolio->title, $start, $partLength);
+            }
+    
+            // テキストの影を描画
+            $this->drawParts($image, $parts, $w, $h, $fontSize, $fontPath, $grey, 3);
+            // テキストを描画
+            $this->drawParts($image, $parts, $w, $h, $fontSize, $fontPath, $white);
+        }
+        imagecopyresampled($image, $bg, 0, 0, 0, 0, $w, $h, 600, 315);
+
+        ob_start();
+        imagepng($image);
+        $content = ob_get_clean();
+
+        // 画像としてレスポンスを返す
+        return response($content)
+            ->header('Content-Type', 'image/png');
+    }
+
+    /**
+     * 各行の描画メソッド
+     */
+    private function drawParts($image, $parts, $w, $h, $fontSize, $fontPath, $color, $offset = 0)
+    {
+        foreach ($parts as $i => $part) {
+            // サイズを計算
+            $box = \imagettfbbox($fontSize, 0, $fontPath, $part);
+            $boxWidth = $box[4] - $box[6];
+            $boxHeight = $box[1] - $box[7];
+            // 位置を計算
+            $x = ($w - $boxWidth) / 2;
+            $y = $h / 2 + $boxHeight / 2 - $boxHeight * count($parts) * 0.5 + $boxHeight * $i;
+            \imagettftext($image, $fontSize, 0, $x + $offset, $y + $offset, $color, $fontPath, $part);
+        }
     }
 }
