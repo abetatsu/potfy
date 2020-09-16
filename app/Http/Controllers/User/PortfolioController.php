@@ -159,9 +159,9 @@ class PortfolioController extends Controller
         } catch (\Exception $e) {
             \Log::error($e);
             \DB::rollback();
-            return redirect()->route('user.portfolios.show', $portfolio->id)->with('error', 'ポートフォリオの更新に失敗しました。');
+            return redirect()->route('portfolios.show', $portfolio->id)->with('error', 'ポートフォリオの更新に失敗しました。');
         }
-        return redirect()->route('user.portfolios.show', $portfolio->id)->with('success', 'ポートフォリオを更新しました。');
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'ポートフォリオを更新しました。');
     }
 
     /**

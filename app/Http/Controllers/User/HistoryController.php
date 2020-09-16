@@ -50,7 +50,7 @@ class HistoryController extends Controller
         $portfolio->load('user', 'technologies');
         $description = $portfolio->replaceUrl($portfolio->description);
 
-        return redirect()->route('user.portfolios.show', $portfolio->id)->with('success', '開発履歴を投稿しました。')->with('history', $history->id);
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', '開発履歴を投稿しました。')->with('history', $history->id);
     }
 
     /**

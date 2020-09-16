@@ -48,7 +48,7 @@ class StoryController extends Controller
 
         $story -> save();
 
-        return redirect()->route('user.portfolios.show', $portfolio->id);
+        return redirect()->route('portfolios.show', $portfolio->id);
     }
 
     /**

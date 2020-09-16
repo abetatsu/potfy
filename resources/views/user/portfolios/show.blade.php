@@ -47,7 +47,7 @@
                         <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12">編集する</a>
                     </div>
                     <div class="col-3">
-                        <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" href="https://twitter.com/share?url={{ route('user.portfolios.show', $portfolio->id) }}&via=gaogaogate&hashtags=potfy,gaogaogate&text=開発者募集中です！" rel="nofollow" target="_blank">開発者を募る</a>
+                        <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" href="https://twitter.com/share?url={{ route('portfolios.show', $portfolio->id) }}&via=gaogaogate&hashtags=potfy,gaogaogate&text=開発者募集中です！" rel="nofollow" target="_blank">開発者を募る</a>
                     </div>
                     <div class="col-3">
                         <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}" method='post'>
