@@ -73,7 +73,7 @@
             </div>
             <div class="row justify-center text-center">
                 <div class="col-12">
-                    <p>アカウントを持っていない方は<a href="{{ route('user.register') }}">新規登録</a>して下さい</p>
+                    <p>アカウントを持っていない方は<a href="{{ route('user.register') }}" class="text-blue-500">新規登録</a>して下さい</p>
                 </div>
             </div>
         </form>

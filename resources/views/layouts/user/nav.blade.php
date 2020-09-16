@@ -15,8 +15,9 @@
 
 			<!-- Right Side Of Navbar -->
 			<ul class="navbar-nav ml-auto">
+			@auth
 				<a href="{{ route('user.portfolios.create')}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded">新規投稿</a>
-
+      @endauth
 				<!-- Authentication Links -->
 				@unless (Auth::guard('user')->check())
 					<li class="nav-item">
@@ -30,17 +31,17 @@
 				@else
 					<li class="nav-item dropdown">
 						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-							{{ Auth::user()->name }} <span class="caret"></span>
+						{{  Auth::user()->name ? Auth::user()->name : 'ゲスト' . Auth::id()}} <span class="caret"></span>
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{ route('user.users.show', Auth::id()) }}">
+								マイページ <span class="caret"></span>
+							</a>
 							<a class="dropdown-item" href="{{ route('user.logout') }}"
 								onclick="event.preventDefault();
 								document.getElementById('logout-form').submit();">
 								{{ __('Logout') }}
-							</a>
-							<a class="dropdown-item" href="{{ route('user.users.show', Auth::id()) }}">
-								マイページ <span class="caret"></span>
 							</a>
 							
 							<form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
