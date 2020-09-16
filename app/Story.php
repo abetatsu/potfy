@@ -19,8 +19,8 @@ class Story extends Model
     public static function replaceUrl($story)
     {
         $pattern = '/((?:https?|ftp):\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+)/';
-        $replace = '<a href="$1" class="text-blue-500" target="_blank">$1</a>';
-        $text    = preg_replace( $pattern, $replace, $story);
-        return $text;    
+        $replace = '<a href="$1" class="text-blue-500" target="_blank" onclick="return confirm(\'外部リンクに遷移しようとしています。本当に実行してよろしいでしょうか?\')">$1</a>';
+        $text    = preg_replace($pattern, $replace, $story);
+        return $text;
     }
 }
