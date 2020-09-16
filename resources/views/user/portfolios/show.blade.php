@@ -62,7 +62,7 @@
                     </div>
                     @if ($portfolio->user_id !== Auth::id())
                     <div class="col-3">
-                        <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" href="https://twitter.com/share?url={{ route('user.portfolios.show', $portfolio->id) }}%0a&via=gaogaogate&hashtags=potfy,gaogaogate&text={{ $portfolio->title }}%0a" rel="nofollow" target="_blank">Twitterでシェア</a>
+                        <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" href="https://twitter.com/share?url={{ route('portfolios.show', $portfolio->id) }}%0a&via=gaogaogate&hashtags=potfy,gaogaogate&text={{ $portfolio->title }}%0a" rel="nofollow" target="_blank">Twitterでシェア</a>
                     </div>
                     @endif
                 </div>
