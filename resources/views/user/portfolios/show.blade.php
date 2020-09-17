@@ -19,7 +19,7 @@
                     <img class="object-cover w-1/2 mx-auto" src="{{ isset($portfolio->image_path) ? $portfolio->image_path : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="画像の登録はありません">
                 </div>
                 <div class="row mt-5">
-                    <p class="card-text">{!! nl2br(e($description)) !!}</p>
+                    <p class="card-text">{!! nl2br($description) !!}</p>
                 </div>
                 <div class="row my-2">
                     <p class="card-text">開発言語：
