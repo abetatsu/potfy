@@ -198,8 +198,8 @@ class PortfolioController extends Controller
 
     public function top()
     {
-        $topPortfolios = Portfolio::orderBy('visited_count', 'desc')->take(3)->get();
-        $portfolios = Portfolio::orderBy('created_at', 'desc')->take(3)->get();
+        $topPortfolios = Portfolio::orderBy('visited_count', 'desc')->take(3*4)->get();
+        $portfolios = Portfolio::orderBy('created_at', 'desc')->take(3*4)->get();
         $portfolios->load('user', 'technologies');
         return view('top', compact('portfolios', 'topPortfolios'));
     }
@@ -218,7 +218,7 @@ class PortfolioController extends Controller
         // 画像を作成
         $image = \imagecreatetruecolor($w, $h);
         // 背景画像を描画
-        if ( $portfolio->image_path ) {
+        if ($portfolio->image_path) {
             $bg = \imagecreatefrompng($portfolio->image_path);
         } else {
             $bg = \imagecreatefromjpeg(public_path('assets/image/potfybg.jpeg'));
