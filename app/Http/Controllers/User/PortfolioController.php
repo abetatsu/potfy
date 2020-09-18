@@ -22,7 +22,7 @@ class PortfolioController extends Controller
 
     public function index()
     {
-        $portfolios = Portfolio::orderBy('created_at', 'desc')->paginate(16);
+        $portfolios = Portfolio::orderBy('created_at', 'desc')->paginate(12);
         return view('user.portfolios.index', compact('portfolios'));
     }
 
@@ -198,8 +198,8 @@ class PortfolioController extends Controller
 
     public function top()
     {
-        $topPortfolios = Portfolio::orderBy('visited_count', 'desc')->take(3*4)->get();
-        $portfolios = Portfolio::orderBy('created_at', 'desc')->take(3*4)->get();
+        $topPortfolios = Portfolio::orderBy('visited_count', 'desc')->take(3)->get();
+        $portfolios = Portfolio::orderBy('created_at', 'desc')->take(3)->get();
         $portfolios->load('user', 'technologies');
         return view('top', compact('portfolios', 'topPortfolios'));
     }
