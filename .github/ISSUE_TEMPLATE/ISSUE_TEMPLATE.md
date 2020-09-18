@@ -4,7 +4,7 @@ name: PotfyTemplate
 about: issues template for developing potfy
 title: ''
 labels: 'enhancement'
-assignees: ''
+assignees: author
 
 ---
 
