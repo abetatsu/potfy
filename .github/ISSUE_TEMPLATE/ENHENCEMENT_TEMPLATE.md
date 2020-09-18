@@ -1,7 +1,7 @@
 ---
 
-name: PotfyTemplate
-about: issues template for developing potfy
+name: EnhancementTemplate
+about: issues template for potfy enhancement
 title: ''
 labels: 'enhancement'
 assignees: author
