@@ -1,7 +1,7 @@
+name: Move new issues into NEXT
 on:
   issues:
     types: [opened]
-    name: Move new issues into NEXT
 jobs:
   automate-project-columns:
     runs-on: ubuntu-latest
