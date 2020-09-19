@@ -37,8 +37,8 @@
                 </div>
                 <div class="row my-2">
                     <a href="{{ route('user.users.show', $portfolio->user_id) }}" class="d-flex justify-content-center align-items-center">
-                        <img src="{{ $portfolio->user->image }}" alt="" class="rounded-circle h-10 p-2">
-                        <h3 class="card-text">{{ $portfolio->user->name }}</h3>
+                        <img src="{{ isset($portfolio->user->image) ? $portfolio->user->image : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="" class="rounded-circle h-10 p-2">
+                        <h3 class="card-text">{{ empty($portfolio->user->name)? 'ゲスト'.$portfolio->user->id: $portfolio->user->name }}</h3>
                     </a>
                 </div>
                 <div class="row my-5">
@@ -106,6 +106,7 @@
         </div>
         
         <div class="{{ session('history') ? 'active show' : ''}} tab-pane fade" id="history">
+            @if(Auth::id() === $portfolio->user_id)
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <form action="{{ route('user.histories.store',$portfolio->id) }}" method="POST">
@@ -119,6 +120,7 @@
                     </form>
                 </div>
             </div>
+            @endif
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     @foreach ($portfolio->histories as $history)
@@ -135,6 +137,7 @@
         </div>
 
         <div class="{{ session('history') || session('comment') ? : 'active show'}} tab-pane fade" id="story">
+            @if(Auth::id() === $portfolio->user_id)
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <form action="{{ route('user.stories.store', $portfolio->id) }}" method="POST">
@@ -155,6 +158,7 @@
                     </form>
                 </div>
             </div>
+            @endif
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     @foreach ($portfolio->stories as $story)
