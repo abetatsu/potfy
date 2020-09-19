@@ -37,8 +37,8 @@
                 </div>
                 <div class="row my-2">
                     <a href="{{ route('user.users.show', $portfolio->user_id) }}" class="d-flex justify-content-center align-items-center">
-                        <img src="{{ ($portfolio->user->image)?$portfolio->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
-                        <h3 class="card-text">{{ empty($portfolio->user->name)? 'ゲスト'.$portfolio->user->id: $portfolio->user->name }}</h3>
+                        <img src="{{ isset($portfolio->user->image) ? $portfolio->user->image : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="" class="rounded-circle h-10 p-2">
+                        <h3 class="card-text">{{ empty($portfolio->user->name)? 'Guest' : $portfolio->user->name }}</h3>
                     </a>
                 </div>
                 <div class="row my-5">
@@ -93,11 +93,16 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     @foreach ($portfolio->comments as $comment)
-                    <div class="card mt-3">
-                        <h5 class="card-header">投稿者：{{ $comment->user->name }}</h5>
+                    <div class="card mt-5">
+                        <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                            <a href="{{ route('user.users.show', $comment->user_id) }}" class="d-flex align-items-center">
+                                <img src="{{ ($comment->user->image) ? $comment->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
+                                <h3 class="card-text">{{ empty($comment->user->name)? 'Guest' : $comment->user->name }}</h3>
+                            </a>
+                            {{ $comment->created_at }}
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">投稿日時：{{ $comment->created_at }}</h5>
-                            <p class="card-text">内容：{!! nl2br($comment->body) !!}</p>
+                            <p class="card-text">{!! nl2br($comment->body) !!}</p>
                         </div>
                     </div>
                     @endforeach
@@ -124,11 +129,16 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     @foreach ($portfolio->histories as $history)
-                    <div class="card mt-3">
-                        <h5 class="card-header">投稿者：{{ $history->user->name }}</h5>
+                    <div class="card mt-5">
+                        <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                            <a href="{{ route('user.users.show', $history->user_id) }}" class="d-flex align-items-center">
+                                <img src="{{ ($history->user->image) ? $history->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
+                                <h3 class="card-text">{{ empty($history->user->name)? 'Guest' : $history->user->name }}</h3>
+                            </a>
+                            {{ $history->created_at }}
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">投稿日時：{{ $history->created_at }}</h5>
-                            <p class="card-text">内容：{!! nl2br($history->history) !!}</p>
+                            <p class="card-text">{!! nl2br($history->history) !!}</p>
                         </div>
                     </div>
                     @endforeach
@@ -162,12 +172,20 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     @foreach ($portfolio->stories as $story)
-                    <div class="card mt-3">
-                        <h5 class="card-header">投稿者：{{ $story->user->name }}</h5>
+                    <div class="mt-5 py-2 col-3 bg-potfyYellow text-white font-bold text-center rounded-top">
+                        {{App\Enums\StoryType::getDescription($story->story_type)}}
+                    </div>
+                    <div class="card">
+                        <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                            <a href="{{ route('user.users.show', $story->user_id) }}" class="d-flex align-items-center">
+                                <img src="{{ ($story->user->image) ? $story->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
+                                <h3 class="card-text">{{ empty($story->user->name)? 'Guest' : $story->user->name }}</h3>
+                                
+                            </a>
+                            {{ $story->created_at }}
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">投稿日時：{{ $story->created_at }}</h5>
-                            <p>ストーリー：{{App\Enums\StoryType::getDescription($story->story_type)}}</p>
-                            <p class="card-text">内容：{!! nl2br($story->story) !!}</p>
+                            <p class="card-text">{!! nl2br($story->story) !!}</p>
                         </div>
                     </div>
                     @endforeach
