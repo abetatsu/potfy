@@ -10,3 +10,4 @@ jobs:
         with:
           repo-token: ${{ secrets.POTFY_TOKEN }}
           branch-prefix: 'issue-'
+          position: 'top'
