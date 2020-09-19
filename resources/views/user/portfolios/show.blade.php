@@ -37,7 +37,7 @@
                 </div>
                 <div class="row my-2">
                     <a href="{{ route('user.users.show', $portfolio->user_id) }}" class="d-flex justify-content-center align-items-center">
-                        <img src="{{ isset($portfolio->user->image) ? $portfolio->user->image : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="" class="rounded-circle h-10 p-2">
+                        <img src="{{ ($portfolio->user->image)?$portfolio->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
                         <h3 class="card-text">{{ empty($portfolio->user->name)? 'ゲスト'.$portfolio->user->id: $portfolio->user->name }}</h3>
                     </a>
                 </div>
