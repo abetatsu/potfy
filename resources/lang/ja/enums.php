@@ -5,9 +5,9 @@ use App\Enums\SocialType;
 
 return [
     StoryType::class => [
-        StoryType::REASON => '作った理由',
-        StoryType::EFFORT =>'力入れた点',
-        StoryType::ENHANCEMENT => '展望',
+        StoryType::REASON => 'サービス制作した理由',
+        StoryType::EFFORT => '実装の際に工夫した点',
+        StoryType::ENHANCEMENT => '今後のサービスの展望',
     ],
     SocialType::class => [
         SocialType::GITHUB => 'GitHub',
