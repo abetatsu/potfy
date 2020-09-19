@@ -25,14 +25,10 @@
                     <img src="{{ $portfolio->image_path }}" alt="画像" class="my-2">
                     <input type="file" class="form-control-file" id="image" name="image">
                 </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect2">言語複数選択</label>
-                    <select multiple class="form-control" id="exampleFormControlSelect2" name="technologies[]">  
-                    @foreach ($technologies as $technology)
-                        <option value="{{$technology->id}}">{{ $technology->name}}</option>
-                    @endforeach
-                    </select>
-                </div>
+                <select-component
+                    :technologies="{{ json_encode($technologies)}}"
+                    :selected="{{ json_encode($selectedTechs) }}"
+                ></select-component>
                 <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">
                     更新する
                 </button>

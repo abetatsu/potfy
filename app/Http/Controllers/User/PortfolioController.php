@@ -33,7 +33,8 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        $technologies = Technology::all();
+        $technologies = Technology::get(['name'])->toArray();
+        $technologies = array_column($technologies, 'name');
         return view('user.portfolios.create', compact('technologies'));
     }
 
@@ -68,8 +69,10 @@ class PortfolioController extends Controller
             $portfolio->save();
 
             if ($request->technologies) {
-                foreach ($request->technologies as $technologyId) {
-                    $portfolio->technologies()->attach($technologyId);
+                $technologies = explode(",", $request->technologies);
+                foreach ($technologies as $technology) {
+                    $tech = Technology::firstOrCreate(['name' => $technology]);
+                    $portfolio->technologies()->attach($tech->id);
                 }
             }
             \DB::commit();
@@ -110,11 +113,13 @@ class PortfolioController extends Controller
     public function edit($id)
     {
         $portfolio = Portfolio::find($id);
-        $technologies = Technology::all();
+        $technologies = Technology::get(['name'])->toArray();
+        $technologies = array_column($technologies, 'name');
+        $selectedTechs = array_column($portfolio->technologies()->get(['name'])->toArray(), 'name');
         if (Auth::id() !== $portfolio->user_id) {
             return abort(404);
         }
-        return view('user.portfolios.edit', compact('portfolio', 'technologies'));
+        return view('user.portfolios.edit', compact('portfolio', 'technologies', 'selectedTechs'));
     }
 
     /**
@@ -150,9 +155,16 @@ class PortfolioController extends Controller
             
             $portfolio->save();
 
+            $portfolioTechs = $portfolio->technologies()->get();
+            foreach ($portfolioTechs as $tech) {
+                $portfolio->technologies()->detach($tech->id);
+            }
+
             if ($request->technologies) {
-                foreach ($request->technologies as $technologyId) {
-                    $portfolio->technologies()->attach($technologyId);
+                $technologies = explode(",", $request->technologies);
+                foreach ($technologies as $technology) {
+                    $tech = Technology::firstOrCreate(['name' => $technology]);
+                    $portfolio->technologies()->attach($tech->id);
                 }
             }
             \DB::commit();

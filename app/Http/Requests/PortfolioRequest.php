@@ -26,8 +26,8 @@ class PortfolioRequest extends FormRequest
     {
         return [
             'title'        => 'required|max:20',
-            'description'  =>'required',
-            'link'         =>'nullable|active_url',
+            'description'  => 'required',
+            'link'         => 'nullable|active_url',
             'image'        => 'mimes:jpeg,jpg,png,gif|max:10240',
         ];
     }
@@ -38,7 +38,7 @@ class PortfolioRequest extends FormRequest
             'title.required'       => trans('validation.required'),
             'title.max'            => trans('validation.max'),
             'description.required' => trans('validation.required'),
-            'link.required'        => trans('validation.required'),
+            'link.nullable'        => trans('validation.nullable'),
             'link.active_url'      => trans('validation.active_url'),
             'image.mimes'          => trans('validation.mimes'),
             'image.max'            => trans('validation.max'),
