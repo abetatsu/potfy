@@ -13,4 +13,4 @@ jobs:
         with:
           project: FirstReleaseProject
           column: WIP
-          repo-token: ${{ secrets.potfy }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
