@@ -22,7 +22,7 @@ class PortfolioController extends Controller
 
     public function index()
     {
-        $portfolios = Portfolio::orderBy('created_at', 'desc')->paginate(16);
+        $portfolios = Portfolio::orderBy('created_at', 'desc')->paginate(12);
         return view('user.portfolios.index', compact('portfolios'));
     }
 
@@ -218,7 +218,7 @@ class PortfolioController extends Controller
         // 画像を作成
         $image = \imagecreatetruecolor($w, $h);
         // 背景画像を描画
-        if ( $portfolio->image_path ) {
+        if ($portfolio->image_path) {
             $bg = \imagecreatefrompng($portfolio->image_path);
         } else {
             $bg = \imagecreatefromjpeg(public_path('assets/image/potfybg.jpeg'));
