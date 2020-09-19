@@ -19,7 +19,7 @@
                     <img class="object-cover w-1/2 mx-auto" src="{{ isset($portfolio->image_path) ? $portfolio->image_path : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="画像の登録はありません">
                 </div>
                 <div class="row mt-5">
-                    <p class="card-text">{!! $description !!}</p>
+                    <p class="card-text">{!! nl2br($description) !!}</p>
                 </div>
                 <div class="row my-2">
                     <p class="card-text">開発言語：
@@ -97,7 +97,7 @@
                         <h5 class="card-header">投稿者：{{ $comment->user->name }}</h5>
                         <div class="card-body">
                             <h5 class="card-title">投稿日時：{{ $comment->created_at }}</h5>
-                            <p class="card-text">内容：{!! $comment->body !!}</p>
+                            <p class="card-text">内容：{!! nl2br($comment->body) !!}</p>
                         </div>
                     </div>
                     @endforeach
@@ -128,7 +128,7 @@
                         <h5 class="card-header">投稿者：{{ $history->user->name }}</h5>
                         <div class="card-body">
                             <h5 class="card-title">投稿日時：{{ $history->created_at }}</h5>
-                            <p class="card-text">内容：{!! $history->history !!}</p>
+                            <p class="card-text">内容：{!! nl2br($history->history) !!}</p>
                         </div>
                     </div>
                     @endforeach
@@ -167,7 +167,7 @@
                         <div class="card-body">
                             <h5 class="card-title">投稿日時：{{ $story->created_at }}</h5>
                             <p>ストーリー：{{App\Enums\StoryType::getDescription($story->story_type)}}</p>
-                            <p class="card-text">内容：{!! $story->story !!}</p>
+                            <p class="card-text">内容：{!! nl2br($story->story) !!}</p>
                         </div>
                     </div>
                     @endforeach
