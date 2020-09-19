@@ -76,10 +76,10 @@
                 </div>
             </div>
         </div>
-        <ul class="nav nav-tabs text-center">
-            <li class="mx-5 nav-item"><a href="#story" class="nav-link {{ session('history') || session('comment') ? '' : 'active'}}" data-toggle="tab">ストーリー</a></li>
-            <li class="mx-5 nav-item"><a href="#history" class="nav-link {{ session('history') ? 'active' : ''}}" data-toggle="tab">開発履歴</a></li>
-            <li class="mx-5 nav-item"><a href="#comments" class="nav-link {{ session('comment') ? 'active' : ''}}" data-toggle="tab">コメント</a></li>
+        <ul class="nav nav-tabs text-center col-8">
+            <li class="col-4 p-0 nav-item"><a href="#story" class="nav-link {{ session('history') || session('comment') ? '' : 'active'}}" data-toggle="tab">ストーリー</a></li>
+            <li class="col-4 p-0 nav-item"><a href="#history" class="nav-link {{ session('history') ? 'active' : ''}}" data-toggle="tab">開発履歴</a></li>
+            <li class="col-4 p-0 nav-item"><a href="#comments" class="nav-link {{ session('comment') ? 'active' : ''}}" data-toggle="tab">コメント</a></li>
         </ul>
     </div>
 
