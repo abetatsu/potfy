@@ -39,16 +39,18 @@ class StoryController extends Controller
      */
     public function store(StoryRequest $request)
     {
-        $portfolio = Portfolio::find($request->portfolio_id);
-        $story = new Story;
-        $story -> story   = $story ->replaceUrl($request->story);
-        $story -> story_type = $request -> story_type;
-        $story -> user_id = Auth::id();
-        $story -> portfolio_id = $request -> portfolio_id;
-
-        $story -> save();
-
-        return redirect()->route('portfolios.show', $portfolio->id);
+        try {
+            Story::updateOrCreate([
+                'story_type' => $request->story_type,
+                'portfolio_id' => $request->portfolio_id,
+                'user_id' => Auth::id()
+            ],[
+                'story' => Story::replaceUrl($request->story)
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->route('portfolios.show', $request->portfolio_id)->with('error', 'ストーリーの新規作成ができませんでした。');
+        }
+        return redirect()->route('portfolios.show', $request->portfolio_id)->with('success', 'ストーリーを投稿しました。');
     }
 
     /**

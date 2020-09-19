@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Story extends Model
 {
+    protected $fillable = [
+        'user_id', 'portfolio_id', 'story', 'story_type'
+    ];
+    
     public function portfolio()
     {
         return $this->belongsTo('App\Portfolio');
