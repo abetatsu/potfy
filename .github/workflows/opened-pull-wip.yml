@@ -1,0 +1,14 @@
+on:
+  pull_request:
+    types: [opened]
+    name: Move new pull requests into WIP
+jobs:
+  automate-project-columns:
+    runs-on: ubuntu-latest
+    steps:
+      - name: GitHub Project Automation+
+        uses: alex-page/github-project-automation-plus@v0.3.0
+        with:
+          project: Backlog
+          column: WIP
+          repo-token: ${{ secrets.POTFY_TOKEN }}
