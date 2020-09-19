@@ -13,7 +13,7 @@
                     <a href="{{ $account->url }}" class="text-blue-500" target="_blank">{{ App\Enums\SocialType::getDescription($account->social_type) }}</a>
                 </p>
             @endforeach
-            <a href="{{route('user.users.edit', $user)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full mt-4">編集する</a>
+            <a href="{{route('user.users.edit', $user)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full mt-4">プロフィールを編集する</a>
         </div>
     </div>
     <div class="row justify-content-center mt-5">
@@ -21,13 +21,13 @@
             <p class="text-lg font-bold mb-3">全ての投稿</p>
             <div class="row text-center">
                 @if (count($portfolios) !== 0)
-                @foreach ($portfolios as $portfolio)
-                    @include('components.portfolio-card')
-                @endforeach
+                    @foreach ($portfolios as $portfolio)
+                        @include('components.portfolio-card')
+                    @endforeach
                 @else
-                <div class="col-12 mb-3">
-                    <p>あなたはまだポートフォリオを投稿していません。</p>
-                </div>
+                    <div class="col-12 mb-3">
+                        <p>現在、まだポートフォリオの投稿はありません。</p>
+                    </div>
                 @endif
             </div>
         </div>

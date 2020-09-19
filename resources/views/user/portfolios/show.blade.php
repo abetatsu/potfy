@@ -99,7 +99,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    @if(!$portfolio->comments->count() == 0)
+                    @if($portfolio->comments->count() !== 0)
                         @foreach ($portfolio->comments as $comment)
                         <div class="card mt-5">
                             <div class="card-header py-2 d-flex justify-content-between align-items-center">
@@ -117,7 +117,9 @@
                         </div>
                         @endforeach
                     @else
-                        <div class="my-4">現在、まだコメントはありません。</div>
+                        <div class="my-4">
+                            <p>現在、まだコメントの投稿はありません。</p>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -140,7 +142,7 @@
             @endif
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    @if(!$portfolio->histories->count() == 0)
+                    @if($portfolio->histories->count() !== 0)
                         @foreach ($portfolio->histories as $history)
                         <div class="card mt-5">
                             <div class="card-header py-2 d-flex justify-content-between align-items-center">
@@ -158,7 +160,9 @@
                         </div>
                         @endforeach
                     @else
-                        <div class="my-4">現在、まだ開発履歴の投稿はありません。</div>
+                        <div class="my-4">
+                            <p>現在、まだ開発履歴の投稿はありません。</p>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -188,7 +192,7 @@
             @endif
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    @if(!$portfolio->stories->count() == 0)
+                    @if($portfolio->stories->count() !== 0)
                         @foreach ($portfolio->stories as $story)
                         <div class="mt-5 py-2 col-3 bg-potfyYellow text-white font-bold text-center rounded-top">
                             {{App\Enums\StoryType::getDescription($story->story_type)}}
@@ -209,7 +213,9 @@
                         </div>
                         @endforeach
                     @else
-                        <div class="my-4">現在、まだストーリーの投稿はありません。</div>
+                        <div class="my-4">
+                            <p>現在、まだストーリーの投稿はありません。</p>
+                        </div>
                     @endif
                 </div>
             </div>
