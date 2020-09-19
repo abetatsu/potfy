@@ -1,5 +1,5 @@
 on:
-  pull_request_target:
+  pull_request:
     types: [opened]
     name: Move new pull requests into WIP
 jobs:
@@ -11,4 +11,4 @@ jobs:
         with:
           project: Backlog
           column: WIP
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.POTFY_TOKEN }}
