@@ -185,7 +185,6 @@
                             {{ $story->created_at }}
                         </div>
                         <div class="card-body">
-                            <p>ストーリー：{{App\Enums\StoryType::getDescription($story->story_type)}}</p>
                             <p class="card-text">{!! nl2br($story->story) !!}</p>
                         </div>
                     </div>
