@@ -1,9 +1,7 @@
-name: Move new pull requests into WIP
-
 on:
   pull_request:
     types: [opened]
-
+    name: Move new pull requests into WIP
 jobs:
   automate-project-columns:
     runs-on: ubuntu-latest

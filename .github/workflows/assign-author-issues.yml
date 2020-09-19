@@ -1,9 +1,7 @@
-name: Assign Author into new issues
-
 on:
   issues:
     types: [opened]
-name: Issues
+    name: Assign Author into new issues
 jobs:
   assignAuthor:
     name: Assign author to issue

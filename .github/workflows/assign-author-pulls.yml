@@ -1,9 +1,7 @@
-name: Assign Author into new issues
-
 on:
   pull_request:
     types: [opened]
-name: Pull Request
+    name: Assign Author into new issues
 jobs:
   assignAuthor:
     name: Assign author to PR
