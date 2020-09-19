@@ -1,7 +1,7 @@
-name: Move new issues into NEXT
+name: Move new pull requests into WIP
 
 on:
-  issues:
+  pull_request:
     types: [opened]
 
 jobs:
@@ -11,6 +11,6 @@ jobs:
       - name: GitHub Project Automation+
         uses: alex-page/github-project-automation-plus@v0.3.0
         with:
-          project: FirstReleaseProject
-          column: NEXT
-          repo-token: ${{ secrets.POTFY_TOKEN }}
+          project: Backlog
+          column: WIP
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
