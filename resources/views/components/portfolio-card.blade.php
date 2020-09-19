@@ -4,7 +4,7 @@
             <img class="card-img-top object-cover h-48 w-full" src="{{ isset($portfolio->image_path) ? $portfolio->image_path : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="画像の登録はありません">
             <div class="card-body pb-0">
                 <h5 class="card-title font-extrabold text-left">{{ RoundSentence($portfolio->title, 19, 18) }}</h5>
-                <p class="card-text text-left" style="height: 90px">{!! RoundSentence($portfolio->description, 74, 75) !!}</p>
+                <p class="card-text text-left" style="height: 90px">{{ RoundSentence($portfolio->description, 74, 75) }}</p>
             </div>
         </a>
         <a href="{{ route('user.users.show', $portfolio->user_id) }}" class="d-flex justify-content-end align-items-center pr-4 my-2">

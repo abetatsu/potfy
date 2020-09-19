@@ -19,7 +19,7 @@
                     <img class="object-cover w-1/2 mx-auto" src="{{ isset($portfolio->image_path) ? $portfolio->image_path : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="画像の登録はありません">
                 </div>
                 <div class="row mt-5">
-                    <p class="card-text">{!! $description !!}</p>
+                    <p class="card-text">{!! nl2br($description) !!}</p>
                 </div>
                 <div class="row my-2">
                     <p class="card-text">開発言語：
@@ -102,7 +102,7 @@
                             {{ $comment->created_at }}
                         </div>
                         <div class="card-body">
-                            <p class="card-text">{!! $comment->body !!}</p>
+                            <p class="card-text">{!! nl2br($comment->body) !!}</p>
                         </div>
                     </div>
                     @endforeach
@@ -138,7 +138,7 @@
                             {{ $history->created_at }}
                         </div>
                         <div class="card-body">
-                            <p class="card-text">{!! $history->history !!}</p>
+                            <p class="card-text">{!! nl2br($history->history) !!}</p>
                         </div>
                     </div>
                     @endforeach
@@ -185,9 +185,8 @@
                             {{ $story->created_at }}
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
-                                {!! $story->story !!}
-                            </p>
+                            <p>ストーリー：{{App\Enums\StoryType::getDescription($story->story_type)}}</p>
+                            <p class="card-text">{!! nl2br($story->story) !!}</p>
                         </div>
                     </div>
                     @endforeach
