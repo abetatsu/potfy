@@ -99,7 +99,9 @@
                                 <img src="{{ ($comment->user->image) ? $comment->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
                                 <h3 class="card-text">{{ empty($comment->user->name)? 'Guest' : $comment->user->name }}</h3>
                             </a>
-                            {{ $comment->created_at }}
+                            <span>
+                                投稿日時：{{ $comment->created_at->diffForHumans(Carbon\Carbon::now()) }}
+                            </span>
                         </div>
                         <div class="card-body">
                             <p class="card-text">{!! nl2br($comment->body) !!}</p>
@@ -135,7 +137,9 @@
                                 <img src="{{ ($history->user->image) ? $history->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
                                 <h3 class="card-text">{{ empty($history->user->name)? 'Guest' : $history->user->name }}</h3>
                             </a>
-                            {{ $history->created_at }}
+                            <span>
+                                投稿日時：{{ $history->created_at->diffForHumans(Carbon\Carbon::now()) }}
+                            </span>
                         </div>
                         <div class="card-body">
                             <p class="card-text">{!! nl2br($history->history) !!}</p>
@@ -180,9 +184,10 @@
                             <a href="{{ route('user.users.show', $story->user_id) }}" class="d-flex align-items-center">
                                 <img src="{{ ($story->user->image) ? $story->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
                                 <h3 class="card-text">{{ empty($story->user->name)? 'Guest' : $story->user->name }}</h3>
-                                
                             </a>
-                            {{ $story->created_at }}
+                            <span>
+                                投稿日時：{{ $story->created_at->diffForHumans(Carbon\Carbon::now()) }}
+                            </span>
                         </div>
                         <div class="card-body">
                             <p class="card-text">{!! nl2br($story->story) !!}</p>
