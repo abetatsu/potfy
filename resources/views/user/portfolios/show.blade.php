@@ -90,8 +90,7 @@
                     <form action="{{ route('user.comments.store', $portfolio->id) }}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
-                        <div class="form-group">
-                            <label>コメント</label>
+                        <div class="mt-4 form-group">
                             <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
                         </div>
                         <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-3">コメントを投稿する</button>
@@ -100,22 +99,26 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    @foreach ($portfolio->comments as $comment)
-                    <div class="card mt-5">
-                        <div class="card-header py-2 d-flex justify-content-between align-items-center">
-                            <a href="{{ route('user.users.show', $comment->user_id) }}" class="d-flex align-items-center">
-                                <img src="{{ ($comment->user->image) ? $comment->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
-                                <h3 class="card-text">{{ empty($comment->user->name)? 'Guest' : $comment->user->name }}</h3>
-                            </a>
-                            <span>
-                                投稿日時：{{ $comment->created_at->diffForHumans(Carbon\Carbon::now()) }}
-                            </span>
+                    @if(!$portfolio->comments->count() == 0)
+                        @foreach ($portfolio->comments as $comment)
+                        <div class="card mt-5">
+                            <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                                <a href="{{ route('user.users.show', $comment->user_id) }}" class="d-flex align-items-center">
+                                    <img src="{{ ($comment->user->image) ? $comment->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
+                                    <h3 class="card-text">{{ empty($comment->user->name)? 'Guest' : $comment->user->name }}</h3>
+                                </a>
+                                <span>
+                                    投稿日時：{{ $comment->created_at->diffForHumans(Carbon\Carbon::now()) }}
+                                </span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{!! nl2br($comment->body) !!}</p>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text">{!! nl2br($comment->body) !!}</p>
-                        </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @else
+                        <div class="my-4">現在、まだコメントはありません。</div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -127,8 +130,7 @@
                     <form action="{{ route('user.histories.store',$portfolio->id) }}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="portfolio_id" value="{{$portfolio->id}}">
-                        <div class="form-group">
-                            <label>開発履歴</label>
+                        <div class="mt-4 form-group">
                             <textarea class="form-control" placeholder="内容" rows="5" name="history"></textarea>
                         </div>
                         <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-3">開発履歴を投稿する</button>
@@ -138,22 +140,26 @@
             @endif
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    @foreach ($portfolio->histories as $history)
-                    <div class="card mt-5">
-                        <div class="card-header py-2 d-flex justify-content-between align-items-center">
-                            <a href="{{ route('user.users.show', $history->user_id) }}" class="d-flex align-items-center">
-                                <img src="{{ ($history->user->image) ? $history->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
-                                <h3 class="card-text">{{ empty($history->user->name)? 'Guest' : $history->user->name }}</h3>
-                            </a>
-                            <span>
-                                投稿日時：{{ $history->created_at->diffForHumans(Carbon\Carbon::now()) }}
-                            </span>
+                    @if(!$portfolio->histories->count() == 0)
+                        @foreach ($portfolio->histories as $history)
+                        <div class="card mt-5">
+                            <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                                <a href="{{ route('user.users.show', $history->user_id) }}" class="d-flex align-items-center">
+                                    <img src="{{ ($history->user->image) ? $history->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
+                                    <h3 class="card-text">{{ empty($history->user->name)? 'Guest' : $history->user->name }}</h3>
+                                </a>
+                                <span>
+                                    投稿日時：{{ $history->created_at->diffForHumans(Carbon\Carbon::now()) }}
+                                </span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{!! nl2br($history->history) !!}</p>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text">{!! nl2br($history->history) !!}</p>
-                        </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @else
+                        <div class="my-4">現在、まだ開発履歴の投稿はありません。</div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -165,8 +171,7 @@
                     <form action="{{ route('user.stories.store', $portfolio->id) }}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
-                        <div class="form-group">
-                            <label>ストーリー</label>
+                        <div class="mt-4 form-group">
                             <select name="story_type"
                             class="block appearance-none w-full border py-2 px-2 pr-8 mb-2 rounded leading-tight">
                                 <option value="0">選択してください</option>
@@ -183,25 +188,29 @@
             @endif
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    @foreach ($portfolio->stories as $story)
-                    <div class="mt-5 py-2 col-3 bg-potfyYellow text-white font-bold text-center rounded-top">
-                        {{App\Enums\StoryType::getDescription($story->story_type)}}
-                    </div>
-                    <div class="card">
-                        <div class="card-header py-2 d-flex justify-content-between align-items-center">
-                            <a href="{{ route('user.users.show', $story->user_id) }}" class="d-flex align-items-center">
-                                <img src="{{ ($story->user->image) ? $story->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
-                                <h3 class="card-text">{{ empty($story->user->name)? 'Guest' : $story->user->name }}</h3>
-                            </a>
-                            <span>
-                                投稿日時：{{ $story->created_at->diffForHumans(Carbon\Carbon::now()) }}
-                            </span>
+                    @if(!$portfolio->stories->count() == 0)
+                        @foreach ($portfolio->stories as $story)
+                        <div class="mt-5 py-2 col-3 bg-potfyYellow text-white font-bold text-center rounded-top">
+                            {{App\Enums\StoryType::getDescription($story->story_type)}}
                         </div>
-                        <div class="card-body">
-                            <p class="card-text">{!! nl2br($story->story) !!}</p>
+                        <div class="card">
+                            <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                                <a href="{{ route('user.users.show', $story->user_id) }}" class="d-flex align-items-center">
+                                    <img src="{{ ($story->user->image) ? $story->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
+                                    <h3 class="card-text">{{ empty($story->user->name)? 'Guest' : $story->user->name }}</h3>
+                                </a>
+                                <span>
+                                    投稿日時：{{ $story->created_at->diffForHumans(Carbon\Carbon::now()) }}
+                                </span>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{!! nl2br($story->story) !!}</p>
+                            </div>
                         </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @else
+                        <div class="my-4">現在、まだストーリーの投稿はありません。</div>
+                    @endif
                 </div>
             </div>
         </div>
