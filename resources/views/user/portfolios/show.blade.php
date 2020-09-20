@@ -113,6 +113,11 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">{!! nl2br($comment->body) !!}</p>
+                                <form action="{{ route('user.comments.destroy', [$portfolio->id, $comment->id]) }}'"method='post'>
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("削除しますか？？");'>
+                                </form>
                             </div>
                         </div>
                         @endforeach
@@ -156,6 +161,11 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">{!! nl2br($history->history) !!}</p>
+                                <form action="{{ route('user.histories.destroy', [$portfolio->id, $history->id]) }}'"method='post'>
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("削除しますか？？");'>
+                                </form>
                             </div>
                         </div>
                         @endforeach
@@ -210,7 +220,12 @@
                             <div class="card-body">
                                 <p class="card-text">{!! nl2br($story->story) !!}</p>
                             </div>
-                        </div>
+                                <form action="{{ route('user.stories.destroy', [$portfolio->id, $story->id]) }}'"method='post'>
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("削除しますか？？");'>
+                                </form>
+                            </div>
                         @endforeach
                     @else
                         <div class="my-4">

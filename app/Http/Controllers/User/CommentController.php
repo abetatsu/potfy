@@ -91,8 +91,14 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Portfolio $portfolio, Comment $comment)
     {
-        //
+        if (Auth::id() !== $comment->user_id) {
+            return abort(404);
+        }
+
+        $comment->delete();
+
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'コメントの削除に成功しました。')->with('comment', 'コメントの削除に成功しました。');
     }
 }

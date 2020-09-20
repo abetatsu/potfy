@@ -93,8 +93,14 @@ class StoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Portfolio $portfolio, Story $story)
     {
-        //
+        if (Auth::id() !== $story->user_id) {
+            return abort(404);
+        }
+
+        $story->delete();
+
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'ストーリーの削除に成功しました。')->with('story', 'ストーリーの削除に成功しました。');
     }
 }

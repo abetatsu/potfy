@@ -92,8 +92,14 @@ class HistoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Portfolio $portfolio, History $history)
     {
-        //
+        if (Auth::id() !== $history->user_id) {
+            return abort(404);
+        }
+
+        $history->delete();
+
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', '開発履歴の削除に成功しました。')->with('history', '開発履歴の削除に成功しました。');
     }
 }
