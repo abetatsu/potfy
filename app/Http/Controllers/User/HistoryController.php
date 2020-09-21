@@ -50,7 +50,7 @@ class HistoryController extends Controller
         $portfolio->load('user', 'technologies');
         $description = $portfolio->replaceUrl($portfolio->description);
 
-        return redirect()->route('portfolios.show', $portfolio->id)->with('success', '開発履歴を投稿しました。')->with('history', $history->id);
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', '開発履歴を投稿しました。')->with('history', true);
     }
 
     /**
@@ -95,11 +95,11 @@ class HistoryController extends Controller
     public function destroy(Portfolio $portfolio, History $history)
     {
         if (Auth::id() !== $history->user_id) {
-            return abort(404);
+            return abort(403);
         }
 
         $history->delete();
 
-        return redirect()->route('portfolios.show', $portfolio->id)->with('success', '開発履歴の削除に成功しました。')->with('history', '開発履歴の削除に成功しました。');
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', '開発履歴の削除に成功しました。')->with('history', true);
     }
 }
