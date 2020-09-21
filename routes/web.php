@@ -22,6 +22,8 @@ Route::get('/terms/services', 'TermsController@services')->name('terms.services'
 Route::resource('portfolios', 'User\PortfolioController', ['only' => 'show']);
 Route::get('portfolios/{portfolio}/ogp.png', 'User\PortfolioController@ogp');
 
+Route::resource('users', 'User\UserController');
+
 Route::namespace('User')->prefix('user')->name('user.')->group(function () {
     // ログイン認証関連
     Auth::routes([
@@ -48,8 +50,6 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         Route::resource('/portfolios/{portfolio}/histories', 'HistoryController');
         // ポートフォリオ
         Route::resource('portfolios', 'PortfolioController', ['except' => 'show']);
-        // エンジニア
-        Route::resource('users', 'UserController');
     });
 });
 

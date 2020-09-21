@@ -13,6 +13,10 @@ use Auth;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +57,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         $portfolios = Portfolio::orderBy('created_at', 'desc')->where('user_id', $user->id)->paginate(9);
-        $introduction = $user->replaceUrl($user->user_self_introduction	);
+        $introduction = $user->replaceUrl($user->user_self_introduction);
         return view('user.profiles.show', compact('user', 'portfolios', 'introduction'));
     }
 
@@ -124,11 +128,10 @@ class UserController extends Controller
         } catch (\Exception $e) {
             \Log::error($e);
             \DB::rollback();
-            return redirect()->route('user.users.show', $user->id)->with('error', '情報の更新に失敗しました。');
+            return redirect()->route('users.show', $user->id)->with('error', '情報の更新に失敗しました。');
         }
 
-        return redirect()->route('user.users.show', $user->id)->with('success', '情報を更新しました。');
-
+        return redirect()->route('users.show', $user->id)->with('success', '情報を更新しました。');
     }
 
     /**

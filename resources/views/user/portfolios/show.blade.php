@@ -36,7 +36,7 @@
                     <p class="card-text">プロダクトURL：{!! $link !!}</p>
                 </div>
                 <div class="row my-2">
-                    <a href="{{ route('user.users.show', $portfolio->user_id) }}" class="d-flex justify-content-center align-items-center">
+                    <a href="{{ route('users.show', $portfolio->user_id) }}" class="d-flex justify-content-center align-items-center">
                         <img src="{{ isset($portfolio->user->image) ? $portfolio->user->image : '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
                         <h3 class="card-text">{{ empty($portfolio->user->name)? 'Guest' : $portfolio->user->name }}</h3>
                     </a>
@@ -105,7 +105,7 @@
                         @foreach ($portfolio->comments as $comment)
                         <div class="card mt-5">
                             <div class="card-header py-2 d-flex justify-content-between align-items-center">
-                                <a href="{{ route('user.users.show', $comment->user_id) }}" class="d-flex align-items-center">
+                                <a href="{{ route('users.show', $comment->user_id) }}" class="d-flex align-items-center">
                                     <img src="{{ ($comment->user->image) ? $comment->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
                                     <h3 class="card-text">{{ empty($comment->user->name)? 'Guest' : $comment->user->name }}</h3>
                                 </a>
@@ -160,7 +160,7 @@
                         @foreach ($portfolio->histories as $history)
                         <div class="card mt-5">
                             <div class="card-header py-2 d-flex justify-content-between align-items-center">
-                                <a href="{{ route('user.users.show', $history->user_id) }}" class="d-flex align-items-center">
+                                <a href="{{ route('users.show', $history->user_id) }}" class="d-flex align-items-center">
                                     <img src="{{ ($history->user->image) ? $history->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
                                     <h3 class="card-text">{{ empty($history->user->name)? 'Guest' : $history->user->name }}</h3>
                                 </a>
@@ -220,7 +220,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header py-2 d-flex justify-content-between align-items-center">
-                                <a href="{{ route('user.users.show', $story->user_id) }}" class="d-flex align-items-center">
+                                <a href="{{ route('users.show', $story->user_id) }}" class="d-flex align-items-center">
                                     <img src="{{ ($story->user->image) ? $story->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
                                     <h3 class="card-text">{{ empty($story->user->name)? 'Guest' : $story->user->name }}</h3>
                                 </a>
