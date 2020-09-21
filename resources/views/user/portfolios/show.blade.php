@@ -85,6 +85,7 @@
 
     <div class="tab-content">
         <div class="{{ session('comment') ? 'active show' : ''}} tab-pane fade " id="comments">
+            @auth
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <form action="{{ route('user.comments.store', $portfolio->id) }}" method="POST">
@@ -97,6 +98,7 @@
                     </form>
                 </div>
             </div>
+            @endauth
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     @if($portfolio->comments->count() !== 0)
@@ -125,7 +127,7 @@
                         @endforeach
                     @else
                         <div class="my-4">
-                            <p>現在、まだコメントの投稿はありません。</p>
+                            <p>{{ auth()->guest() ? '現在、まだコメントの投稿はありません。コメント投稿にはログインが必要です。' : '現在、まだコメントの投稿はありません。' }}</p>
                         </div>
                     @endif
                 </div>
