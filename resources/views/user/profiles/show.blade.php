@@ -14,7 +14,7 @@
                 </p>
             @endforeach
             @if (Auth::id() === $user->id)
-                <a href="{{route('user.users.edit', $user)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full mt-4">プロフィールを編集する</a>
+                <a href="{{route('users.edit', $user)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full mt-4">プロフィールを編集する</a>
             @endif
         </div>
     </div>
