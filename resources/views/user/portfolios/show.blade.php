@@ -131,7 +131,7 @@
                             <p>現在、まだコメントの投稿はありません。コメントの投稿には<a class="text-blue-500" href="{{ route('user.login') }}">ログイン</a>が必要です。</p>
                         @elseif(auth()->guest())
                             <p>コメントの投稿には<a class="text-blue-500" href="{{ route('user.login') }}">ログイン</a>が必要です。</p>
-                        @else
+                        @elseif($portfolio->comments->count() === 0)
                             <p>現在、まだコメントの投稿はありません。</p>
                         @endif
                     </div>
