@@ -48,7 +48,7 @@ class CommentController extends Controller
 
         $comment->save();
         
-        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'コメント完了しました。')->with('comment', $comment->id);
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'コメント完了しました。')->with('comment', true);
     }
 
     /**
@@ -91,8 +91,14 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Portfolio $portfolio, Comment $comment)
     {
-        //
+        if (Auth::id() !== $portfolio->user_id && Auth::id() !== $comment->user_id) {
+            return abort(403);
+        }
+
+        $comment->delete();
+
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'コメントの削除に成功しました。')->with('comment', true);
     }
 }

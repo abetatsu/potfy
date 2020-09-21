@@ -113,6 +113,13 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">{!! nl2br($comment->body) !!}</p>
+                                @if(Auth::id() === $portfolio->user_id || Auth::id() === $comment->user_id)
+                                    <form action="{{ route('user.comments.destroy', [$portfolio->id, $comment->id]) }}"method='post'>
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("本当に削除しますか?");'>
+                                    </form>
+                                @endif
                             </div>
                         </div>
                         @endforeach
@@ -156,6 +163,13 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">{!! nl2br($history->history) !!}</p>
+                                @if(Auth::id() === $portfolio->user_id)
+                                    <form action="{{ route('user.histories.destroy', [$portfolio->id, $history->id]) }}" method='post'>
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("本当に削除しますか?");'>
+                                    </form>
+                                @endif
                             </div>
                         </div>
                         @endforeach
@@ -210,7 +224,14 @@
                             <div class="card-body">
                                 <p class="card-text">{!! nl2br($story->story) !!}</p>
                             </div>
-                        </div>
+                            @if(Auth::id() === $portfolio->user_id)
+                                <form action="{{ route('user.stories.destroy', [$portfolio->id, $story->id]) }}" method='post'>
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("本当に削除しますか?");'>
+                                </form>
+                            @endif
+                            </div>
                         @endforeach
                     @else
                         <div class="my-4">
