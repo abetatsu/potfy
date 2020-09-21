@@ -7,7 +7,9 @@ module.exports = {
     extend: {
       colors: {
         potfyYellow: '#F0B34E',
-        potfyYellowTitle: '#F2994A'
+        potfyYellowTitle: '#F2994A',
+        twitterBlue: '#1DA1F2',
+        githubBlack: '#24292e'
       }
     }
   },
