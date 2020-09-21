@@ -85,9 +85,9 @@
 
     <div class="tab-content">
         <div class="{{ session('comment') ? 'active show' : ''}} tab-pane fade " id="comments">
-            @auth
             <div class="row justify-content-center">
                 <div class="col-md-8">
+                    @auth
                     <form action="{{ route('user.comments.store', $portfolio->id) }}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
@@ -96,9 +96,9 @@
                         </div>
                         <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-3">コメントを投稿する</button>
                     </form>
+                    @endauth
                 </div>
             </div>
-            @endauth
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     @if($portfolio->comments->count() !== 0)
@@ -125,19 +125,24 @@
                             </div>
                         </div>
                         @endforeach
-                    @else
-                        <div class="my-4">
-                            <p>{{ auth()->guest() ? '現在、まだコメントの投稿はありません。コメント投稿にはログインが必要です。' : '現在、まだコメントの投稿はありません。' }}</p>
-                        </div>
                     @endif
+                    <div class="my-4">
+                        @if($portfolio->comments->count() === 0 && auth()->guest())
+                            <p>現在、まだコメントの投稿はありません。コメントの投稿には<a class="text-blue-500" href="{{ route('user.login') }}">ログイン</a>が必要です。</p>
+                        @elseif(auth()->guest())
+                            <p>コメントの投稿には<a class="text-blue-500" href="{{ route('user.login') }}">ログイン</a>が必要です。</p>
+                        @else
+                            <p>現在、まだコメントの投稿はありません。</p>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
         
         <div class="{{ session('history') ? 'active show' : ''}} tab-pane fade" id="history">
-            @if(Auth::id() === $portfolio->user_id)
             <div class="row justify-content-center">
                 <div class="col-md-8">
+                    @if(Auth::id() === $portfolio->user_id)
                     <form action="{{ route('user.histories.store',$portfolio->id) }}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="portfolio_id" value="{{$portfolio->id}}">
@@ -146,9 +151,9 @@
                         </div>
                         <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-3">開発履歴を投稿する</button>
                     </form>
+                    @endif
                 </div>
             </div>
-            @endif
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     @if($portfolio->histories->count() !== 0)
@@ -185,9 +190,9 @@
         </div>
 
         <div class="{{ session('history') || session('comment') ? : 'active show'}} tab-pane fade" id="story">
-            @if(Auth::id() === $portfolio->user_id)
             <div class="row justify-content-center">
                 <div class="col-md-8">
+                    @if(Auth::id() === $portfolio->user_id)
                     <form action="{{ route('user.stories.store', $portfolio->id) }}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
@@ -203,9 +208,9 @@
                         </div>
                         <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-3">ストーリーを投稿する</button>
                     </form>
+                    @endif
                 </div>
             </div>
-            @endif
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     @if($portfolio->stories->count() !== 0)
