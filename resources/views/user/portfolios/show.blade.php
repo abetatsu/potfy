@@ -36,7 +36,7 @@
                     <p class="card-text">プロダクトURL：{!! $link !!}</p>
                 </div>
                 <div class="row my-2">
-                    <a href="{{ route('users.show', $portfolio->user_id) }}" class="d-flex justify-content-center align-items-center">
+                    <a href="{{ route('users.show', $portfolio->user_id) }}" class="d-flex justify-content-center align-items-center text-blue-500">
                         <img src="{{ isset($portfolio->user->image) ? $portfolio->user->image : '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
                         <h3 class="card-text">{{ empty($portfolio->user->name)? 'Guest' : $portfolio->user->name }}</h3>
                     </a>

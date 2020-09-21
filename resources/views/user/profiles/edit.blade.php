@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container mt-5">
+    @include('layouts.flash-messages')
     <div class="row justify-content-center">
         <div class="col-md-8">
             <form action="{{ route('users.update', $user) }}" method="POST" enctype="multipart/form-data">
