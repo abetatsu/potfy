@@ -35,7 +35,7 @@
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="{{ route('user.users.show', Auth::id()) }}">
+							<a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
 								マイページ <span class="caret"></span>
 							</a>
 							<a class="dropdown-item" href="{{ route('user.logout') }}"

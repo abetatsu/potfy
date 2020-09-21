@@ -7,7 +7,7 @@
                 <p class="card-text text-left" style="height: 90px">{{ RoundSentence($portfolio->description, 74, 75) }}</p>
             </div>
         </a>
-        <a href="{{ route('user.users.show', $portfolio->user_id) }}" class="d-flex justify-content-end align-items-center pr-4 my-2">
+        <a href="{{ route('users.show', $portfolio->user_id) }}" class="d-flex justify-content-end align-items-center pr-4 my-2">
             <img src="{{ ($portfolio->user->image) ? $portfolio->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
             <h3 class="card-text">{{ empty($portfolio->user->name)? 'Guest' : $portfolio->user->name }}</h3>
         </a>
