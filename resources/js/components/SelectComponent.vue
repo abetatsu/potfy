@@ -1,11 +1,12 @@
 <template>
 <div class="form-group">
-    <label>言語複数選択</label>
+    <label>使用した技術（複数選択可能）</label>
     <v-select
         multiple
         taggable
         :options="options"
         v-model="selected"
+        placeholder="使用した技術を選択、もしくは入力してください"
     >
     </v-select>
     <input type="hidden" multiple v-model="selected" name="technologies">

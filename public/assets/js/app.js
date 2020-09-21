@@ -1959,6 +1959,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 Vue.component('v-select', vue_select__WEBPACK_IMPORTED_MODULE_0___default.a);
@@ -38284,10 +38285,15 @@ var render = function() {
     "div",
     { staticClass: "form-group" },
     [
-      _c("label", [_vm._v("言語複数選択")]),
+      _c("label", [_vm._v("使用した技術（複数選択可能）")]),
       _vm._v(" "),
       _c("v-select", {
-        attrs: { multiple: "", taggable: "", options: _vm.options },
+        attrs: {
+          multiple: "",
+          taggable: "",
+          options: _vm.options,
+          placeholder: "使用した技術を選択、もしくは入力してください"
+        },
         model: {
           value: _vm.selected,
           callback: function($$v) {
