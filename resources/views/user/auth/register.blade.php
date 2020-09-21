@@ -64,10 +64,10 @@
             </div>
             <div class="row mt-5 text-center">
                 <div class="col-6">
-                    <a href="{{ route('user.login.twitter') }}" class="btn bg-twitterBlue hover:bg-potfyYellowTitle text-white font-bold py-2 px-5 rounded-full"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="{{ route('user.login.twitter') }}" class="btn bg-twitterBlue hover:bg-blue-400 text-white font-bold py-2 px-5 rounded-full"><i class="fab fa-twitter fa-lg"></i></a>
                 </div>
                 <div class="col-6">
-                    <a href="{{ route('user.login.github') }}" class="btn bg-githubBlack hover:bg-potfyYellowTitle text-white font-bold py-2 px-5 rounded-full"><i class="fab fa-github fa-lg"></i></a>
+                    <a href="{{ route('user.login.github') }}" class="btn bg-githubBlack text-white hover:bg-gray-700 font-bold py-2 px-5 rounded-full"><i class="fab fa-github fa-lg"></i></a>
                 </div>
             </div>
         </div>
