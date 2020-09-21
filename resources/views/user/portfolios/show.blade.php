@@ -126,7 +126,7 @@
                         </div>
                         @endforeach
                     @endif
-                    <div class="my-4">
+                    <div class="my-5">
                         @if($portfolio->comments->count() === 0 && auth()->guest())
                             <p>現在、まだコメントの投稿はありません。コメントの投稿には<a class="text-blue-500" href="{{ route('user.login') }}">ログイン</a>が必要です。</p>
                         @elseif(auth()->guest())
@@ -181,7 +181,7 @@
                         </div>
                         @endforeach
                     @else
-                        <div class="my-4">
+                        <div class="my-5">
                             <p>現在、まだ開発履歴の投稿はありません。</p>
                         </div>
                     @endif
@@ -241,7 +241,7 @@
                             </div>
                         @endforeach
                     @else
-                        <div class="my-4">
+                        <div class="my-5">
                             <p>現在、まだストーリーの投稿はありません。</p>
                         </div>
                     @endif
