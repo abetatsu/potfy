@@ -40,7 +40,7 @@
                     </a>
                 </div>
                 <div class="row my-5">
-                    @if ($portfolio->user_id === Auth::user()->id)
+                    @if ($portfolio->user_id === Auth::id())
                     <div class="col-3">
                         <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12">編集する</a>
                     </div>
@@ -62,7 +62,7 @@
                     <div class="col-3">
                         <url-copy-component></url-copy-component>
                     </div>
-                    @if ($portfolio->user_id !== Auth::user()->id)
+                    @if ($portfolio->user_id !== Auth::id())
                     <div class="col-3">
                         <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" 
                         href="https://twitter.com/share?url={{ route('portfolios.show', $portfolio->id) }}&hashtags=potfy&text={{ $portfolio->title }}というサービスを見つけました！" 
@@ -151,7 +151,7 @@
         <div class="{{ session('history') ? 'active show' : ''}} tab-pane fade" id="history">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    @if(Auth::user()->id === $portfolio->user_id)
+                    @if(Auth::id() === $portfolio->user_id)
                     <form action="{{ route('user.histories.store',$portfolio->id) }}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="portfolio_id" value="{{$portfolio->id}}">
@@ -211,7 +211,7 @@
         <div class="{{ session('history') || session('comment') ? : 'active show'}} tab-pane fade" id="story">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    @if(Auth::user()->id === $portfolio->user_id)
+                    @if(Auth::id() === $portfolio->user_id)
                     <form action="{{ route('user.stories.store', $portfolio->id) }}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
