@@ -80,9 +80,16 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CommentRequest $request, Portfolio $portfolio, Comment $comment)
     {
-        //
+        if (Auth::id() !== $comment->user_id) {
+            return abort(403);
+        }
+
+        $comment->body = $request->body;
+        $comment->save();
+
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'コメントを編集しました。')->with('comment', true);
     }
 
     /**
@@ -99,6 +106,6 @@ class CommentController extends Controller
 
         $comment->delete();
 
-        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'コメントの削除に成功しました。')->with('comment', true);
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'コメントを削除しました。')->with('comment', true);
     }
 }
