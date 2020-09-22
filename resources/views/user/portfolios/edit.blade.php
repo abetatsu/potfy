@@ -27,7 +27,8 @@
                 </div>
                 <select-component
                     :technologies="{{ json_encode($technologies)}}"
-                    :selected="{{ json_encode($selectedTechs) }}"
+                    :selected-techs="{{ json_encode($selectedTechs) }}"
+                    :old-technologies="{{ json_encode(old('technologies')) }}"
                 ></select-component>
                 <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">
                     更新する

@@ -1966,9 +1966,15 @@ Vue.component('v-select', vue_select__WEBPACK_IMPORTED_MODULE_0___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.options = this.technologies;
-    this.selected = this.selected;
+
+    if (this.oldTechnologies) {
+      var oldValueArray = this.oldTechnologies.split(',');
+      this.selected = oldValueArray;
+    } else {
+      this.selected = this.selectedTechs;
+    }
   },
-  props: ['technologies', 'selected'],
+  props: ['technologies', 'selectedTechs', 'oldTechnologies'],
   data: function data() {
     return {
       selected: null,

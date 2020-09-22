@@ -21,9 +21,14 @@ Vue.component('v-select', vSelect)
     export default {
         mounted() {
             this.options = this.technologies;
-            this.selected = this.selected;
+            if (this.oldTechnologies) {
+                const oldValueArray = this.oldTechnologies.split(',');
+                this.selected = oldValueArray;
+            } else {
+                this.selected = this.selectedTechs;
+            }
         },
-        props: ['technologies', 'selected'],
+        props: ['technologies', 'selectedTechs', 'oldTechnologies'],
         data() {
             return {
                 selected: null,
