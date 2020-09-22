@@ -10,7 +10,7 @@
             {{method_field('PATCH')}}
                 <div class="row form-group">
                     <div class="col-3">
-                        <img src="{{ isset($user->image) ? $user->image : '/assets/image/android-chrome-192x192.png' }}" alt="画像は未設定です。" class="mb-3" height="120" width="120">
+                        <img src="{{ isset($user->image) ? $user->image : '/assets/image/android-chrome-192x192.png' }}" alt="画像は未設定です。" class="mb-3 rounded-full" height="120" width="120">
                         <input type="file" class="form-control-file" id="image" name="image">
                     </div>
                     <div class="col-9">
