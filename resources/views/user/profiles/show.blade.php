@@ -8,11 +8,23 @@
             <img src="{{ isset($user->image) ? $user->image : '/assets/image/android-chrome-192x192.png' }}" alt="画像は未設定です。" class="mb-3 mx-auto rounded-circle" height="120" width="120">
             <p class="text-xl font-bold mb-3">{{ $user->name }}</p>
             <p class="card-text">{!! nl2br($introduction) !!}</p>
-            @foreach ($user->socialAccounts as $account)
-                <p>
-                    <a href="{{ $account->url }}" class="text-blue-500" target="_blank">{{ App\Enums\SocialType::getDescription($account->social_type) }}</a>
-                </p>
-            @endforeach
+            <div class="socialIcon__group">
+                @foreach ($user->socialAccounts as $account)
+                    @if ($account->social_type === 'github')
+                        <a href="{{ $account->url }}" class="socialIcon__groupLogo" target="_blank">
+                            <i class="fab fa-github color-github"></i>
+                        </a>
+                    @elseif ($account->social_type === 'twitter')
+                        <a href="{{ $account->url }}" class="socialIcon__groupLogo" target="_blank">
+                            <i class="fab fa-twitter color-twitter"></i>
+                        </a>
+                    @elseif ($account->social_type === 'wantedly')
+                        <a href="{{ $account->url }}" class="socialIcon__groupLogo" target="_blank">
+                            <img src="{{ asset('assets/image/wantedly_mark.png') }}" alt="" class="socialIcon__group-img">
+                        </a>
+                    @endif
+                @endforeach
+            </div>
             @if (Auth::user()->id === $user->id)
                 <a href="{{route('users.edit', $user)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full mt-4">プロフィールを編集する</a>
             @endif
