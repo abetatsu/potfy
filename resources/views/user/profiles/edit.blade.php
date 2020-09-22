@@ -10,12 +10,12 @@
             {{method_field('PATCH')}}
                 <div class="row form-group">
                     <div class="col-3">
-                        <img src="{{ isset($user->image) ? $user->image : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="画像は未設定です。" class="mb-3" height="120" width="120">
+                        <img src="{{ isset($user->image) ? $user->image : '/assets/image/android-chrome-192x192.png' }}" alt="画像は未設定です。" class="mb-3" height="120" width="120">
                         <input type="file" class="form-control-file" id="image" name="image">
                     </div>
                     <div class="col-9">
                         <label>ユーザー</label>
-                        <input type="text" class="form-control" value="{{ old('name', $user->name) }}" name="name">
+                        <input type="text" class="form-control" value="{{ old('name', $user->name) }}" name="name" placeholder="ゲスト">
                     </div>
                 </div>
                 <div class="form-group">

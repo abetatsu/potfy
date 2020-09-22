@@ -5,7 +5,7 @@
     @include('layouts.flash-messages')
     <div class="row justify-content-center">
         <div class="col-md-5 text-center">
-            <img src="{{ isset($user->image) ? $user->image : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="画像は未設定です。" class="mb-3 mx-auto rounded-circle" height="120" width="120">
+            <img src="{{ isset($user->image) ? $user->image : '/assets/image/android-chrome-192x192.png' }}" alt="画像は未設定です。" class="mb-3 mx-auto rounded-circle" height="120" width="120">
             <p class="text-xl font-bold mb-3">{{ $user->name }}</p>
             <p class="card-text">{!! $introduction !!}</p>
             @foreach ($user->socialAccounts as $account)
