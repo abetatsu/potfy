@@ -112,13 +112,13 @@ class UserController extends Controller
             $user->save();
 
             foreach ($request->social_accounts as $socialType => $socialUrl) {
-                $socialAccount = SocialAccount::where('user_id', Auth::id())->where('social_type', $socialType)->first();
+                $socialAccount = SocialAccount::where('user_id', Auth::user()->id)->where('social_type', $socialType)->first();
                 if ($socialAccount) {
                     $socialAccount->delete();
                 }
                 if ($socialUrl) {
                     $socialAccount = new SocialAccount;
-                    $socialAccount->user_id = Auth::id();
+                    $socialAccount->user_id = Auth::user()->id;
                     $socialAccount->social_type = $socialType;
                     $socialAccount->url = $socialUrl;
                     $socialAccount->save();

@@ -43,7 +43,7 @@ class StoryController extends Controller
             Story::updateOrCreate([
                 'story_type' => $request->story_type,
                 'portfolio_id' => $request->portfolio_id,
-                'user_id' => Auth::id()
+                'user_id' => Auth::user()->id
             ],[
                 'story' => Story::replaceUrl($request->story)
             ]);
@@ -95,7 +95,7 @@ class StoryController extends Controller
      */
     public function destroy(Portfolio $portfolio, Story $story)
     {
-        if (Auth::id() !== $story->user_id) {
+        if (Auth::user()->id !== $story->user_id) {
             return abort(403);
         }
 

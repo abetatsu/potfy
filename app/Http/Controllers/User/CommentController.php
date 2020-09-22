@@ -43,7 +43,7 @@ class CommentController extends Controller
         $portfolio = Portfolio::find($request->portfolio_id);
         $comment = new Comment;
         $comment->body = $comment->replaceUrl($request->body);
-        $comment->user_id = Auth::id();
+        $comment->user_id = Auth::user()->id;
         $comment->portfolio_id = $request->portfolio_id;
 
         $comment->save();
@@ -100,7 +100,7 @@ class CommentController extends Controller
      */
     public function destroy(Portfolio $portfolio, Comment $comment)
     {
-        if (Auth::id() !== $portfolio->user_id && Auth::id() !== $comment->user_id) {
+        if (Auth::user()->id !== $portfolio->user_id && Auth::user()->id !== $comment->user_id) {
             return abort(403);
         }
 

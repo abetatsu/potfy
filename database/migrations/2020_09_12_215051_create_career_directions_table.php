@@ -15,7 +15,7 @@ class CreateCareerDirectionsTable extends Migration
     {
         Schema::create('career_directions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->string('user_id');
             $table->string('career');
             $table->date('beginning_date')->nullable();
             $table->text('comment')->nullable();
