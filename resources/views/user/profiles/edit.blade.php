@@ -9,7 +9,7 @@
             {{method_field('PATCH')}}
                 <div class="row form-group">
                     <div class="col-3">
-                        <img src="{{ $user->image }}" alt="画像は未設定です。" class="mb-3" height="120" width="120">
+                        <img src="{{ isset($user->image) ? $user->image : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="画像は未設定です。" class="mb-3" height="120" width="120">
                         <input type="file" class="form-control-file" id="image" name="image">
                     </div>
                     <div class="col-9">
