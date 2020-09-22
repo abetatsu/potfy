@@ -16,7 +16,7 @@ class CreateStoriesTable extends Migration
     {
         Schema::create('stories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->string('user_id');
             $table->string('portfolio_id');
             $table->text('story');
             $table->enum('story_type', StoryType::getValues())
