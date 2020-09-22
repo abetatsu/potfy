@@ -82,9 +82,16 @@ class StoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoryRequest $request, Portfolio $portfolio, Story $story)
     {
-        //
+        if (Auth::user()->id !== $story->user_id) {
+            return abort(403);
+        }
+
+        $story->story = $request->story;
+        $story->save();
+
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'ストーリーを編集しました。');
     }
 
     /**
@@ -101,6 +108,6 @@ class StoryController extends Controller
 
         $story->delete();
 
-        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'ストーリーの削除に成功しました。');
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'ストーリーを削除しました。');
     }
 }
