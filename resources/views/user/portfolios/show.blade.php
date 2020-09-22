@@ -218,7 +218,7 @@
                         <div class="mt-4 form-group">
                             <select name="story_type"
                             class="block appearance-none w-full border py-2 px-2 pr-8 mb-2 rounded leading-tight">
-                                <option value="0">選択してください</option>
+                                <option value="0">ストーリーの内容を選択してください</option>
                                 @foreach (App\Enums\StoryType::asSelectArray() as $storyTypeEn => $storyTypeJp)
                                     <option value="{{ $storyTypeEn }}">{{ $storyTypeJp }}</option>
                                 @endforeach
