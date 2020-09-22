@@ -22,13 +22,11 @@
                     <p class="card-text">{!! nl2br($description) !!}</p>
                 </div>
                 <div class="row my-2">
-                    <p class="card-text">開発言語：
+                    <p class="card-text">使用した技術：
                         @foreach ($portfolio->technologies as $technology)
-                            @if($loop->last)
+                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
                                 {{ $technology->name }}
-                            @else
-                                {{ $technology->name }}, 
-                            @endif
+                            </span>
                         @endforeach
                     </p>
                 </div>
