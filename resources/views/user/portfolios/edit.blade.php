@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label for="image">変更前の画像</label><br>
-                    <img src="{{ $portfolio->image_path }}" alt="画像" class="my-2">
+                    <img src="{{ isset($portfolio->image_path) ? $portfolio->image_path : 'https://res.cloudinary.com/dlalfv68e/image/upload/v1598249615/v8ycx2qljsz6u4lzcosm.png' }}" alt="画像" class="my-2">
                     <input type="file" class="form-control-file" id="image" name="image">
                 </div>
                 <select-component
