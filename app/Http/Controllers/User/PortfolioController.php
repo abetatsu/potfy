@@ -60,8 +60,8 @@ class PortfolioController extends Controller
                 Cloudder::upload($image_path, null);
                 $publicId = Cloudder::getPublicId();
                 $logoUrl = Cloudder::secureShow($publicId, [
-                    'width'     => 200,
-                    'height'    => 200
+                    'width'     => 500,
+                    'height'    => 500
                 ]);
                 $portfolio->image_path = $logoUrl;
                 $portfolio->public_id  = $publicId;
