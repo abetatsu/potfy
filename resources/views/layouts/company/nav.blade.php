@@ -38,7 +38,7 @@
 								{{ __('Logout') }}
 							</a>
 
-							<a class="dropdown-item" href="{{ route('company.companies.show', Auth::id()) }}">
+							<a class="dropdown-item" href="{{ route('company.companies.show', Auth::user()->id) }}">
 								マイページ <span class="caret"></span>
 							</a>
 

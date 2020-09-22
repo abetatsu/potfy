@@ -42,7 +42,7 @@
                     </a>
                 </div>
                 <div class="row my-5">
-                    @if ($portfolio->user_id === Auth::id())
+                    @if ($portfolio->user_id === Auth::user()->id)
                     <div class="col-3">
                         <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12">編集する</a>
                     </div>
@@ -64,7 +64,7 @@
                     <div class="col-3">
                         <url-copy-component></url-copy-component>
                     </div>
-                    @if ($portfolio->user_id !== Auth::id())
+                    @if ($portfolio->user_id !== Auth::user()->id)
                     <div class="col-3">
                         <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" 
                         href="https://twitter.com/share?url={{ route('portfolios.show', $portfolio->id) }}&hashtags=potfy&text={{ $portfolio->title }}というサービスを見つけました！" 
@@ -115,7 +115,7 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">{!! nl2br($comment->body) !!}</p>
-                                @if(Auth::id() === $portfolio->user_id || Auth::id() === $comment->user_id)
+                                @if(Auth::user()->id === $portfolio->user_id || Auth::user()->id === $comment->user_id)
                                     <form action="{{ route('user.comments.destroy', [$portfolio->id, $comment->id]) }}"method='post'>
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
@@ -142,7 +142,7 @@
         <div class="{{ session('history') ? 'active show' : ''}} tab-pane fade" id="history">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    @if(Auth::id() === $portfolio->user_id)
+                    @if(Auth::user()->id === $portfolio->user_id)
                     <form action="{{ route('user.histories.store',$portfolio->id) }}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="portfolio_id" value="{{$portfolio->id}}">
@@ -170,7 +170,7 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">{!! nl2br($history->history) !!}</p>
-                                @if(Auth::id() === $portfolio->user_id)
+                                @if(Auth::user()->id === $portfolio->user_id)
                                     <form action="{{ route('user.histories.destroy', [$portfolio->id, $history->id]) }}" method='post'>
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
@@ -192,7 +192,7 @@
         <div class="{{ session('history') || session('comment') ? : 'active show'}} tab-pane fade" id="story">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    @if(Auth::id() === $portfolio->user_id)
+                    @if(Auth::user()->id === $portfolio->user_id)
                     <form action="{{ route('user.stories.store', $portfolio->id) }}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
@@ -231,7 +231,7 @@
                             <div class="card-body">
                                 <p class="card-text">{!! nl2br($story->story) !!}</p>
                             </div>
-                            @if(Auth::id() === $portfolio->user_id)
+                            @if(Auth::user()->id === $portfolio->user_id)
                                 <form action="{{ route('user.stories.destroy', [$portfolio->id, $story->id]) }}" method='post'>
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}

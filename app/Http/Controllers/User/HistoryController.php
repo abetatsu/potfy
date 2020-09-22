@@ -42,7 +42,7 @@ class HistoryController extends Controller
         $portfolio = Portfolio::find($request->portfolio_id);
         $history = new History;
         $history->history = $history->replaceUrl($request->history);
-        $history->user_id = Auth::id();
+        $history->user_id = Auth::user()->id;
         $history->portfolio_id = $request->portfolio_id;
 
         $history -> save();
@@ -94,7 +94,7 @@ class HistoryController extends Controller
      */
     public function destroy(Portfolio $portfolio, History $history)
     {
-        if (Auth::id() !== $history->user_id) {
+        if (Auth::user()->id !== $history->user_id) {
             return abort(403);
         }
 
