@@ -109,19 +109,31 @@
                                     <img src="{{ ($comment->user->image) ? $comment->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
                                     <h3 class="card-text">{{ empty($comment->user->name)? 'Guest' : $comment->user->name }}</h3>
                                 </a>
-                                <span>
+                                <p class="ml-auto">
                                     投稿日時：{{ $comment->created_at->diffForHumans(Carbon\Carbon::now()) }}
-                                </span>
+                                </p>
+                                @if(Auth::id() === $portfolio->user_id || Auth::id() === $comment->user_id)
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item dropdown">
+                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><span class="caret"></span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                @if (Auth::id() === $comment->user_id)
+                                                    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#commentModal{{ $comment->id }}" data-whatever="@mdo">編集する</button>
+                                                @endif
+                                                <form action="{{ route('user.comments.destroy', [$portfolio->id, $comment->id]) }}" method='post' class="dropdown-item">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('DELETE') }}
+                                                    <input type='submit' class="bg-transparent btn px-0" value='削除する' onclick='return confirm("本当に削除しますか?");'>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                @endif
                             </div>
+                            @include('user.portfolios._comment-modal', ['comment' => $comment])
                             <div class="card-body">
                                 <p class="card-text">{!! nl2br($comment->body) !!}</p>
-                                @if(Auth::id() === $portfolio->user_id || Auth::id() === $comment->user_id)
-                                    <form action="{{ route('user.comments.destroy', [$portfolio->id, $comment->id]) }}"method='post'>
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("本当に削除しますか?");'>
-                                    </form>
-                                @endif
                             </div>
                         </div>
                         @endforeach
@@ -138,7 +150,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="{{ session('history') ? 'active show' : ''}} tab-pane fade" id="history">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -164,19 +175,29 @@
                                     <img src="{{ ($history->user->image) ? $history->user->image: '/assets/image/android-chrome-192x192.png' }}" alt="" class="rounded-circle h-10 p-2">
                                     <h3 class="card-text">{{ empty($history->user->name)? 'Guest' : $history->user->name }}</h3>
                                 </a>
-                                <span>
+                                <p class="ml-auto">
                                     投稿日時：{{ $history->created_at->diffForHumans(Carbon\Carbon::now()) }}
-                                </span>
+                                </p>
+                                @if(Auth::id() === $portfolio->user_id || Auth::id() === $history->user_id)
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item dropdown">
+                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><span class="caret"></span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#historyModal{{ $history->id }}" data-whatever="@mdo">編集する</button>
+                                                <form action="{{ route('user.histories.destroy', [$portfolio->id, $history->id]) }}" method='post' class="dropdown-item">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('DELETE') }}
+                                                    <input type='submit' class="bg-transparent btn px-0" value='削除する' onclick='return confirm("本当に削除しますか?");'>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                @endif
                             </div>
+                            @include('user.portfolios._history-modal', ['history' => $history])
                             <div class="card-body">
                                 <p class="card-text">{!! nl2br($history->history) !!}</p>
-                                @if(Auth::id() === $portfolio->user_id)
-                                    <form action="{{ route('user.histories.destroy', [$portfolio->id, $history->id]) }}" method='post'>
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("本当に削除しますか?");'>
-                                    </form>
-                                @endif
                             </div>
                         </div>
                         @endforeach
