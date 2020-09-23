@@ -153,6 +153,9 @@ return [
         'description'=>'内容',
         'link'=>'リンク',
         'story_type'=>'ストーリー',
+        'story' => 'ストーリー内容',
+        'history' => '開発履歴内容',
+        'body' => 'コメント内容',
     ],
 
 ];
