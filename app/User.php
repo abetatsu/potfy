@@ -5,7 +5,9 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Webpatser\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+use PascalDeVink\ShortUuid\ShortUuid;
 
 class User extends Authenticatable
 {
@@ -75,7 +77,9 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function ($model) {
-            $model->{$model->getKeyName()} = Uuid::generate()->string;
+            $shortuuid = new ShortUuid();
+            $uuid = $shortuuid->encode(Uuid::uuid4());
+            $model->{$model->getKeyName()} = $uuid;
         });
     }
 }
