@@ -23,6 +23,8 @@ class CommentRequest extends FormRequest
      */
     public function rules()
     {
+        session()->flash('comment', true);
+
         return [
             'body'  => 'required',
         ];

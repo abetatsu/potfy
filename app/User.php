@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 use PascalDeVink\ShortUuid\ShortUuid;
+use App\Notifications\PasswordResetNotification;
 
 class User extends Authenticatable
 {
@@ -81,5 +82,10 @@ class User extends Authenticatable
             $uuid = $shortuuid->encode(Uuid::uuid4());
             $model->{$model->getKeyName()} = $uuid;
         });
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordResetNotification($token));
     }
 }
