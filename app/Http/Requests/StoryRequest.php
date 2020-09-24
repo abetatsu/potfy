@@ -24,16 +24,16 @@ class StoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'story'       => 'required',
             'story_type'  => 'not_in: 0',
+            'story'       => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'story.required'     => trans('validation.required'),
             'story_type.not_in'  => trans('validation.not_in'),
+            'story.required'     => trans('validation.required'),
         ];
     }
 }

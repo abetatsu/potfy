@@ -48,7 +48,7 @@ class CommentController extends Controller
 
         $comment->save();
         
-        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'コメント完了しました。')->with('comment', true);
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'コメント完了しました。');
     }
 
     /**
@@ -89,7 +89,7 @@ class CommentController extends Controller
         $comment->body = $request->body;
         $comment->save();
 
-        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'コメントを編集しました。')->with('comment', true);
+        return redirect()->route('portfolios.show', $portfolio->id)->with('success', 'コメントを編集しました。');
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Redirect;
 
 class HistoryRequest extends FormRequest
 {
@@ -23,6 +24,8 @@ class HistoryRequest extends FormRequest
      */
     public function rules()
     {
+        session()->flash('history', true);
+
         return [
             'history'  => 'required',
         ];
