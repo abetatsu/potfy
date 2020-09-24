@@ -50,6 +50,11 @@
                         <button type="submit" class="bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">
                             メールアドレスで{{ __('ログイン') }}
                         </button>
+                        @if (Route::has('user.password.request'))
+                            <a class="btn btn-link" href="{{ route('user.password.request') }}">
+                                {{ __('Forgot Your Password?') }}
+                            </a>
+                        @endif
                     </div>
                 </div>
             </form>
