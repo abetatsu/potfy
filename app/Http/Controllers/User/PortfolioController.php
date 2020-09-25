@@ -97,11 +97,16 @@ class PortfolioController extends Controller
         if ($portfolio->user_id !== Auth::id()) {
             $portfolio->visited_count++;
             $portfolio->save();
+            $isAuthPortfolio = false;
+        } else {
+            $isAuthPortfolio = true;
         }
+        
         $portfolio->load('user', 'technologies');
         $description = $portfolio->replaceUrl($portfolio->description);
         $link = $portfolio->replaceUrl($portfolio->link);
-        return view('user.portfolios.show', compact('portfolio', 'description', 'link'));
+        
+        return view('user.portfolios.show', compact('portfolio', 'description', 'link', 'isAuthPortfolio'));
     }
 
     /**
