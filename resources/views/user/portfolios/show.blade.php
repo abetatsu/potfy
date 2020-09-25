@@ -40,36 +40,35 @@
                     </a>
                 </div>
                 <div class="row my-5">
-                    @if ($portfolio->user_id === Auth::id())
-                    <div class="col-3">
-                        <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12">編集する</a>
-                    </div>
-                    <div class="col-3">
-                        <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" 
-                            href="https://twitter.com/share?url={{ route('portfolios.show', $portfolio->id) }}&hashtags=potfy&text=開発者募集中です！" 
-                            onclick="return confirm('https:\/\/twitter.com に遷移しようとしています。本当に実行してよろしいでしょうか?')" rel="nofollow" target="_blank">
-                            開発者を募る
-                        </a>
-                    </div>
-                    <div class="col-3">
-                        <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}" method='post'>
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <input type='submit' value='削除する' class="btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full col-12" onclick='return confirm("削除しますか？？");'>
-                        </form>
-                    </div>
-                    @endif
                     <div class="col-3">
                         <url-copy-component></url-copy-component>
                     </div>
-                    @if ($portfolio->user_id !== Auth::id())
-                    <div class="col-3">
-                        <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" 
-                        href="https://twitter.com/share?url={{ route('portfolios.show', $portfolio->id) }}&hashtags=potfy&text={{ $portfolio->title }}というサービスを見つけました！" 
-                        onclick="return confirm('https:\/\/twitter.com に遷移しようとしています。本当に実行してよろしいでしょうか?')" rel="nofollow" target="_blank">
-                        Twitterでシェア
-                    </a>
-                    </div>
+                    @if ($isAuthPortfolio)
+                        <div class="col-3">
+                            <a href="{{route('user.portfolios.edit', $portfolio->id)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12">編集する</a>
+                        </div>
+                        <div class="col-3">
+                            <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" 
+                                href="https://twitter.com/share?url={{ route('portfolios.show', $portfolio->id) }}&hashtags=potfy&text=開発者募集中です！" 
+                                onclick="return confirm('https:\/\/twitter.com に遷移しようとしています。本当に実行してよろしいでしょうか?')" rel="nofollow" target="_blank">
+                                開発者を募る
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}" method='post'>
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <input type='submit' value='削除する' class="btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full col-12" onclick='return confirm("削除しますか？？");'>
+                            </form>
+                        </div>
+                    @else
+                        <div class="col-3">
+                            <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" 
+                                href="https://twitter.com/share?url={{ route('portfolios.show', $portfolio->id) }}&hashtags=potfy&text={{ $portfolio->title }}というサービスを見つけました！" 
+                                onclick="return confirm('https:\/\/twitter.com に遷移しようとしています。本当に実行してよろしいでしょうか?')" rel="nofollow" target="_blank">
+                                Twitterでシェア
+                            </a>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -101,6 +100,7 @@
                 <div class="col-md-8">
                     @if($portfolio->comments->count() !== 0)
                         @foreach ($portfolio->comments as $comment)
+                        @php $isAuthComment = Auth::id() === $comment->user_id ? true : false; @endphp
                         <div class="card mt-5">
                             <div class="card-header py-2 d-flex justify-content-between align-items-center">
                                 <a href="{{ route('users.show', $comment->user_id) }}" class="d-flex align-items-center">
@@ -110,13 +110,13 @@
                                 <p class="ml-auto">
                                     投稿日時：{{ $comment->created_at->diffForHumans(Carbon\Carbon::now()) }}
                                 </p>
-                                @if(Auth::id() === $portfolio->user_id || Auth::id() === $comment->user_id)
+                                @if($isAuthPortfolio || $isAuthComment)
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown">
                                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><span class="caret"></span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                                @if (Auth::id() === $comment->user_id)
+                                                @if ($isAuthComment)
                                                     <button type="button" class="dropdown-item" data-toggle="modal" data-target="#commentModal{{ $comment->id }}" data-whatever="@mdo">編集する</button>
                                                 @endif
                                                 <form action="{{ route('user.comments.destroy', [$portfolio->id, $comment->id]) }}" method='post' class="dropdown-item">
@@ -151,7 +151,7 @@
         <div class="{{ session('history') ? 'active show' : ''}} tab-pane fade" id="history">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    @if(Auth::id() === $portfolio->user_id)
+                    @if($isAuthPortfolio)
                     <form action="{{ route('user.histories.store',$portfolio->id) }}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="portfolio_id" value="{{$portfolio->id}}">
@@ -167,6 +167,7 @@
                 <div class="col-md-8">
                     @if($portfolio->histories->count() !== 0)
                         @foreach ($portfolio->histories as $history)
+                        @php $isAuthHistory = Auth::id() === $history->user_id ? true : false; @endphp
                         <div class="card mt-5">
                             <div class="card-header py-2 d-flex justify-content-between align-items-center">
                                 <a href="{{ route('users.show', $history->user_id) }}" class="d-flex align-items-center">
@@ -176,7 +177,7 @@
                                 <p class="ml-auto">
                                     投稿日時：{{ $history->created_at->diffForHumans(Carbon\Carbon::now()) }}
                                 </p>
-                                @if(Auth::id() === $portfolio->user_id || Auth::id() === $history->user_id)
+                                @if($isAuthPortfolio || $isAuthHistory)
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown">
                                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><span class="caret"></span>
@@ -211,7 +212,7 @@
         <div class="{{ session('history') || session('comment') ? : 'active show'}} tab-pane fade" id="story">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    @if(Auth::id() === $portfolio->user_id)
+                    @if($isAuthPortfolio)
                     <form action="{{ route('user.stories.store', $portfolio->id) }}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="portfolio_id" value="{{ $portfolio->id }}">
@@ -234,6 +235,7 @@
                 <div class="col-md-8">
                     @if($portfolio->stories->count() !== 0)
                         @foreach ($portfolio->stories as $story)
+                        @php $isAuthStory = Auth::id() === $story->user_id ? true : false; @endphp
                             <div class="mt-5 py-2 col-3 bg-potfyYellow text-white font-bold text-center rounded-top">
                                 {{App\Enums\StoryType::getDescription($story->story_type)}}
                             </div>
@@ -246,7 +248,7 @@
                                     <p class="ml-auto">
                                         投稿日時：{{ $story->created_at->diffForHumans(Carbon\Carbon::now()) }}
                                     </p>
-                                    @if(Auth::id() === $portfolio->user_id || Auth::id() === $story->user_id)
+                                    @if($isAuthPortfolio || $isAuthStory)
                                         <ul class="navbar-nav">
                                             <li class="nav-item dropdown">
                                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><span class="caret"></span>
