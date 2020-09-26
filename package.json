@@ -1,50 +1,54 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "npm run development -- --watch",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "lint:js": "eslint --ext .js,.vue src/js",
-        "lint:scss": "sass-lint -c .sass-lint.yml -v",
-        "fix:js": "eslint  --ext .js,.vue src/js --fix",
-        "fix:scss": "sass-lint-auto-fix -c .sass-lint-fix.yml --config-sass-lint .sass-lint.yml",
-        "precommit": "lint-staged"
-    },
-    "lint-staged": {
-        "src/**/*.{js,vue}": [
-            "eslint --fix",
-            "git add"
-        ],
-        "src/**/*.scss": [
-            "sass-lint -c .sass-lint.yml -v -q",
-            "git add"
-        ]
-    },
-    "devDependencies": {
-        "@fortawesome/fontawesome-free": "^5.14.0",
-        "axios": "^0.19",
-        "bootstrap": "^4.0.0",
-        "cross-env": "^7.0",
-        "husky": "^1.0.0-rc.15",
-        "lint-staged": "^7.3.0",
-        "jquery": "^3.2",
-        "laravel-mix": "^5.0.5",
-        "lodash": "^4.17.20",
-        "popper.js": "^1.12",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.26.11",
-        "sass-lint": "^1.12.1",
-        "sass-lint-auto-fix": "^0.21.2",
-        "sass-loader": "^8.0.0",
-        "vue": "^2.6.12",
-        "vue-template-compiler": "^2.6.12"
-    },
-    "dependencies": {
-        "tailwindcss": "^1.8.10",
-        "vue-select": "^3.10.8"
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "lint:js": "eslint --ext .js,.vue src/js",
+    "lint:scss": "sass-lint -c .sass-lint.yml -v",
+    "fix:js": "eslint  --ext .js,.vue src/js --fix",
+    "fix:scss": "sass-lint-auto-fix -c .sass-lint-fix.yml --config-sass-lint .sass-lint.yml"
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "src/**/*.scss": [
+      "sass-lint -c .sass-lint.yml -v -q",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "axios": "^0.19",
+    "bootstrap": "^4.0.0",
+    "cross-env": "^7.0",
+    "husky": "^1.0.0-rc.15",
+    "lint-staged": "^7.3.0",
+    "jquery": "^3.2",
+    "laravel-mix": "^5.0.5",
+    "lodash": "^4.17.20",
+    "popper.js": "^1.12",
+    "resolve-url-loader": "^2.3.1",
+    "sass": "^1.26.11",
+    "sass-lint": "^1.12.1",
+    "sass-lint-auto-fix": "^0.21.2",
+    "sass-loader": "^8.0.0",
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "dependencies": {
+    "tailwindcss": "^1.8.10",
+    "vue-select": "^3.10.8"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
+  }
 }
