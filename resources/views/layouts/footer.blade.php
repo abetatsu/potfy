@@ -9,7 +9,7 @@
               <li class="col-md-3 small"><a href="{{ route('terms.services')}}">利用規約</a></li>
               <li class="col-md-3 small"><a href="{{ route('terms.privacy')}}">プライバシーポリシー</a></li>
               <li class="col-md-3 small"><a href="mailto:masanao@gaogao.asia?subject=Potfy お問い合わせ">お問い合わせ</a></li>
-              <li class="col-md-3 small"><a href="{{ route('terms.organizer')}}">運営</a></li>
+              <li class="col-md-3 small"><a href="{{ route('terms.organizer')}}">運営チーム</a></li>
             </ul>
           </div>
         </div>

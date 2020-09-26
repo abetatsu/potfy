@@ -31,6 +31,28 @@ class TermsController extends Controller
      */
     public function organizer()
     {
-        return view('terms.organizer');
+        $devMembers = [
+            't-aburasoba',
+            'yusan12',
+            'UoyaRyota',
+            'speeed131',
+            'KoeInoue',
+            'masagao'
+        ];
+        $sprtMembers = [
+            'aokidaiki',
+            'daiju81',
+            'RikuHirose',
+            'sou-uemura',
+            'DaikiHosomi',
+            'JunKudo0222',
+            'midnight-trigger',
+            'ryoichi-iba'
+        ];
+        $thxMembers = [
+            'tejitak',
+            'kengaogaoasia'
+        ];
+        return view('terms.organizer', compact('devMembers', 'sprtMembers', 'thxMembers'));
     }
 }
