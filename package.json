@@ -8,16 +8,10 @@
     "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "lint:js": "eslint --ext .js,.vue src/js",
     "lint:scss": "sass-lint -c .sass-lint.yml -v",
-    "fix:js": "eslint  --ext .js,.vue src/js --fix",
     "fix:scss": "sass-lint-auto-fix -c .sass-lint-fix.yml --config-sass-lint .sass-lint.yml"
   },
   "lint-staged": {
-    "src/**/*.{js,vue}": [
-      "eslint --fix",
-      "git add"
-    ],
     "src/**/*.scss": [
       "sass-lint -c .sass-lint.yml -v -q",
       "git add"
