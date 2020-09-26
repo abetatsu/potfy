@@ -12,7 +12,7 @@
     "fix:scss": "sass-lint-auto-fix -c .sass-lint-fix.yml --config-sass-lint .sass-lint.yml"
   },
   "lint-staged": {
-    "src/**/*.scss": [
+    "resources/sass/**/*.scss": [
       "sass-lint -c .sass-lint.yml -v -q",
       "git add"
     ]
