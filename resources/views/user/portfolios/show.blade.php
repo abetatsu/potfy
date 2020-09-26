@@ -41,30 +41,30 @@
                 </div>
                 <div class="row my-5">
                     @if ($portfolio->user_id === Auth::id())
-                    <div class="col-3">
-                        <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12">編集する</a>
+                    <div class="col-md-3">
+                        <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="four-btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-md-12">編集する</a>
                     </div>
-                    <div class="col-3">
-                        <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" 
+                    <div class="col-md-3">
+                        <a class="four-btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-md-12" 
                             href="https://twitter.com/share?url={{ route('portfolios.show', $portfolio->id) }}&hashtags=potfy&text=開発者募集中です！" 
                             onclick="return confirm('https:\/\/twitter.com に遷移しようとしています。本当に実行してよろしいでしょうか?')" rel="nofollow" target="_blank">
                             開発者を募る
                         </a>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}" method='post'>
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <input type='submit' value='削除する' class="btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full col-12" onclick='return confirm("削除しますか？？");'>
+                            <input type='submit' value='削除する' class="four-btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full col-md-12" onclick='return confirm("削除しますか？？");'>
                         </form>
                     </div>
                     @endif
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <url-copy-component></url-copy-component>
                     </div>
                     @if ($portfolio->user_id !== Auth::id())
-                    <div class="col-3">
-                        <a class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-12" 
+                    <div class="col-md-3">
+                        <a class="four-btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-md-12" 
                         href="https://twitter.com/share?url={{ route('portfolios.show', $portfolio->id) }}&hashtags=potfy&text={{ $portfolio->title }}というサービスを見つけました！" 
                         onclick="return confirm('https:\/\/twitter.com に遷移しようとしています。本当に実行してよろしいでしょうか?')" rel="nofollow" target="_blank">
                         Twitterでシェア
@@ -92,7 +92,7 @@
                         <div class="mt-4 form-group">
                             <textarea class="form-control" placeholder="内容" rows="5" name="body"></textarea>
                         </div>
-                        <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-3">コメントを投稿する</button>
+                        <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-md-3">コメントを投稿する</button>
                     </form>
                     @endauth
                 </div>
@@ -158,7 +158,7 @@
                         <div class="mt-4 form-group">
                             <textarea class="form-control" placeholder="内容" rows="5" name="history"></textarea>
                         </div>
-                        <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-3">開発履歴を投稿する</button>
+                        <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-md-3">開発履歴を投稿する</button>
                     </form>
                     @endif
                 </div>
@@ -225,7 +225,7 @@
                             </select>
                             <textarea class="form-control" placeholder="内容" rows="5" name="story"></textarea>
                         </div>
-                        <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-3">ストーリーを投稿する</button>
+                        <button type="submit" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-md-3">ストーリーを投稿する</button>
                     </form>
                     @endif
                 </div>
@@ -234,7 +234,7 @@
                 <div class="col-md-8">
                     @if($portfolio->stories->count() !== 0)
                         @foreach ($portfolio->stories as $story)
-                            <div class="mt-5 py-2 col-3 bg-potfyYellow text-white font-bold text-center rounded-top">
+                            <div class="mt-5 py-2 col-md-3 bg-potfyYellow text-white font-bold text-center rounded-top">
                                 {{App\Enums\StoryType::getDescription($story->story_type)}}
                             </div>
                             <div class="card">
