@@ -3,9 +3,10 @@
 @section('content')
 <div style="background-image: url({{ asset('assets/image/potfybg.jpeg') }}); " class="bg-cover bg-center">
     <div style="background-color: rgba(0,0,0,0.1);">
-        <div class="container py-20 lg:py-48">
+        <div class="container py-20 lg:py-32">
             <div class="text-center">
                 <p class="text-6xl text-gray-100 tracking-widest mb-3">Potfy.me</p>
+                <p class="text-3xl text-gray-100 tracking-widest mb-4">「アプリ、アイデア、ここに集まれ」</p>
                 <p><a href="{{ route('user.portfolios.index')}}" class="btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full">早速使ってみる</a></p>
             </div>
         </div>
