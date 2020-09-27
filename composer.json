@@ -19,8 +19,9 @@
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
-        "socialiteproviders/github": "^1.0",
-        "webpatser/laravel-uuid": "^3.0"
+        "pascaldevink/shortuuid": "^2.3",
+        "ramsey/uuid": "^4.1",
+        "socialiteproviders/github": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

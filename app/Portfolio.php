@@ -4,7 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Webpatser\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+use PascalDeVink\ShortUuid\ShortUuid;
+
 
 class Portfolio extends Model
 {
@@ -49,7 +52,9 @@ class Portfolio extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->{$model->getKeyName()} = Uuid::generate()->string;
+            $shortuuid = new ShortUuid();
+            $uuid = $shortuuid->encode(Uuid::uuid4());
+            $model->{$model->getKeyName()} = $uuid;
         });
     }
 }
