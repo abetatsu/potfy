@@ -42,10 +42,10 @@
                 <div class="row my-5">
                     @if ($portfolio->user_id === Auth::id())
                     <div class="col-md-3">
-                        <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="four-btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-md-12">編集する</a>
+                        <a href="{{route('user.portfolios.edit',$portfolio->id)}}" class="p-portfolio-show btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-md-12">編集する</a>
                     </div>
                     <div class="col-md-3">
-                        <a class="four-btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-md-12" 
+                        <a class="p-portfolio-show btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-md-12" 
                             href="https://twitter.com/share?url={{ route('portfolios.show', $portfolio->id) }}&hashtags=potfy&text=開発者募集中です！" 
                             onclick="return confirm('https:\/\/twitter.com に遷移しようとしています。本当に実行してよろしいでしょうか?')" rel="nofollow" target="_blank">
                             開発者を募る
@@ -55,7 +55,7 @@
                         <form action="{{ route('user.portfolios.destroy', $portfolio->id) }}" method='post'>
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <input type='submit' value='削除する' class="four-btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full col-md-12" onclick='return confirm("削除しますか？？");'>
+                            <input type='submit' value='削除する' class="p-portfolio-show btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full col-md-12" onclick='return confirm("削除しますか？？");'>
                         </form>
                     </div>
                     @endif
@@ -64,7 +64,7 @@
                     </div>
                     @if ($portfolio->user_id !== Auth::id())
                     <div class="col-md-3">
-                        <a class="four-btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-md-12" 
+                        <a class="p-portfolio-show btn bg-potfyYellow hover:bg-potfyYellowTitle text-white font-bold py-2 px-4 rounded-full col-md-12" 
                         href="https://twitter.com/share?url={{ route('portfolios.show', $portfolio->id) }}&hashtags=potfy&text={{ $portfolio->title }}というサービスを見つけました！" 
                         onclick="return confirm('https:\/\/twitter.com に遷移しようとしています。本当に実行してよろしいでしょうか?')" rel="nofollow" target="_blank">
                         Twitterでシェア
